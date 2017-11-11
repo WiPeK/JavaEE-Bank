@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="pl.wipek.database" transaction-type="JTA">
+        <!--<persistence-unit name="pl.wipek.database.users">-->
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <!--<jta-data-source>pl.wipek.database.users/Hibernate</jta-data-source>-->
+        <jta-data-source>javaeeresource</jta-data-source>
+        <class>pl.wipek.shared.domain.entity.Users</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="eclipselink.target-database" value="Oracle"/>
+            <!--<property name="hibernate.classloading.use_current_tccl_as_parent" value="false" />-->
+            <property name="eclipselink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <!--<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>-->
+            <property name="eclipselink.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+            <!--<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>-->
+            <property name="eclipselink.jdbc.user" value="JAVAEE"/>
+            <!--<property name="hibernate.connection.username" value="JAVAEE"/>-->
+            <property name="eclipselink.jdbc.password" value="root"/>
+            <!--<property name="hibernate.connection.password" value="root"/>-->
+            <!--&lt;!&ndash;<property name="hibernate.default_schema" value="JAVAEE"/>&ndash;&gt;-->
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>-->
+            <!--<property name="hibernate.show_sql" value="true"/>-->
+            <!--&lt;!&ndash;<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.enable_lazy_load_no_trans" value="true" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.connection.pool_size" value="99"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.hbm2ddl.auto" value="create-drop" />&ndash;&gt;-->
+        </properties>
+    </persistence-unit>
+
+</persistence>

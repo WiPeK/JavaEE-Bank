@@ -1,0 +1,3 @@
+ojdbc do domain ext
+add jboss logging to glassfish modules
+ojdbc trzeba instalować przez mvn
