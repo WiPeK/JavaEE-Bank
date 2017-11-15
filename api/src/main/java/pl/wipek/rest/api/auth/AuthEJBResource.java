@@ -9,6 +9,7 @@ import pl.wipek.shared.domain.entity.Users;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,8 +22,7 @@ import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
  */
 @Path("/auth")
 @ApplicationScoped
-@XmlRootElement
-public class AuthEJBResource {
+public class AuthEJBResource extends Application {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthEJBResource.class);
 
