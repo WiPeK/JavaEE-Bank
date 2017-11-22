@@ -16,6 +16,7 @@
         <module>requestdatacollector</module>
         <module>security</module>
         <module>payments</module>
+        <module>accounts</module>
     </modules>
 
     <properties>
