@@ -2,12 +2,10 @@ package pl.wipek.shared.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author Krzysztof Adamczyk on 26.10.2017.
@@ -19,6 +17,7 @@ public class Users implements Serializable {
     private String login;
     private String password;
     private String token;
+    private Set<Account> accounts;
 
     @Id
     @Column(name = "ID_USERS", nullable = false)
@@ -62,6 +61,15 @@ public class Users implements Serializable {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
     }
 
     @Override

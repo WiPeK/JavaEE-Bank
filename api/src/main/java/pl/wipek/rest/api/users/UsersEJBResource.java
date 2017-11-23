@@ -6,7 +6,6 @@ import pl.wipek.users.ejb.services.UsersService;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.interceptor.Interceptors;
-import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;

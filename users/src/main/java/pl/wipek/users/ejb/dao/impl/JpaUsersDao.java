@@ -13,12 +13,4 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless(name = "JpaUsersDao")
 public class JpaUsersDao extends AbstractDao<String, Users> implements UsersDAO {
-
-//    @PersistenceContext(unitName = "pl.wipek.database.users")
-//    protected EntityManager entityManager;
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return entityManager;
-    }
 }

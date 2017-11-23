@@ -2,8 +2,7 @@ package pl.wipek.shared.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -20,8 +19,10 @@ public class Account implements Serializable {
     private String currency;
     private String name;
     private BigDecimal blockedAmount;
+    private Users user;
 
     @Id
+    @Column(name = "ID_ACCOUNTS", nullable = false)
     @JsonProperty
     public String getIdAccounts() {
         return idAccounts;
@@ -32,6 +33,7 @@ public class Account implements Serializable {
     }
 
     @JsonProperty
+    @Column(name = "ACCOUNT_NUMBER", nullable = false, length = 32)
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -41,6 +43,7 @@ public class Account implements Serializable {
     }
 
     @JsonProperty
+    @Column(name = "BALANCE", nullable = true)
     public BigDecimal getBalance() {
         return balance;
     }
@@ -50,6 +53,7 @@ public class Account implements Serializable {
     }
 
     @JsonProperty
+    @Column(name = "CURRENCY", nullable = true)
     public String getCurrency() {
         return currency;
     }
@@ -59,6 +63,7 @@ public class Account implements Serializable {
     }
 
     @JsonProperty
+    @Column(name = "NAME", nullable = true)
     public String getName() {
         return name;
     }
@@ -68,12 +73,23 @@ public class Account implements Serializable {
     }
 
     @JsonProperty
+    @Column(name = "BLOCKED_AMOUNT", nullable = true)
     public BigDecimal getBlockedAmount() {
         return blockedAmount;
     }
 
     public void setBlockedAmount(BigDecimal blockedAmount) {
         this.blockedAmount = blockedAmount;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "USERS_ID")
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     @Override

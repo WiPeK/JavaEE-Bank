@@ -6,6 +6,8 @@ import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.ws.rs.NotFoundException;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
@@ -20,8 +22,6 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
 
     @PersistenceContext(unitName = "pl.wipek.database")
     protected EntityManager entityManager;
-
-    protected abstract EntityManager getEntityManager();
 
     public AbstractDao() {
         ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
@@ -115,12 +115,16 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
      */
     @Override
     public List<E> getAll() {
-//        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
-//        CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(entityClass);
-//        criteriaQuery.from(entityClass);
-//        List<E> res = getEntityManager().createQuery(criteriaQuery).getResultList();
-//        return res;
-        Query query = getEntityManager().createQuery("SELECT e FROM " + entityClass.getName() + " e");
-        return query.getResultList();
+        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(entityClass);
+        criteriaQuery.from(entityClass);
+        List<E> res = getEntityManager().createQuery(criteriaQuery).getResultList();
+        return res;
+//        Query query = getEntityManager().createQuery("SELECT e FROM " + entityClass.getName() + " e");
+//        return query.getResultList();
+    }
+
+    protected EntityManager getEntityManager() {
+        return entityManager;
     }
 }
