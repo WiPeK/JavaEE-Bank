@@ -3,21 +3,51 @@
 
     <persistence-unit name="pl.wipek.database" transaction-type="JTA">
         <!--<persistence-unit name="pl.wipek.database.users">-->
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
+        <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
         <!--<jta-data-source>pl.wipek.database.users/Hibernate</jta-data-source>-->
-        <jta-data-source>javaeeresource</jta-data-source>
+        <!--<jta-data-source>javaeeresource</jta-data-source>-->
         <class>pl.wipek.shared.domain.entity.Users</class>
+        <class>pl.wipek.shared.domain.entity.Account</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
-            <property name="eclipselink.target-database" value="Oracle"/>
+            <property name="hibernate.transaction.jta.platform"
+                      value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform"/>
+            <!--<property name="hibernate.ogm.datastore.provider"-->
+                      <!--value="mongodb"/>-->
+            <property name="hibernate.ogm.datastore.provider" value="org.hibernate.ogm.datastore.mongodb.impl.MongoDBDatastoreProvider" />
+            <property name="hibernate.ogm.datastore.host" value="bank-shard-00-00-pwi9t.mongodb.net:27017,bank-shard-00-01-pwi9t.mongodb.net:27017,bank-shard-00-02-pwi9t.mongodb.net:27017"/>
+            <!--<property name="hibernate.ogm.datastore.grid_dialect"-->
+            <!--value="org.hibernate.ogm.datastore.mongodb.MongoDBDialect"/>-->
+            <property name="hibernate.ogm.datastore.database"
+                      value="BANK"/>
+            <!--<property name="hibernate.ogm.datastore.username"-->
+                      <!--value="banksopelki"/>-->
+            <!--<property name="hibernate.ogm.datastore.password"-->
+                      <!--value="qazxsw123!"/>-->
+            <!--<property name="hibernate.ogm.datastore.authentication_mechanism" value="SCRAM_SHA_1"/>-->
+
+            <!--<property name="hibernate.ogm.mongodb.connection_timeout" value="5000"/>-->
+            <!--<property name="hibernate.ogm.datastore.document.association_storage" value="IN_ENTITY"/>-->
+            <!--<property name="hibernate.ogm.mongodb.association_document_storage" value="GLOBAL_COLLECTION"/>-->
+            <!--<property name="hibernate.ogm.mongodb.write_concern" value="MAJORITY"/>-->
+            <!--<property name="hibernate.ogm.mongodb.read_preference" value="PRIMARY_PREFERRED"/>-->
+            <!--<property name="hibernate.ogm.mongodb.uri" value="mongodb://bank-shard-00-00-pwi9t.mongodb.net"/>-->
+            <!--<property name="hibernate.ogm.mongodb.uri" value="mongodb://banksopelki:qazxsw123!@bank-shard-00-00-pwi9t.mongodb.net:27017,bank-shard-00-01-pwi9t.mongodb.net:27017,bank-shard-00-02-pwi9t.mongodb.net:27017/test?ssl=true&amp;replicaSet=Bank-shard-0&amp;authSource=admin"/>-->
+            <!--<property name="hibernate.ogm.mongodb.port" value="27017"/>-->
+            <!--<property name="hibernate.ogm.mongodb.password" value="qazxsw123!"/>-->
+            <!--<property name="hibernate.ogm.mongodb.host"-->
+                      <!--value="mongodb://banksopelki:qazxsw123!@bank-shard-00-00-pwi9t.mongodb.net:27017,bank-shard-00-01-pwi9t.mongodb.net:27017,bank-shard-00-02-pwi9t.mongodb.net:27017/test?ssl=true&amp;replicaSet=Bank-shard-0&amp;authSource=admin"/>-->
+
+            <!--<property name="eclipselink.target-database" value="Oracle"/>-->
             <!--<property name="hibernate.classloading.use_current_tccl_as_parent" value="false" />-->
-            <property name="eclipselink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <!--<property name="eclipselink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>-->
             <!--<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>-->
-            <property name="eclipselink.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+            <!--<property name="eclipselink.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>-->
             <!--<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>-->
-            <property name="eclipselink.jdbc.user" value="JAVAEE"/>
+            <!--<property name="eclipselink.jdbc.user" value="JAVAEE"/>-->
             <!--<property name="hibernate.connection.username" value="JAVAEE"/>-->
-            <property name="eclipselink.jdbc.password" value="root"/>
+            <!--<property name="eclipselink.jdbc.password" value="root"/>-->
             <!--<property name="hibernate.connection.password" value="root"/>-->
             <!--&lt;!&ndash;<property name="hibernate.default_schema" value="JAVAEE"/>&ndash;&gt;-->
             <!--<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>-->

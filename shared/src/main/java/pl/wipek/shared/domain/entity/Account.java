@@ -12,8 +12,9 @@ import java.math.BigDecimal;
  */
 @Entity
 @XmlRootElement
+@Table(name = "ACCOUNTS")
 public class Account implements Serializable {
-    private String idAccounts;
+    private String id;
     private String accountNumber;
     private BigDecimal balance;
     private String currency;
@@ -22,18 +23,18 @@ public class Account implements Serializable {
     private Users user;
 
     @Id
-    @Column(name = "ID_ACCOUNTS", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonProperty
-    public String getIdAccounts() {
-        return idAccounts;
+    public String getId() {
+        return id;
     }
 
-    public void setIdAccounts(String idAccounts) {
-        this.idAccounts = idAccounts;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @JsonProperty
-    @Column(name = "ACCOUNT_NUMBER", nullable = false, length = 32)
+    @Column(name = "accountNumber", nullable = false, length = 32)
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -43,7 +44,7 @@ public class Account implements Serializable {
     }
 
     @JsonProperty
-    @Column(name = "BALANCE", nullable = true)
+    @Column(name = "balance", nullable = true)
     public BigDecimal getBalance() {
         return balance;
     }
@@ -53,7 +54,7 @@ public class Account implements Serializable {
     }
 
     @JsonProperty
-    @Column(name = "CURRENCY", nullable = true)
+    @Column(name = "currency", nullable = true)
     public String getCurrency() {
         return currency;
     }
@@ -63,7 +64,7 @@ public class Account implements Serializable {
     }
 
     @JsonProperty
-    @Column(name = "NAME", nullable = true)
+    @Column(name = "name", nullable = true)
     public String getName() {
         return name;
     }
@@ -73,7 +74,7 @@ public class Account implements Serializable {
     }
 
     @JsonProperty
-    @Column(name = "BLOCKED_AMOUNT", nullable = true)
+    @Column(name = "blockedAmount", nullable = true)
     public BigDecimal getBlockedAmount() {
         return blockedAmount;
     }
@@ -82,15 +83,7 @@ public class Account implements Serializable {
         this.blockedAmount = blockedAmount;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "USERS_ID")
-    public Users getUser() {
-        return user;
-    }
 
-    public void setUser(Users user) {
-        this.user = user;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -99,7 +92,7 @@ public class Account implements Serializable {
 
         Account account = (Account) o;
 
-        if (idAccounts != null ? !idAccounts.equals(account.idAccounts) : account.idAccounts != null) return false;
+        if (id != null ? !id.equals(account.id) : account.id != null) return false;
         if (accountNumber != null ? !accountNumber.equals(account.accountNumber) : account.accountNumber != null)
             return false;
         if (balance != null ? !balance.equals(account.balance) : account.balance != null) return false;
@@ -110,7 +103,7 @@ public class Account implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = idAccounts != null ? idAccounts.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (accountNumber != null ? accountNumber.hashCode() : 0);
         result = 31 * result + (balance != null ? balance.hashCode() : 0);
         result = 31 * result + (currency != null ? currency.hashCode() : 0);
@@ -122,7 +115,7 @@ public class Account implements Serializable {
     @Override
     public String toString() {
         return "Account{" +
-                "idAccounts='" + idAccounts + '\'' +
+                "idAccounts='" + id + '\'' +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", balance=" + balance +
                 ", currency='" + currency + '\'' +
