@@ -149,11 +149,11 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
-        <!--<dependency>-->
-            <!--<groupId>org.mongodb</groupId>-->
-            <!--<artifactId>mongo-java-driver</artifactId>-->
-            <!--<version>3.6.0-rc0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.6.0-rc0</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.jboss.jbossts/jbossjta -->
         <dependency>
