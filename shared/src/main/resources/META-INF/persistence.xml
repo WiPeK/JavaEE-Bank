@@ -8,25 +8,28 @@
         <!--<jta-data-source>pl.wipek.database.users/Hibernate</jta-data-source>-->
         <!--<jta-data-source>javaeeresource</jta-data-source>-->
         <class>pl.wipek.shared.domain.entity.Users</class>
-        <class>pl.wipek.shared.domain.entity.Account</class>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.transaction.jta.platform"
                       value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform"/>
             <!--<property name="hibernate.ogm.datastore.provider"-->
                       <!--value="mongodb"/>-->
-            <property name="hibernate.ogm.datastore.provider" value="org.hibernate.ogm.datastore.mongodb.impl.MongoDBDatastoreProvider" />
+            <property name="hibernate.ogm.datastore.provider" value="MONGODB" />
+            <!--<property name="hibernate.ogm.datastore.provider" value="org.hibernate.ogm.datastore.mongodb.impl.MongoDBDatastoreProvider" />-->
             <property name="hibernate.ogm.datastore.host" value="bank-shard-00-00-pwi9t.mongodb.net:27017,bank-shard-00-01-pwi9t.mongodb.net:27017,bank-shard-00-02-pwi9t.mongodb.net:27017"/>
-            <!--<property name="hibernate.ogm.datastore.grid_dialect"-->
-            <!--value="org.hibernate.ogm.datastore.mongodb.MongoDBDialect"/>-->
+            <property name="hibernate.ogm.datastore.grid_dialect"
+            value="org.hibernate.ogm.datastore.mongodb.MongoDBDialect"/>
             <property name="hibernate.ogm.datastore.database"
                       value="BANK"/>
-            <!--<property name="hibernate.ogm.datastore.username"-->
-                      <!--value="banksopelki"/>-->
-            <!--<property name="hibernate.ogm.datastore.password"-->
-                      <!--value="qazxsw123!"/>-->
-            <!--<property name="hibernate.ogm.datastore.authentication_mechanism" value="SCRAM_SHA_1"/>-->
-
+            <property name="hibernate.ogm.datastore.username"
+                      value="banksopelki"/>
+            <property name="hibernate.ogm.datastore.password"
+                      value="qazxsw123!"/>
+            <property name="hibernate.ogm.datastore.authentication_mechanism" value="SCRAM_SHA_1"/>
+            <property name="hibernate.ogm.mongodb.driver.sslEnabled" value="true"/>
+            <property name="hibernate.ogm.mongodb.driver.sslInvalidHostNameAllowed" value="true"/>
+            <property name="hibernate.search.default.indexBase"
+                      value="/var/lucene/indexes"/>
             <!--<property name="hibernate.ogm.mongodb.connection_timeout" value="5000"/>-->
             <!--<property name="hibernate.ogm.datastore.document.association_storage" value="IN_ENTITY"/>-->
             <!--<property name="hibernate.ogm.mongodb.association_document_storage" value="GLOBAL_COLLECTION"/>-->

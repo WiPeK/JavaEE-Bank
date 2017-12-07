@@ -13,7 +13,6 @@
         <module>users</module>
         <module>api</module>
         <module>shared</module>
-        <module>requestdatacollector</module>
         <module>security</module>
         <module>payments</module>
         <module>accounts</module>
@@ -55,15 +54,6 @@
             <version>2.7.0</version>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
-        <!--<dependency>-->
-            <!--<groupId>org.eclipse.persistence</groupId>-->
-            <!--<artifactId>eclipselink</artifactId>-->
-            <!--<version>2.7.0</version>-->
-        <!--</dependency>-->
-
-
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -71,28 +61,6 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/com.airhacks/jaxrs-cors -->
-        <!--<dependency>-->
-            <!--<groupId>com.airhacks</groupId>-->
-            <!--<artifactId>jaxrs-cors</artifactId>-->
-            <!--<version>javaee6-0.0.1</version>-->
-        <!--</dependency>-->
-
-        <!-- https://mvnrepository.com/artifact/com.airhacks/jaxrs-cors -->
-        <!--<dependency>-->
-            <!--<groupId>com.airhacks</groupId>-->
-            <!--<artifactId>jaxrs-cors</artifactId>-->
-            <!--<version>0.0.2</version>-->
-        <!--</dependency>-->
-
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/javax.validation/validation-api &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>javax.validation</groupId>-->
-            <!--<artifactId>validation-api</artifactId>-->
-            <!--<version>2.0.0.Final</version>-->
-        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
         <dependency>
@@ -114,14 +82,6 @@
             <version>1.7.25</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.25</version>
-        </dependency>
-
-
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -129,47 +89,78 @@
             <version>5.1.10.Final</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-bom -->
+        <dependency>
+            <groupId>org.hibernate.ogm</groupId>
+            <artifactId>hibernate-ogm-bom</artifactId>
+            <version>5.1.0.Final</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-core -->
         <dependency>
             <groupId>org.hibernate.ogm</groupId>
             <artifactId>hibernate-ogm-core</artifactId>
-            <version>5.2.0.Beta1</version>
+            <version>5.1.0.Final</version>
         </dependency>
 
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate.ogm</groupId>-->
+            <!--<artifactId>hibernate-ogm-infinispan</artifactId>-->
+            <!--<version>5.1.0.Final</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-search-orm</artifactId>-->
+            <!--<version>5.6.1.Final</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-orm</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-core</artifactId>
+                </exclusion>
+            </exclusions>
+            <version>5.8.1.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-directory-provider</artifactId>
+            <version>8.2.4.Final</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-mongodb -->
         <dependency>
             <groupId>org.hibernate.ogm</groupId>
             <artifactId>hibernate-ogm-mongodb</artifactId>
-            <version>5.2.0.Beta1</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.mongodb</groupId>
-                    <artifactId>mongo-java-driver</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>5.1.0.Final</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.6.0-rc0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/oracle/ojdbc6 -->
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0.4.0</version>
-        </dependency>
-
-         <!--https://mvnrepository.com/artifact/com.sun.jersey/jersey-bundle-->
         <!--<dependency>-->
-            <!--<groupId>com.sun.jersey</groupId>-->
-            <!--<artifactId>jersey-bundle</artifactId>-->
-            <!--<version>1.19.4</version>-->
+            <!--<groupId>org.mongodb</groupId>-->
+            <!--<artifactId>mongo-java-driver</artifactId>-->
+            <!--<version>3.6.0-rc0</version>-->
         <!--</dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.jboss.jbossts/jbossjta -->
+        <dependency>
+            <groupId>org.jboss.jbossts</groupId>
+            <artifactId>jbossjta</artifactId>
+            <version>4.16.6.Final</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
         <dependency>
@@ -177,13 +168,6 @@
             <artifactId>javax.ws.rs-api</artifactId>
             <version>2.1</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->
-        <!--<dependency>-->
-            <!--<groupId>org.glassfish.jersey.core</groupId>-->
-            <!--<artifactId>jersey-client</artifactId>-->
-            <!--<version>2.26</version>-->
-        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider -->
         <dependency>
@@ -206,6 +190,12 @@
             <version>2.9.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
 
         <dependency>
             <groupId>com.airhacks</groupId>
@@ -241,7 +231,6 @@
             <version>1.7.0</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
         <dependency>
             <groupId>org.mockito</groupId>
@@ -257,32 +246,82 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
 
+        <!-- https://mvnrepository.com/artifact/com.airhacks/jaxrs-cors -->
+        <!--<dependency>-->
+        <!--<groupId>com.airhacks</groupId>-->
+        <!--<artifactId>jaxrs-cors</artifactId>-->
+        <!--<version>javaee6-0.0.1</version>-->
+        <!--</dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/com.airhacks/jaxrs-cors -->
+        <!--<dependency>-->
+        <!--<groupId>com.airhacks</groupId>-->
+        <!--<artifactId>jaxrs-cors</artifactId>-->
+        <!--<version>0.0.2</version>-->
+        <!--</dependency>-->
+
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/javax.validation/validation-api &ndash;&gt;-->
+        <!--<dependency>-->
+        <!--<groupId>javax.validation</groupId>-->
+        <!--<artifactId>validation-api</artifactId>-->
+        <!--<version>2.0.0.Final</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>org.hibernate.ogm</groupId>-->
+        <!--<artifactId>hibernate-ogm-infinispan</artifactId>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>org.hibernate.javax.persistence</groupId>-->
+        <!--<artifactId>hibernate-jpa-2.1-api</artifactId>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>org.jboss.spec.javax.transaction</groupId>-->
+        <!--<artifactId>jboss-transaction-api_1.2_spec</artifactId>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>org.jboss.narayana.jta</groupId>-->
+        <!--<artifactId>narayana-jta</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.jboss</groupId>-->
+        <!--<artifactId>jboss-transaction-spi</artifactId>-->
+        <!--</dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/oracle/ojdbc6 -->
+        <!--<dependency>-->
+        <!--<groupId>com.oracle</groupId>-->
+        <!--<artifactId>ojdbc6</artifactId>-->
+        <!--<version>11.2.0.4.0</version>-->
+        <!--</dependency>-->
+
+        <!--https://mvnrepository.com/artifact/com.sun.jersey/jersey-bundle-->
+        <!--<dependency>-->
+        <!--<groupId>com.sun.jersey</groupId>-->
+        <!--<artifactId>jersey-bundle</artifactId>-->
+        <!--<version>1.19.4</version>-->
+        <!--</dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-client -->
+        <!--<dependency>-->
+        <!--<groupId>org.glassfish.jersey.core</groupId>-->
+        <!--<artifactId>jersey-client</artifactId>-->
+        <!--<version>2.26</version>-->
+        <!--</dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
+        <!--<dependency>-->
+        <!--<groupId>org.eclipse.persistence</groupId>-->
+        <!--<artifactId>eclipselink</artifactId>-->
+        <!--<version>2.7.0</version>-->
+        <!--</dependency>-->
+    </dependencies>
 
     <build>
         <finalName>app-api</finalName>
-        <!--<plugins>-->
-        <!--<plugin>-->
-        <!--<groupId>com.spotify</groupId>-->
-        <!--<artifactId>docker-maven-plugin</artifactId>-->
-        <!--<version>1.0.0</version>-->
-        <!--<configuration>-->
-        <!--<dockerDirectory>${project.basedir}</dockerDirectory>-->
-        <!--<imageName>oracle/glassfish:latest</imageName>-->
-        <!--&lt;!&ndash;<baseImage>java</baseImage>&ndash;&gt;-->
-        <!--&lt;!&ndash;<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>&ndash;&gt;-->
-        <!--&lt;!&ndash; copy the service's jar file from target into the root directory of the image &ndash;&gt;-->
-        <!--<resources>-->
-        <!--<resource>-->
-        <!--&lt;!&ndash;<directory>src/main/docker</directory>&ndash;&gt;-->
-        <!--<targetPath>${project.basedir}/api/</targetPath>-->
-        <!--<directory>${project.basedir}/api/target/</directory>-->
-        <!--<include>${project.build.finalName}.war</include>-->
-        <!--</resource>-->
-        <!--</resources>-->
-        <!--</configuration>-->
-        <!--</plugin>-->
-        <!--</plugins>-->
     </build>
 </project>

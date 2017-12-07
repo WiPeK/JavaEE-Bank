@@ -115,13 +115,12 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
      */
     @Override
     public List<E> getAll() {
-        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(entityClass);
-        criteriaQuery.from(entityClass);
-        List<E> res = getEntityManager().createQuery(criteriaQuery).getResultList();
+//        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+//        CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(entityClass);
+//        criteriaQuery.from(entityClass);
+        Query query = entityManager.createQuery("from " + entityClass.getCanonicalName());
+        List<E> res = query.getResultList();
         return res;
-//        Query query = getEntityManager().createQuery("SELECT e FROM " + entityClass.getName() + " e");
-//        return query.getResultList();
     }
 
     protected EntityManager getEntityManager() {

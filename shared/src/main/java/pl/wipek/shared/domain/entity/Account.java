@@ -20,7 +20,6 @@ public class Account implements Serializable {
     private String currency;
     private String name;
     private BigDecimal blockedAmount;
-    private Users user;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

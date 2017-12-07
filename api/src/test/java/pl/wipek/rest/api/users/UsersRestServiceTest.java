@@ -58,7 +58,7 @@ public class UsersRestServiceTest {
 
         for (int i = 0; i < 10; i++) {
             Users user = new Users();
-            user.setIdUsers("UserId" + i);
+            user.setId("UserId" + i);
             user.setLogin("UserLogin" + i);
             result.add(user);
         }

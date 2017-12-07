@@ -1,38 +1,39 @@
 package pl.wipek.shared.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * @author Krzysztof Adamczyk on 26.10.2017.
  */
 @Entity
-@XmlRootElement
+@Table(name = "USERS")
+@Indexed
 public class Users implements Serializable {
-    private String idUsers;
+
+    private static final long serialVersionUID=1L;
+
+    private String id;
     private String login;
     private String password;
     private String token;
-    private Set<Account> accounts;
 
     @Id
-    @Column(name = "ID_USERS", nullable = false)
-    @JsonProperty("idUsers")
-    public String getIdUsers() {
-        return idUsers;
+    @Type(type = "objectid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public String getId() {
+        return id;
     }
 
-    public void setIdUsers(String idUsers) {
-        this.idUsers = idUsers;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    @Basic
-    @Column(name = "LOGIN", nullable = false, length = 25)
-    @JsonProperty("login")
+    @Column(name="login")
     public String getLogin() {
         return login;
     }
@@ -41,9 +42,7 @@ public class Users implements Serializable {
         this.login = login;
     }
 
-    @Basic
-    @Column(name = "PASSWORD", nullable = true, length = 255)
-    @JsonProperty("password")
+    @Column(name="password")
     public String getPassword() {
         return password;
     }
@@ -52,24 +51,13 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "TOKEN", nullable = true, length = 255)
-    @JsonProperty("token")
+    @Column(name="token")
     public String getToken() {
         return token;
     }
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
     }
 
     @Override
@@ -79,7 +67,7 @@ public class Users implements Serializable {
 
         Users users = (Users) o;
 
-        if (idUsers != null ? !idUsers.equals(users.idUsers) : users.idUsers != null) return false;
+        if (id != null ? !id.equals(users.id) : users.id != null) return false;
         if (login != null ? !login.equals(users.login) : users.login != null) return false;
         if (password != null ? !password.equals(users.password) : users.password != null) return false;
         if (token != null ? !token.equals(users.token) : users.token != null) return false;
@@ -89,7 +77,7 @@ public class Users implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = idUsers != null ? idUsers.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (token != null ? token.hashCode() : 0);
@@ -99,7 +87,7 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "Users{" +
-                "idUsers='" + idUsers + '\'' +
+                "idUsers='" + id + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", token='" + token + '\'' +
