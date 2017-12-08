@@ -1,9 +1,10 @@
 package pl.wipek.shared.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.bson.types.Decimal128;
+import org.hibernate.annotations.Type;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -11,7 +12,6 @@ import java.math.BigDecimal;
  * @author Krzysztof Adamczyk on 22.11.2017.
  */
 @Entity
-@XmlRootElement
 @Table(name = "ACCOUNTS")
 public class Account implements Serializable {
     private String id;
@@ -19,11 +19,11 @@ public class Account implements Serializable {
     private BigDecimal balance;
     private String currency;
     private String name;
-    private BigDecimal blockedAmount;
+    private String blockedAmount;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonProperty
+    @Type(type = "objectid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String getId() {
         return id;
     }
@@ -32,8 +32,6 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    @JsonProperty
-    @Column(name = "accountNumber", nullable = false, length = 32)
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -42,8 +40,6 @@ public class Account implements Serializable {
         this.accountNumber = accountNumber;
     }
 
-    @JsonProperty
-    @Column(name = "balance", nullable = true)
     public BigDecimal getBalance() {
         return balance;
     }
@@ -52,8 +48,6 @@ public class Account implements Serializable {
         this.balance = balance;
     }
 
-    @JsonProperty
-    @Column(name = "currency", nullable = true)
     public String getCurrency() {
         return currency;
     }
@@ -62,8 +56,6 @@ public class Account implements Serializable {
         this.currency = currency;
     }
 
-    @JsonProperty
-    @Column(name = "name", nullable = true)
     public String getName() {
         return name;
     }
@@ -72,17 +64,13 @@ public class Account implements Serializable {
         this.name = name;
     }
 
-    @JsonProperty
-    @Column(name = "blockedAmount", nullable = true)
-    public BigDecimal getBlockedAmount() {
+    public String getBlockedAmount() {
         return blockedAmount;
     }
 
-    public void setBlockedAmount(BigDecimal blockedAmount) {
+    public void setBlockedAmount(String blockedAmount) {
         this.blockedAmount = blockedAmount;
     }
-
-
 
     @Override
     public boolean equals(Object o) {

@@ -26,13 +26,7 @@ public class AccountsDaoImpl extends AbstractDao<String, Account> implements Acc
 
     @Override
     public Set<Account> getUserAccounts(String userId) {
-//        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
-//        CriteriaQuery<Account> criteriaQuery = criteriaBuilder.createQuery(entityClass);
-//        final Root<Account> root = criteriaQuery.from(entityClass);
-//        criteriaQuery.where(criteriaBuilder.equal(root.get("user"), userId));
-//        List<Account> res = getEntityManager().createQuery(criteriaQuery).getResultList();
-        //return new HashSet<>(res);
-        return getMockedAccounts();
+        return new HashSet<>(getAll());
     }
 
     private Set<Account> getMockedAccounts() {

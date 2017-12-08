@@ -156,6 +156,13 @@
             <version>3.6.0-rc0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.mongodb/bson -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>bson</artifactId>
+            <version>3.6.0</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.jboss.jbossts/jbossjta -->
         <dependency>
             <groupId>org.jboss.jbossts</groupId>
