@@ -1,39 +1,22 @@
 package pl.wipek.shared.domain.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-import org.hibernate.search.annotations.Indexed;
-
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * @author Krzysztof Adamczyk on 26.10.2017.
  */
-@Entity
-@Table(name = "USERS")
-@Indexed
-public class Users implements Serializable {
+public abstract class User implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private static final long serialVersionUID = 1L;
 
-    private String id;
     private String login;
     private String password;
     private String token;
 
-    @Id
-    @Type(type = "objectid")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public String getId() {
-        return id;
-    }
+    public abstract String getId();
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public abstract void setId(String id);
 
-    @Column(name="login")
     public String getLogin() {
         return login;
     }
@@ -42,7 +25,6 @@ public class Users implements Serializable {
         this.login = login;
     }
 
-    @Column(name="password")
     public String getPassword() {
         return password;
     }
@@ -51,7 +33,6 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    @Column(name="token")
     public String getToken() {
         return token;
     }
@@ -65,9 +46,9 @@ public class Users implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Users users = (Users) o;
+        User users = (User) o;
 
-        if (id != null ? !id.equals(users.id) : users.id != null) return false;
+        if (getId() != null ? !getId().equals(users.getId()) : users.getId() != null) return false;
         if (login != null ? !login.equals(users.login) : users.login != null) return false;
         if (password != null ? !password.equals(users.password) : users.password != null) return false;
         if (token != null ? !token.equals(users.token) : users.token != null) return false;
@@ -77,7 +58,7 @@ public class Users implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = getId() != null ? getId().hashCode() : 0;
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (token != null ? token.hashCode() : 0);
@@ -86,8 +67,8 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "Users{" +
-                "idUsers='" + id + '\'' +
+        return "User{" +
+                "idUsers='" + getId() + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", token='" + token + '\'' +

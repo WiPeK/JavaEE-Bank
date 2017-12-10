@@ -9,5 +9,5 @@ import java.util.Set;
  * @author Krzysztof Adamczyk on 22.11.2017.
  */
 public interface AccountsDAO extends Dao<String, Account> {
-    public Set<Account> getUserAccounts(String userId);
+    public Set<Account> getUserAccounts(String customerId);
 }

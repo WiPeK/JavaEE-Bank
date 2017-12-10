@@ -5,7 +5,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.wipek.shared.domain.entity.Users;
+import pl.wipek.shared.domain.entity.Customer;
+import pl.wipek.shared.domain.entity.User;
 import pl.wipek.users.ejb.services.UsersService;
 
 import javax.ws.rs.client.Client;
@@ -53,11 +54,11 @@ public class UsersRestServiceTest {
         assertEquals(Response.ok(initializeUsersList()).build(), response);
     }
 
-    private List<Users> initializeUsersList() {
-        List<Users> result = new ArrayList<>();
+    private List<User> initializeUsersList() {
+        List<User> result = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
-            Users user = new Users();
+            User user = new Customer();
             user.setId("UserId" + i);
             user.setLogin("UserLogin" + i);
             result.add(user);

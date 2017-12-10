@@ -7,8 +7,10 @@
         <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
         <!--<jta-data-source>pl.wipek.database.users/Hibernate</jta-data-source>-->
         <!--<jta-data-source>javaeeresource</jta-data-source>-->
-        <class>pl.wipek.shared.domain.entity.Users</class>
         <class>pl.wipek.shared.domain.entity.Account</class>
+        <class>pl.wipek.shared.domain.entity.Customer</class>
+        <class>pl.wipek.shared.domain.entity.Beneficiary</class>
+        <class>pl.wipek.shared.domain.entity.Transfer</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.transaction.jta.platform"
@@ -20,6 +22,7 @@
             <property name="hibernate.ogm.datastore.host" value="bank-shard-00-00-pwi9t.mongodb.net:27017,bank-shard-00-01-pwi9t.mongodb.net:27017,bank-shard-00-02-pwi9t.mongodb.net:27017"/>
             <property name="hibernate.ogm.datastore.grid_dialect"
             value="org.hibernate.ogm.datastore.mongodb.MongoDBDialect"/>
+            <property name="hibernate.ogm.datastore.document.association_storage" value="IN_ENTITY"/>
             <property name="hibernate.ogm.datastore.database"
                       value="BANK"/>
             <property name="hibernate.ogm.datastore.username"

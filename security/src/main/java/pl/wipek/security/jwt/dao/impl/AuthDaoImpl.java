@@ -3,7 +3,7 @@ package pl.wipek.security.jwt.dao.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.wipek.security.jwt.dao.AuthDao;
-import pl.wipek.shared.domain.entity.Users;
+import pl.wipek.shared.domain.entity.User;
 import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 import pl.wipek.shared.security.SHA512;
 
@@ -17,12 +17,12 @@ import java.util.List;
  * @author Krzysztof Adamczyk on 11.11.2017.
  */
 @Stateless(name = "AuthDaoImpl")
-public class AuthDaoImpl extends AbstractDao<String, Users> implements AuthDao {
+public class AuthDaoImpl extends AbstractDao<String, User> implements AuthDao {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthDaoImpl.class);
 
     @Override
-    public List<Users> findByLoginAndPassword(Users user) {
+    public List<User> findByLoginAndPassword(User user) {
         Query query = entityManager.createQuery("SELECT e FROM " + entityClass.getName() + " e WHERE e.login='" + user.getLogin() + "' AND e.password='" + user.getPassword() + "'");
         return query.getResultList();
     }
@@ -41,7 +41,7 @@ public class AuthDaoImpl extends AbstractDao<String, Users> implements AuthDao {
 //    }
 
     @Override
-    public Users isUserExists(Users user) {
+    public User isUserExists(User user) {
         String hashedPassword = null;
         try {
             hashedPassword = new SHA512().hash(user.getPassword());
@@ -51,7 +51,7 @@ public class AuthDaoImpl extends AbstractDao<String, Users> implements AuthDao {
         }
         logger.info(hashedPassword);
         user.setPassword(hashedPassword);
-        List<Users> users = findByLoginAndPassword(user);
+        List<User> users = findByLoginAndPassword(user);
         if (users.isEmpty() || users.size() > 1) {
             throw new SecurityException("Invalid user");
         } else {

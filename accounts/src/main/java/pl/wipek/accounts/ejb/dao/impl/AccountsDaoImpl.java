@@ -1,18 +1,15 @@
 package pl.wipek.accounts.ejb.dao.impl;
 
-import org.mockito.Mock;
+import com.mongodb.internal.HexUtils;
+import org.bson.types.ObjectId;
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -21,12 +18,18 @@ import java.util.Set;
 @Stateless(name = "AccountsDaoImpl")
 public class AccountsDaoImpl extends AbstractDao<String, Account> implements AccountsDAO {
 
-    @Mock
-    private EntityManager entityManager;
-
     @Override
-    public Set<Account> getUserAccounts(String userId) {
-        return new HashSet<>(getAll());
+    public Set<Account> getUserAccounts(String customerId) {
+        if (ObjectId.isValid(customerId)) {
+            ObjectId objectId = new ObjectId(customerId);
+            System.out.println(objectId);
+            Query query = getEntityManager()
+                    .createQuery("FROM " + entityClass.getCanonicalName() + " e WHERE e.customer.id=:id")
+                    .setParameter("id", customerId);
+            return new HashSet<>(query.getResultList());
+        }
+        System.out.println("Invalid object id");
+        return new HashSet<>();
     }
 
     private Set<Account> getMockedAccounts() {

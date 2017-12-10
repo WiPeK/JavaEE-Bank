@@ -1,6 +1,6 @@
 package pl.wipek.users.ejb.services;
 
-import pl.wipek.shared.domain.entity.Users;
+import pl.wipek.shared.domain.entity.User;
 import pl.wipek.users.ejb.dao.UsersDAO;
 
 import javax.ejb.EJB;
@@ -18,8 +18,8 @@ public class UsersService implements Serializable {
     @EJB(beanInterface = UsersDAO.class, beanName = "JpaUsersDao")
     private UsersDAO usersDao;
 
-    public Optional<Users> findById(String id) {
-        Optional<Users> result = null;
+    public Optional<User> findById(String id) {
+        Optional<User> result = null;
         try {
             result = Optional.of(this.usersDao.findById(id));
         } catch (Exception e) {
@@ -28,7 +28,7 @@ public class UsersService implements Serializable {
         return result;
     }
 
-    public List<Users> getAll() {
+    public List<User> getAll() {
         return this.usersDao.getAll();
     }
 

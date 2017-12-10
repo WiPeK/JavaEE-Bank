@@ -17,7 +17,7 @@ public class AccountsService implements Serializable {
     @EJB(beanInterface = AccountsDAO.class, beanName = "AccountsDaoImpl")
     private AccountsDAO accountsDao;
 
-    public Set<Account> getUserAccounts(String userId) {
-       return accountsDao.getUserAccounts(userId);
+    public Set<Account> getUserAccounts(String customerId) {
+       return accountsDao.getUserAccounts(customerId);
     }
 }

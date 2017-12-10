@@ -4,12 +4,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import pl.wipek.shared.domain.entity.Users;
+import pl.wipek.shared.domain.entity.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 
 import java.util.List;
 
@@ -57,7 +56,7 @@ public class JpaUsersDaoDbTest {
     @Test
     public void getAllGit() {
         @SuppressWarnings("unchecked")
-        List<Users> res = entityManager.createNativeQuery("{ $query :{}}", Users.class).getResultList();
+        List<User> res = entityManager.createNativeQuery("{ $query :{}}", User.class).getResultList();
         System.out.println(res);
 
         assertEquals(res.size(), 2);
@@ -65,7 +64,7 @@ public class JpaUsersDaoDbTest {
 
     @Test
     public void getAllWithJPQLQuery() {
-        List<Users> res = entityManager.createQuery("SELECT U FROM Users U", Users.class).getResultList();
+        List<User> res = entityManager.createQuery("SELECT U FROM Users U", User.class).getResultList();
         System.out.println(res);
 
         assertEquals(res.size(), 2);

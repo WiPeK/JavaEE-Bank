@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.wipek.security.jwt.annotations.JWTTokenNeeded;
 import pl.wipek.security.jwt.service.AuthService;
-import pl.wipek.shared.domain.entity.Users;
+import pl.wipek.shared.domain.entity.User;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
@@ -32,7 +32,7 @@ public class AuthEJBResource extends Application {
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response auth(Users user) {
+    public Response auth(User user) {
         logger.info(user.toString());
         try {
             user = authService.autenticate(user);

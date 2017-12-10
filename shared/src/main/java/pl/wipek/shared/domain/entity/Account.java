@@ -1,12 +1,11 @@
 package pl.wipek.shared.domain.entity;
 
-import org.bson.types.Decimal128;
 import org.hibernate.annotations.Type;
-import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Set;
 
 /**
  * @author Krzysztof Adamczyk on 22.11.2017.
@@ -20,6 +19,12 @@ public class Account implements Serializable {
     private String currency;
     private String name;
     private String blockedAmount;
+    private Customer customer;
+//    private Set<Transfer> transfers;
+
+
+    public Account() {
+    }
 
     @Id
     @Type(type = "objectid")
@@ -71,6 +76,26 @@ public class Account implements Serializable {
     public void setBlockedAmount(String blockedAmount) {
         this.blockedAmount = blockedAmount;
     }
+
+//    @JoinColumn(name = "customers_id")
+//    @ManyToOne(targetEntity = Customer.class)
+//    @Type(type = "objectid")
+//    public Customer getCustomer() {
+//        return customer;
+//    }
+//
+//    public void setCustomer(Customer customer) {
+//        this.customer = customer;
+//    }
+
+//    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+//    public Set<Transfer> getTransfers() {
+//        return transfers;
+//    }
+//
+//    public void setTransfers(Set<Transfer> transfers) {
+//        this.transfers = transfers;
+//    }
 
     @Override
     public boolean equals(Object o) {

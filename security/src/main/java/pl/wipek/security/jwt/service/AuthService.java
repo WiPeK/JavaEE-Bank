@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.wipek.security.jwt.dao.AuthDao;
 import pl.wipek.security.jwt.util.KeyGenerator;
-import pl.wipek.shared.domain.entity.Users;
+import pl.wipek.shared.domain.entity.User;
 import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 import pl.wipek.shared.util.converter.DateConverter;
 
@@ -36,7 +36,7 @@ public class AuthService implements Serializable {
     @EJB(beanInterface = AuthDao.class, beanName = "AuthDaoImpl")
     private AuthDao authDao;
 
-    public Users autenticate(Users user) {
+    public User autenticate(User user) {
         try {
             user = authDao.isUserExists(user);
         } catch (SecurityException e) {
@@ -45,7 +45,7 @@ public class AuthService implements Serializable {
         return user;
     }
 
-    public String issueToken(Users user) {
+    public String issueToken(User user) {
         Key key = keyGenerator.generateKey();
         String jwtToken = Jwts.builder()
                 .setSubject(user.getLogin())
