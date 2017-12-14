@@ -10,8 +10,8 @@ import java.util.Set;
 /**
  * @author Krzysztof Adamczyk on 22.11.2017.
  */
+@Embeddable
 @Entity
-@Table(name = "ACCOUNTS")
 public class Account implements Serializable {
     private String id;
     private String accountNumber;
@@ -37,6 +37,7 @@ public class Account implements Serializable {
         this.id = id;
     }
 
+    @Column(name = "accountNumber")
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -45,6 +46,7 @@ public class Account implements Serializable {
         this.accountNumber = accountNumber;
     }
 
+    @Column(name = "balance")
     public BigDecimal getBalance() {
         return balance;
     }
@@ -53,6 +55,7 @@ public class Account implements Serializable {
         this.balance = balance;
     }
 
+    @Column(name = "currency")
     public String getCurrency() {
         return currency;
     }
@@ -61,6 +64,7 @@ public class Account implements Serializable {
         this.currency = currency;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -77,16 +81,14 @@ public class Account implements Serializable {
         this.blockedAmount = blockedAmount;
     }
 
-//    @JoinColumn(name = "customers_id")
-//    @ManyToOne(targetEntity = Customer.class)
-//    @Type(type = "objectid")
-//    public Customer getCustomer() {
-//        return customer;
-//    }
-//
-//    public void setCustomer(Customer customer) {
-//        this.customer = customer;
-//    }
+    @ManyToOne
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
 //    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
 //    public Set<Transfer> getTransfers() {

@@ -9,8 +9,8 @@
         <!--<jta-data-source>javaeeresource</jta-data-source>-->
         <class>pl.wipek.shared.domain.entity.Account</class>
         <class>pl.wipek.shared.domain.entity.Customer</class>
-        <class>pl.wipek.shared.domain.entity.Beneficiary</class>
-        <class>pl.wipek.shared.domain.entity.Transfer</class>
+        <!--<class>pl.wipek.shared.domain.entity.Beneficiary</class>-->
+        <!--<class>pl.wipek.shared.domain.entity.Transfer</class>-->
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.transaction.jta.platform"

@@ -10,6 +10,7 @@ import pl.wipek.shared.domain.entity.Account;
 import javax.persistence.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -33,10 +34,10 @@ public class AccountsDaoImplTest {
     @Test
     public void getUserAccounts() {
         Query query = entityManager
-                .createQuery("FROM Account e WHERE e.customer.id=:id")
+                .createQuery("FROM Customer e WHERE e.id=:id")
                 .setParameter("id", "5a2c48b072938305fc481165");
 //        Set<Account> result = accountsDAO.getUserAccounts("5a2c48b072938305fc481165");
-        Set<Account> result = new HashSet<>(query.getResultList());
+        List<Account> result = query.getResultList();
         System.out.println(result);
         Assert.assertNotEquals(0, result.size());
     }
