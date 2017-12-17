@@ -1,0 +1,69 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">-->
+
+    <!--<persistence-unit name="pl.wipek.database" transaction-type="JTA">-->
+        <!--&lt;!&ndash;<persistence-unit name="pl.wipek.database.customers">&ndash;&gt;-->
+        <!--&lt;!&ndash;<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>&ndash;&gt;-->
+        <!--<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>-->
+        <!--&lt;!&ndash;<jta-data-source>pl.wipek.database.customers/Hibernate</jta-data-source>&ndash;&gt;-->
+        <!--&lt;!&ndash;<jta-data-source>javaeeresource</jta-data-source>&ndash;&gt;-->
+        <!--<class>pl.wipek.shared.domain.entity.Account</class>-->
+        <!--<class>pl.wipek.shared.domain.entity.Customer</class>-->
+        <!--&lt;!&ndash;<class>pl.wipek.shared.domain.entity.Beneficiary</class>&ndash;&gt;-->
+        <!--&lt;!&ndash;<class>pl.wipek.shared.domain.entity.Transfer</class>&ndash;&gt;-->
+        <!--<exclude-unlisted-classes>true</exclude-unlisted-classes>-->
+        <!--<properties>-->
+            <!--<property name="hibernate.transaction.jta.platform"-->
+                      <!--value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform"/>-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.datastore.provider"&ndash;&gt;-->
+                      <!--&lt;!&ndash;value="mongodb"/>&ndash;&gt;-->
+            <!--<property name="hibernate.ogm.datastore.provider" value="MONGODB" />-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.datastore.provider" value="org.hibernate.ogm.datastore.mongodb.impl.MongoDBDatastoreProvider" />&ndash;&gt;-->
+            <!--<property name="hibernate.ogm.datastore.host" value="bank-shard-00-00-pwi9t.mongodb.net:27017,bank-shard-00-01-pwi9t.mongodb.net:27017,bank-shard-00-02-pwi9t.mongodb.net:27017"/>-->
+            <!--<property name="hibernate.ogm.datastore.grid_dialect"-->
+            <!--value="org.hibernate.ogm.datastore.mongodb.MongoDBDialect"/>-->
+            <!--<property name="hibernate.ogm.datastore.document.association_storage" value="IN_ENTITY"/>-->
+            <!--<property name="hibernate.ogm.datastore.database"-->
+                      <!--value="BANK"/>-->
+            <!--<property name="hibernate.ogm.datastore.username"-->
+                      <!--value="banksopelki"/>-->
+            <!--<property name="hibernate.ogm.datastore.password"-->
+                      <!--value="qazxsw123!"/>-->
+            <!--<property name="hibernate.ogm.datastore.authentication_mechanism" value="SCRAM_SHA_1"/>-->
+            <!--<property name="hibernate.ogm.mongodb.driver.sslEnabled" value="true"/>-->
+            <!--<property name="hibernate.ogm.mongodb.driver.sslInvalidHostNameAllowed" value="true"/>-->
+            <!--<property name="hibernate.search.default.indexBase"-->
+                      <!--value="/var/lucene/indexes"/>-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.mongodb.connection_timeout" value="5000"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.datastore.document.association_storage" value="IN_ENTITY"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.mongodb.association_document_storage" value="GLOBAL_COLLECTION"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.mongodb.write_concern" value="MAJORITY"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.mongodb.read_preference" value="PRIMARY_PREFERRED"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.mongodb.uri" value="mongodb://bank-shard-00-00-pwi9t.mongodb.net"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.mongodb.uri" value="mongodb://banksopelki:qazxsw123!@bank-shard-00-00-pwi9t.mongodb.net:27017,bank-shard-00-01-pwi9t.mongodb.net:27017,bank-shard-00-02-pwi9t.mongodb.net:27017/test?ssl=true&amp;replicaSet=Bank-shard-0&amp;authSource=admin"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.mongodb.port" value="27017"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.mongodb.password" value="qazxsw123!"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.ogm.mongodb.host"&ndash;&gt;-->
+                      <!--&lt;!&ndash;value="mongodb://banksopelki:qazxsw123!@bank-shard-00-00-pwi9t.mongodb.net:27017,bank-shard-00-01-pwi9t.mongodb.net:27017,bank-shard-00-02-pwi9t.mongodb.net:27017/test?ssl=true&amp;replicaSet=Bank-shard-0&amp;authSource=admin"/>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<property name="eclipselink.target-database" value="Oracle"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.classloading.use_current_tccl_as_parent" value="false" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="eclipselink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="eclipselink.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="eclipselink.jdbc.user" value="JAVAEE"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.connection.username" value="JAVAEE"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="eclipselink.jdbc.password" value="root"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.connection.password" value="root"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<property name="hibernate.default_schema" value="JAVAEE"/>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="hibernate.show_sql" value="true"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<property name="hibernate.enable_lazy_load_no_trans" value="true" />&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<property name="hibernate.connection.pool_size" value="99"/>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<property name="hibernate.hbm2ddl.auto" value="create-drop" />&ndash;&gt;&ndash;&gt;-->
+        <!--</properties>-->
+    <!--</persistence-unit>-->
+
+<!--</persistence>-->

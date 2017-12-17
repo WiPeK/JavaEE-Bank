@@ -35,9 +35,9 @@ public class AccountsDaoImplTest {
     public void getUserAccounts() {
         Query query = entityManager
                 .createQuery("FROM Customer e WHERE e.id=:id")
-                .setParameter("id", "5a2c48b072938305fc481165");
+                .setParameter("id", "6075205366900CAAE050EDD4221D1C44");
 //        Set<Account> result = accountsDAO.getUserAccounts("5a2c48b072938305fc481165");
-        List<Account> result = query.getResultList();
+        Set<Account> result = new HashSet<>(query.getResultList());
         System.out.println(result);
         Assert.assertNotEquals(0, result.size());
     }

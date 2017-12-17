@@ -8,6 +8,7 @@ import javax.ejb.RemoteHome;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Krzysztof Adamczyk on 21.09.2017.
@@ -55,5 +56,5 @@ public interface Dao<K, E> extends Serializable {
      *
      * @return List with objects
      */
-    public List<E> getAll();
+    public Set<E> getAll();
 }

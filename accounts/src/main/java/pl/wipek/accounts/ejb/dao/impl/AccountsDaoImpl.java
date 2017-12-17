@@ -1,7 +1,5 @@
 package pl.wipek.accounts.ejb.dao.impl;
 
-import com.mongodb.internal.HexUtils;
-import org.bson.types.ObjectId;
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.ejb.dao.impl.AbstractDao;
@@ -20,16 +18,11 @@ public class AccountsDaoImpl extends AbstractDao<String, Account> implements Acc
 
     @Override
     public Set<Account> getUserAccounts(String customerId) {
-        if (ObjectId.isValid(customerId)) {
-            ObjectId objectId = new ObjectId(customerId);
-            System.out.println(objectId);
-            Query query = getEntityManager()
-                    .createQuery("FROM " + entityClass.getCanonicalName() + " e WHERE e.customer.id=:id")
-                    .setParameter("id", customerId);
-            return new HashSet<>(query.getResultList());
-        }
-        System.out.println("Invalid object id");
-        return new HashSet<>();
+        Query query = getEntityManager()
+                .createQuery("FROM " + entityClass.getCanonicalName() + " e WHERE e.customer.id=:id")
+                .setParameter("id", customerId);
+        System.out.println(query);
+        return new HashSet<>(query.getResultList());
     }
 
     private Set<Account> getMockedAccounts() {

@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>users</module>
+        <module>customers</module>
         <module>api</module>
         <module>shared</module>
         <module>security</module>
@@ -86,17 +86,24 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.1.10.Final</version>
+            <version>5.2.10.Final</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/oracle/ojdbc6 -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-bom -->
-        <dependency>
-            <groupId>org.hibernate.ogm</groupId>
-            <artifactId>hibernate-ogm-bom</artifactId>
-            <version>5.1.0.Final</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate.ogm</groupId>-->
+            <!--<artifactId>hibernate-ogm-bom</artifactId>-->
+            <!--<version>5.1.0.Final</version>-->
+            <!--<type>pom</type>-->
+            <!--<scope>import</scope>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>javax.transaction</groupId>
@@ -104,13 +111,12 @@
             <version>1.1</version>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-core -->
-        <dependency>
-            <groupId>org.hibernate.ogm</groupId>
-            <artifactId>hibernate-ogm-core</artifactId>
-            <version>5.1.0.Final</version>
-        </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-core &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate.ogm</groupId>-->
+            <!--<artifactId>hibernate-ogm-core</artifactId>-->
+            <!--<version>5.1.0.Final</version>-->
+        <!--</dependency>-->
 
         <!--<dependency>-->
             <!--<groupId>org.hibernate.ogm</groupId>-->
@@ -124,44 +130,44 @@
             <!--<version>5.6.1.Final</version>-->
         <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search-orm</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.hibernate</groupId>
-                    <artifactId>hibernate-core</artifactId>
-                </exclusion>
-            </exclusions>
-            <version>5.8.1.Final</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-search-orm</artifactId>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.hibernate</groupId>-->
+                    <!--<artifactId>hibernate-core</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+            <!--<version>5.8.1.Final</version>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>org.infinispan</groupId>
-            <artifactId>infinispan-directory-provider</artifactId>
-            <version>8.2.4.Final</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.infinispan</groupId>-->
+            <!--<artifactId>infinispan-directory-provider</artifactId>-->
+            <!--<version>8.2.4.Final</version>-->
+        <!--</dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-mongodb -->
-        <dependency>
-            <groupId>org.hibernate.ogm</groupId>
-            <artifactId>hibernate-ogm-mongodb</artifactId>
-            <version>5.1.0.Final</version>
-        </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-mongodb &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate.ogm</groupId>-->
+            <!--<artifactId>hibernate-ogm-mongodb</artifactId>-->
+            <!--<version>5.1.0.Final</version>-->
+        <!--</dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.6.0-rc0</version>
-        </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.mongodb</groupId>-->
+            <!--<artifactId>mongo-java-driver</artifactId>-->
+            <!--<version>3.6.0-rc0</version>-->
+        <!--</dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/org.mongodb/bson -->
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>bson</artifactId>
-            <version>3.6.0</version>
-        </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.mongodb/bson &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.mongodb</groupId>-->
+            <!--<artifactId>bson</artifactId>-->
+            <!--<version>3.6.0</version>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.jboss.jbossts/jbossjta -->
         <dependency>

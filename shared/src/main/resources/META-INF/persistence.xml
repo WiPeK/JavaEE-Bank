@@ -2,11 +2,11 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
     <persistence-unit name="pl.wipek.database" transaction-type="JTA">
-        <!--<persistence-unit name="pl.wipek.database.users">-->
-        <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
-        <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
-        <!--<jta-data-source>pl.wipek.database.users/Hibernate</jta-data-source>-->
-        <!--<jta-data-source>javaeeresource</jta-data-source>-->
+        <!--<persistence-unit name="pl.wipek.database.customers">-->
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <!--<jta-data-source>pl.wipek.database.customers/Hibernate</jta-data-source>-->
+        <!--<jta-data-source>java:comp/DefaultDataSource</jta-data-source>-->
+        <jta-data-source>java:comp/env/jdbc/oracle</jta-data-source>
         <class>pl.wipek.shared.domain.entity.Account</class>
         <class>pl.wipek.shared.domain.entity.Customer</class>
         <!--<class>pl.wipek.shared.domain.entity.Beneficiary</class>-->
@@ -15,54 +15,27 @@
         <properties>
             <property name="hibernate.transaction.jta.platform"
                       value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform"/>
-            <!--<property name="hibernate.ogm.datastore.provider"-->
-                      <!--value="mongodb"/>-->
-            <property name="hibernate.ogm.datastore.provider" value="MONGODB" />
-            <!--<property name="hibernate.ogm.datastore.provider" value="org.hibernate.ogm.datastore.mongodb.impl.MongoDBDatastoreProvider" />-->
-            <property name="hibernate.ogm.datastore.host" value="bank-shard-00-00-pwi9t.mongodb.net:27017,bank-shard-00-01-pwi9t.mongodb.net:27017,bank-shard-00-02-pwi9t.mongodb.net:27017"/>
-            <property name="hibernate.ogm.datastore.grid_dialect"
-            value="org.hibernate.ogm.datastore.mongodb.MongoDBDialect"/>
-            <property name="hibernate.ogm.datastore.document.association_storage" value="IN_ENTITY"/>
-            <property name="hibernate.ogm.datastore.database"
-                      value="BANK"/>
-            <property name="hibernate.ogm.datastore.username"
-                      value="banksopelki"/>
-            <property name="hibernate.ogm.datastore.password"
-                      value="qazxsw123!"/>
-            <property name="hibernate.ogm.datastore.authentication_mechanism" value="SCRAM_SHA_1"/>
-            <property name="hibernate.ogm.mongodb.driver.sslEnabled" value="true"/>
-            <property name="hibernate.ogm.mongodb.driver.sslInvalidHostNameAllowed" value="true"/>
-            <property name="hibernate.search.default.indexBase"
-                      value="/var/lucene/indexes"/>
-            <!--<property name="hibernate.ogm.mongodb.connection_timeout" value="5000"/>-->
-            <!--<property name="hibernate.ogm.datastore.document.association_storage" value="IN_ENTITY"/>-->
-            <!--<property name="hibernate.ogm.mongodb.association_document_storage" value="GLOBAL_COLLECTION"/>-->
-            <!--<property name="hibernate.ogm.mongodb.write_concern" value="MAJORITY"/>-->
-            <!--<property name="hibernate.ogm.mongodb.read_preference" value="PRIMARY_PREFERRED"/>-->
-            <!--<property name="hibernate.ogm.mongodb.uri" value="mongodb://bank-shard-00-00-pwi9t.mongodb.net"/>-->
-            <!--<property name="hibernate.ogm.mongodb.uri" value="mongodb://banksopelki:qazxsw123!@bank-shard-00-00-pwi9t.mongodb.net:27017,bank-shard-00-01-pwi9t.mongodb.net:27017,bank-shard-00-02-pwi9t.mongodb.net:27017/test?ssl=true&amp;replicaSet=Bank-shard-0&amp;authSource=admin"/>-->
-            <!--<property name="hibernate.ogm.mongodb.port" value="27017"/>-->
-            <!--<property name="hibernate.ogm.mongodb.password" value="qazxsw123!"/>-->
-            <!--<property name="hibernate.ogm.mongodb.host"-->
-                      <!--value="mongodb://banksopelki:qazxsw123!@bank-shard-00-00-pwi9t.mongodb.net:27017,bank-shard-00-01-pwi9t.mongodb.net:27017,bank-shard-00-02-pwi9t.mongodb.net:27017/test?ssl=true&amp;replicaSet=Bank-shard-0&amp;authSource=admin"/>-->
 
-            <!--<property name="eclipselink.target-database" value="Oracle"/>-->
+            <property name="eclipselink.jdbc..target-database" value="Oracle"/>
             <!--<property name="hibernate.classloading.use_current_tccl_as_parent" value="false" />-->
-            <!--<property name="eclipselink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>-->
+            <property name="eclipselink.jdbc..driver" value="oracle.jdbc.OracleDriver"/>
             <!--<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>-->
-            <!--<property name="eclipselink.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>-->
+            <property name="eclipselink.jdbc..url" value="jdbc:oracle:thin:@212.237.29.34:1521:XE"/>
             <!--<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>-->
-            <!--<property name="eclipselink.jdbc.user" value="JAVAEE"/>-->
+            <property name="eclipselink.jdbc..user" value="SYSTEM"/>
             <!--<property name="hibernate.connection.username" value="JAVAEE"/>-->
-            <!--<property name="eclipselink.jdbc.password" value="root"/>-->
+            <property name="eclipselink.jdbc..password" value="Qazxsw123!"/>
             <!--<property name="hibernate.connection.password" value="root"/>-->
-            <!--&lt;!&ndash;<property name="hibernate.default_schema" value="JAVAEE"/>&ndash;&gt;-->
+            <!--<property name="hibernate.default_schema" value="JAVAEE"/>-->
             <!--<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>-->
-            <!--<property name="hibernate.show_sql" value="true"/>-->
-            <!--&lt;!&ndash;<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<property name="hibernate.enable_lazy_load_no_trans" value="true" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<property name="hibernate.connection.pool_size" value="99"/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<property name="hibernate.hbm2ddl.auto" value="create-drop" />&ndash;&gt;-->
+            <property name="hibernate.show_sql" value="true"/>
+            <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
+            <!--<property name="javax.persistence.schema-generation.create-source" value="script"/>-->
+            <!--<property name="javax.persistence.schema-generation.create-script-source" value="dbscripts/create.sql"/>-->
+            <!--<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />-->
+            <!--<property name="hibernate.enable_lazy_load_no_trans" value="true" />-->
+            <!--<property name="hibernate.connection.pool_size" value="99"/>-->
+            <!--<property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
         </properties>
     </persistence-unit>
 

@@ -11,7 +11,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.ws.rs.NotFoundException;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Krzysztof Adamczyk on 21.09.2017.
@@ -114,13 +116,13 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
      * @return List with objects
      */
     @Override
-    public List<E> getAll() {
+    public Set<E> getAll() {
 //        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
 //        CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(entityClass);
 //        criteriaQuery.from(entityClass);
-        Query query = entityManager.createQuery("from " + entityClass.getCanonicalName());
+        Query query = entityManager.createQuery("from " + entityClass.getCanonicalName() + " e", entityClass);
         List<E> res = query.getResultList();
-        return res;
+        return new HashSet<>(res);
     }
 
     protected EntityManager getEntityManager() {

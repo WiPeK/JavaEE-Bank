@@ -23,7 +23,7 @@ public class BeneficiariesEJBResource extends Application {
     private BeneficiariesService beneficiariesService;
 
     @GET
-    @Path("/domestic/users/{userId}")
+    @Path("/domestic/customers/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBeneficiariesFromUsersDomesticPayments(@PathParam("userId") String userId) {
         return Response.ok(beneficiariesService.getBeneficiariesFromUsersDomesticPayments(userId)).build();

@@ -25,9 +25,9 @@ public class AccountsEJBResource extends Application {
     private AccountsService accountsService;
 
     @GET
-    @Path("users/{userId}")
+    @Path("customers/{customerId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUserAccounts(@PathParam("userId") String customerId) {
+    public Response getUserAccounts(@PathParam("customerId") String customerId) {
         return Response.ok(accountsService.getUserAccounts(customerId)).build();
     }
 }

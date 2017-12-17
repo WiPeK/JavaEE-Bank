@@ -10,8 +10,8 @@ import java.util.Set;
 /**
  * @author Krzysztof Adamczyk on 22.11.2017.
  */
-@Embeddable
 @Entity
+@Table(name = "ACCOUNTS")
 public class Account implements Serializable {
     private String id;
     private String accountNumber;
@@ -27,8 +27,7 @@ public class Account implements Serializable {
     }
 
     @Id
-    @Type(type = "objectid")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     public String getId() {
         return id;
     }
@@ -37,7 +36,8 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "accountNumber")
+    @Basic
+    @Column(name = "ACCOUNT_NUMBER")
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -46,7 +46,8 @@ public class Account implements Serializable {
         this.accountNumber = accountNumber;
     }
 
-    @Column(name = "balance")
+    @Basic
+    @Column(name = "BALANCE")
     public BigDecimal getBalance() {
         return balance;
     }
@@ -55,7 +56,8 @@ public class Account implements Serializable {
         this.balance = balance;
     }
 
-    @Column(name = "currency")
+    @Basic
+    @Column(name = "CURRENCY_ID")
     public String getCurrency() {
         return currency;
     }
@@ -64,7 +66,8 @@ public class Account implements Serializable {
         this.currency = currency;
     }
 
-    @Column(name = "name")
+    @Basic
+    @Column(name = "NAME")
     public String getName() {
         return name;
     }
@@ -73,6 +76,8 @@ public class Account implements Serializable {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "BLOCKED_AMOUNT")
     public String getBlockedAmount() {
         return blockedAmount;
     }
@@ -82,6 +87,7 @@ public class Account implements Serializable {
     }
 
     @ManyToOne
+    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
     public Customer getCustomer() {
         return customer;
     }
