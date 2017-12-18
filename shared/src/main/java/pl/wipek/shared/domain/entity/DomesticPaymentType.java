@@ -1,6 +1,5 @@
 package pl.wipek.shared.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +17,6 @@ public class DomesticPaymentType {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @JsonProperty
     public String getId() {
         return id;
     }
@@ -27,7 +25,6 @@ public class DomesticPaymentType {
         this.id = id;
     }
 
-    @JsonProperty
     @Column(name = "VALUE", nullable = false)
     public String getValue() {
         return value;

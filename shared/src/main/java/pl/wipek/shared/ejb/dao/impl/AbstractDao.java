@@ -122,6 +122,7 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
 //        criteriaQuery.from(entityClass);
         Query query = entityManager.createQuery("from " + entityClass.getCanonicalName() + " e", entityClass);
         List<E> res = query.getResultList();
+        System.out.println(res);
         return new HashSet<>(res);
     }
 

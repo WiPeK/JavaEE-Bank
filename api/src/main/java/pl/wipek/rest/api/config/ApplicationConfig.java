@@ -14,7 +14,8 @@ public class ApplicationConfig extends Application {
     @Override
     public Map<String, Object> getProperties() {
         final Map<String, Object> properties = new HashMap<>();
-        properties.put("jersey.config.server.disableMoxyJson", true);
+//        properties.put("jersey.config.server.disableMoxyJson", true);
+        System.setProperty("javax.xml.bind.context.factory", "org.eclipse.persistence.jaxb.JAXBContextFactory");
         return properties;
     }
 }

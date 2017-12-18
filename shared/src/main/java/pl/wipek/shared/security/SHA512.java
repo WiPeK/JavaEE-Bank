@@ -1,7 +1,7 @@
 package pl.wipek.shared.security;
 
-import com.google.common.io.BaseEncoding;
-import com.google.common.primitives.Bytes;
+//import com.google.common.io.BaseEncoding;
+//import com.google.common.primitives.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +46,7 @@ public class SHA512 {
             UnsupportedEncodingException {
         MessageDigest md = MessageDigest.getInstance(ALGORITHM);
 //        md.reset();
-        md.update(Bytes.concat(password.getBytes("UTF-8")));
+//        md.update(Bytes.concat(password.getBytes("UTF-8")));
         byte[] hash = md.digest();
 
         for (int i = 0; i < ITERATIONS; i++) {

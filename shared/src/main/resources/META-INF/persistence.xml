@@ -3,28 +3,31 @@
 
     <persistence-unit name="pl.wipek.database" transaction-type="JTA">
         <!--<persistence-unit name="pl.wipek.database.customers">-->
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!--<jta-data-source>pl.wipek.database.customers/Hibernate</jta-data-source>-->
         <!--<jta-data-source>java:comp/DefaultDataSource</jta-data-source>-->
-        <jta-data-source>java:comp/env/jdbc/oracle</jta-data-source>
+        <jta-data-source>javaeeresource</jta-data-source>
         <class>pl.wipek.shared.domain.entity.Account</class>
         <class>pl.wipek.shared.domain.entity.Customer</class>
         <!--<class>pl.wipek.shared.domain.entity.Beneficiary</class>-->
         <!--<class>pl.wipek.shared.domain.entity.Transfer</class>-->
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
-            <property name="hibernate.transaction.jta.platform"
-                      value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform"/>
+            <!--<property name="hibernate.transaction.jta.platform"-->
+                      <!--value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform"/>-->
 
-            <property name="eclipselink.jdbc..target-database" value="Oracle"/>
+            <property name="javax.persistence.jdbc.target-database" value="Oracle"/>
             <!--<property name="hibernate.classloading.use_current_tccl_as_parent" value="false" />-->
-            <property name="eclipselink.jdbc..driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+            <property name="hibernate.default_schema" value="SYSTEM"/>
             <!--<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>-->
-            <property name="eclipselink.jdbc..url" value="jdbc:oracle:thin:@212.237.29.34:1521:XE"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@212.237.29.34:1521:XE"/>
             <!--<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>-->
-            <property name="eclipselink.jdbc..user" value="SYSTEM"/>
+            <property name="javax.persistence.jdbc.user" value="SYSTEM"/>
             <!--<property name="hibernate.connection.username" value="JAVAEE"/>-->
-            <property name="eclipselink.jdbc..password" value="Qazxsw123!"/>
+            <property name="javax.persistence.jdbc.password" value="Qazxsw123!"/>
+            <property name="hibernate.enable_lazy_load_no_trans" value="true" />
+            <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
             <!--<property name="hibernate.connection.password" value="root"/>-->
             <!--<property name="hibernate.default_schema" value="JAVAEE"/>-->
             <!--<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>-->

@@ -4,9 +4,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.shared.domain.entity.Account;
 
+import javax.activation.DataSource;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.*;
 
 import java.util.HashSet;
@@ -20,6 +25,7 @@ public class AccountsDaoImplTest {
     protected static EntityManagerFactory entityManagerFactory;
 
     protected EntityManager entityManager;
+
 
     @BeforeClass
     public static void createEntityManagerFactory() {

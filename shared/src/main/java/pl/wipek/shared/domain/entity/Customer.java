@@ -1,22 +1,28 @@
 package pl.wipek.shared.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "CUSTOMERS")
+@XmlRootElement
 public class Customer extends User {
     private String id;
-//    private Set<Account> accounts = new HashSet<>();
+    private Set<Account> accounts = new HashSet<>();
 
     public Customer() {
     }
 
     @Id
     @Override
+    @Column(name = "ID", nullable = false)
     public String getId() {
         return id;
     }
@@ -25,14 +31,15 @@ public class Customer extends User {
         this.id = id;
     }
 
-//    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
-//    public Set<Account> getAccounts() {
-//        return accounts;
-//    }
+    @XmlTransient
+    @OneToMany(mappedBy = "customer", targetEntity = Account.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
 
-//    public void setAccounts(Set<Account> accounts) {
-//        this.accounts = accounts;
-//    }
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     @Override
     public String getLogin() {
@@ -49,7 +56,20 @@ public class Customer extends User {
         return "Customer{" +
                 "id='" + id + '\'' +
                 "login='" + super.getLogin() + '\'' +
-//                ", accounts=" + accounts +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(id, customer.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), id);
     }
 }

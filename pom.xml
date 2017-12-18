@@ -47,20 +47,13 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/org.eclipse.persistence.jpa -->
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa</artifactId>
-            <version>2.7.0</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javax.servlet</groupId>-->
+            <!--<artifactId>servlet-api</artifactId>-->
+            <!--<version>2.5</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
         <dependency>
@@ -86,14 +79,52 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.2.10.Final</version>
+            <version>5.2.12.Final</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.2.12.Final</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.common</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>5.0.1.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.21.0-GA</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/oracle/ojdbc6 -->
+        <!--<dependency>-->
+            <!--<groupId>com.oracle</groupId>-->
+            <!--<artifactId>ojdbc6</artifactId>-->
+            <!--<version>11.2.0.4.0</version>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0.4.0</version>
+            <artifactId>ojdbc7</artifactId>
+            <version>12.1.0.2</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-bom -->
@@ -170,11 +201,11 @@
         <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.jboss.jbossts/jbossjta -->
-        <dependency>
-            <groupId>org.jboss.jbossts</groupId>
-            <artifactId>jbossjta</artifactId>
-            <version>4.16.6.Final</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.jboss.jbossts</groupId>-->
+            <!--<artifactId>jbossjta</artifactId>-->
+            <!--<version>4.16.6.Final</version>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
         <dependency>
@@ -190,26 +221,41 @@
             <version>2.9.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-            <version>2.9.2</version>
-        </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>com.fasterxml.jackson.dataformat</groupId>-->
+            <!--<artifactId>jackson-dataformat-xml</artifactId>-->
+            <!--<version>2.9.2</version>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-jaxb-annotations -->
+        <!--<dependency>-->
+            <!--<groupId>com.fasterxml.jackson.module</groupId>-->
+            <!--<artifactId>jackson-module-jaxb-annotations</artifactId>-->
+            <!--<version>2.9.2</version>-->
+        <!--</dependency>-->
+
         <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-jaxb-annotations</artifactId>
-            <version>2.9.2</version>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.moxy</artifactId>
+            <version>2.7.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.3.0</version>
         </dependency>
+
+
+
+
+        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+        <!--<dependency>-->
+            <!--<groupId>javax.xml.bind</groupId>-->
+            <!--<artifactId>jaxb-api</artifactId>-->
+            <!--<version>2.3.0</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>com.airhacks</groupId>
@@ -218,32 +264,32 @@
             <scope>compile</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>23.3-jre</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.google.guava</groupId>-->
+            <!--<artifactId>guava</artifactId>-->
+            <!--<version>23.3-jre</version>-->
+        <!--</dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/io.grpc/grpc-netty -->
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-netty</artifactId>
-            <version>1.7.0</version>
-        </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/io.grpc/grpc-netty &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>io.grpc</groupId>-->
+            <!--<artifactId>grpc-netty</artifactId>-->
+            <!--<version>1.7.0</version>-->
+        <!--</dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/io.grpc/grpc-protobuf -->
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-protobuf</artifactId>
-            <version>1.7.0</version>
-        </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/io.grpc/grpc-protobuf &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>io.grpc</groupId>-->
+            <!--<artifactId>grpc-protobuf</artifactId>-->
+            <!--<version>1.7.0</version>-->
+        <!--</dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/io.grpc/grpc-stub -->
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-stub</artifactId>
-            <version>1.7.0</version>
-        </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/io.grpc/grpc-stub &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>io.grpc</groupId>-->
+            <!--<artifactId>grpc-stub</artifactId>-->
+            <!--<version>1.7.0</version>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
         <dependency>
@@ -329,9 +375,9 @@
 
         <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
         <!--<dependency>-->
-        <!--<groupId>org.eclipse.persistence</groupId>-->
-        <!--<artifactId>eclipselink</artifactId>-->
-        <!--<version>2.7.0</version>-->
+            <!--<groupId>org.eclipse.persistence</groupId>-->
+            <!--<artifactId>eclipselink</artifactId>-->
+            <!--<version>2.7.0</version>-->
         <!--</dependency>-->
     </dependencies>
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- if you change the context path, remember to also do so at the client side -->
-<Context antiJARLocking="true" path="/PathToWebService">
+<Context>
     <Resource auth="Container"
               driverClassName="oracle.jdbc.driver.OracleDriver"
               maxActive="20"
               maxIdle="10"
               maxWait="-1"
-              name="name"
+              name="jdbc/testdb"
               password="Qazxsw123!"
               type="javax.sql.DataSource"
               url="jdbc:oracle:thin:@212.237.29.34:1521:XE"

@@ -1,24 +1,27 @@
 package pl.wipek.shared.domain.entity;
 
-import org.hibernate.annotations.Type;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Set;
 
 /**
  * @author Krzysztof Adamczyk on 22.11.2017.
  */
 @Entity
 @Table(name = "ACCOUNTS")
+@XmlRootElement
 public class Account implements Serializable {
+
     private String id;
     private String accountNumber;
-    private BigDecimal balance;
+    private Double balance;
     private String currency;
     private String name;
-    private String blockedAmount;
+    private Double blockedAmount;
     private Customer customer;
 //    private Set<Transfer> transfers;
 
@@ -27,7 +30,7 @@ public class Account implements Serializable {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     public String getId() {
         return id;
     }
@@ -36,7 +39,6 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    @Basic
     @Column(name = "ACCOUNT_NUMBER")
     public String getAccountNumber() {
         return accountNumber;
@@ -46,17 +48,15 @@ public class Account implements Serializable {
         this.accountNumber = accountNumber;
     }
 
-    @Basic
     @Column(name = "BALANCE")
-    public BigDecimal getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(BigDecimal balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
-    @Basic
     @Column(name = "CURRENCY_ID")
     public String getCurrency() {
         return currency;
@@ -66,7 +66,6 @@ public class Account implements Serializable {
         this.currency = currency;
     }
 
-    @Basic
     @Column(name = "NAME")
     public String getName() {
         return name;
@@ -76,18 +75,18 @@ public class Account implements Serializable {
         this.name = name;
     }
 
-    @Basic
     @Column(name = "BLOCKED_AMOUNT")
-    public String getBlockedAmount() {
+    public Double getBlockedAmount() {
         return blockedAmount;
     }
 
-    public void setBlockedAmount(String blockedAmount) {
+    public void setBlockedAmount(Double blockedAmount) {
         this.blockedAmount = blockedAmount;
     }
 
     @ManyToOne
-    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
+    @JoinColumn(name = "CUSTOMER_ID")
+    @XmlTransient
     public Customer getCustomer() {
         return customer;
     }
