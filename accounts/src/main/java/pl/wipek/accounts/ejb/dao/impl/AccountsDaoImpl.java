@@ -21,7 +21,6 @@ public class AccountsDaoImpl extends AbstractDao<String, Account> implements Acc
         Query query = getEntityManager()
                 .createQuery("FROM " + entityClass.getCanonicalName() + " e WHERE e.customer.id=:id")
                 .setParameter("id", customerId);
-        System.out.println(query);
         return new HashSet<>(query.getResultList());
     }
 }

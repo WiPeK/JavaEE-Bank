@@ -1,6 +1,8 @@
 package pl.wipek.rest.api.beneficiaries;
 
 import pl.wipek.beneficiaries.services.BeneficiariesService;
+import pl.wipek.shared.domain.entity.DomesticBeneficiary;
+import pl.wipek.shared.util.converter.JsonSerializer;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
@@ -11,6 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.bind.JAXBException;
+import java.util.Set;
 
 /**
  * @author Krzysztof Adamczyk on 23.11.2017.
@@ -23,9 +27,11 @@ public class BeneficiariesEJBResource extends Application {
     private BeneficiariesService beneficiariesService;
 
     @GET
-    @Path("/domestic/customers/{userId}")
+    @Path("/domestic/customers/{customerId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBeneficiariesFromUsersDomesticPayments(@PathParam("userId") String userId) {
-        return Response.ok(beneficiariesService.getBeneficiariesFromUsersDomesticPayments(userId)).build();
+    public Response getBeneficiariesFromUsersDomesticPayments(@PathParam("customerId") String customerId) throws JAXBException {
+        Set<DomesticBeneficiary> domesticBeneficiaries = beneficiariesService.getBeneficiariesFromUsersDomesticPayments(customerId);
+        String resultJson = JsonSerializer.convertSet(domesticBeneficiaries, DomesticBeneficiary.class);
+        return Response.ok(resultJson).build();
     }
 }

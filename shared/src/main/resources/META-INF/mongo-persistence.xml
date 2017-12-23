@@ -9,7 +9,7 @@
         <!--&lt;!&ndash;<jta-data-source>javaeeresource</jta-data-source>&ndash;&gt;-->
         <!--<class>pl.wipek.shared.domain.entity.Account</class>-->
         <!--<class>pl.wipek.shared.domain.entity.Customer</class>-->
-        <!--&lt;!&ndash;<class>pl.wipek.shared.domain.entity.Beneficiary</class>&ndash;&gt;-->
+        <!--&lt;!&ndash;<class>pl.wipek.shared.domain.entity.DomesticBeneficiaryeficiary</class>&ndash;&gt;-->
         <!--&lt;!&ndash;<class>pl.wipek.shared.domain.entity.Transfer</class>&ndash;&gt;-->
         <!--<exclude-unlisted-classes>true</exclude-unlisted-classes>-->
         <!--<properties>-->

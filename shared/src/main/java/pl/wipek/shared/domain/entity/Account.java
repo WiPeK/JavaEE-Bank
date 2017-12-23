@@ -1,12 +1,10 @@
 package pl.wipek.shared.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author Krzysztof Adamczyk on 22.11.2017.
@@ -19,12 +17,11 @@ public class Account implements Serializable {
     private String id;
     private String accountNumber;
     private Double balance;
-    private String currency;
     private String name;
     private Double blockedAmount;
     private Customer customer;
-//    private Set<Transfer> transfers;
-
+    private Currency currency;
+    private Set<DomesticTransfer> domesticTransfers;
 
     public Account() {
     }
@@ -57,14 +54,6 @@ public class Account implements Serializable {
         this.balance = balance;
     }
 
-    @Column(name = "CURRENCY_ID")
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
 
     @Column(name = "NAME")
     public String getName() {
@@ -91,18 +80,29 @@ public class Account implements Serializable {
         return customer;
     }
 
+    @XmlTransient
+    @OneToMany(mappedBy = "account", targetEntity = DomesticTransfer.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<DomesticTransfer> getDomesticTransfers() {
+        return domesticTransfers;
+    }
+
+    public void setDomesticTransfers(Set<DomesticTransfer> domesticTransfers) {
+        this.domesticTransfers = domesticTransfers;
+    }
+
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-//    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
-//    public Set<Transfer> getTransfers() {
-//        return transfers;
-//    }
-//
-//    public void setTransfers(Set<Transfer> transfers) {
-//        this.transfers = transfers;
-//    }
+    @ManyToOne
+    @JoinColumn(name = "CURRENCY_ID")
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -115,7 +115,6 @@ public class Account implements Serializable {
         if (accountNumber != null ? !accountNumber.equals(account.accountNumber) : account.accountNumber != null)
             return false;
         if (balance != null ? !balance.equals(account.balance) : account.balance != null) return false;
-        if (currency != null ? !currency.equals(account.currency) : account.currency != null) return false;
         if (name != null ? !name.equals(account.name) : account.name != null) return false;
         return blockedAmount != null ? blockedAmount.equals(account.blockedAmount) : account.blockedAmount == null;
     }
@@ -125,7 +124,6 @@ public class Account implements Serializable {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (accountNumber != null ? accountNumber.hashCode() : 0);
         result = 31 * result + (balance != null ? balance.hashCode() : 0);
-        result = 31 * result + (currency != null ? currency.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (blockedAmount != null ? blockedAmount.hashCode() : 0);
         return result;

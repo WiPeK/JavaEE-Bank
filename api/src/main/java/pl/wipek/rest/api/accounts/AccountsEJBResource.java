@@ -33,7 +33,6 @@ public class AccountsEJBResource extends Application {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserAccounts(@PathParam("customerId") String customerId) throws JAXBException {
         Set<Account> accounts = accountsService.getUserAccounts(customerId);
-        System.out.println(accounts);
         String resultJson = JsonSerializer.convertSet(accounts, Account.class);
         return Response.ok(resultJson).build();
     }
