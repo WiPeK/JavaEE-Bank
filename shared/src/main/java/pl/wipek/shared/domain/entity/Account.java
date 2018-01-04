@@ -23,6 +23,8 @@ public class Account implements Serializable {
     private Currency currency;
     private Set<DomesticTransfer> domesticTransfers;
 
+    private String type;
+
     public Account() {
     }
 
@@ -104,6 +106,15 @@ public class Account implements Serializable {
         this.currency = currency;
     }
 
+    @Column(name = "TYPE")
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -138,6 +149,7 @@ public class Account implements Serializable {
                 ", currency='" + currency + '\'' +
                 ", name='" + name + '\'' +
                 ", blockedAmount=" + blockedAmount +
+                ", type=" + type +
                 '}';
     }
 }
