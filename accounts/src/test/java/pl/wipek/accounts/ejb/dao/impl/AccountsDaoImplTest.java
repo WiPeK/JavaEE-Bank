@@ -1,9 +1,6 @@
 package pl.wipek.accounts.ejb.dao.impl;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.shared.domain.entity.Account;
@@ -20,6 +17,7 @@ import java.util.Set;
 
 import static org.junit.Assert.*;
 
+@Ignore
 public class AccountsDaoImplTest {
 
     protected static EntityManagerFactory entityManagerFactory;

@@ -5,15 +5,17 @@ import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 /**
  * @author Krzysztof Adamczyk on 22.11.2017.
  */
-@Stateless(name = "AccountsDaoImpl")
+@Stateless(name = "AccountsDaoImpl", mappedName = "AccountsDaoImpl")
 public class AccountsDaoImpl extends AbstractDao<String, Account> implements AccountsDAO {
 
     @Override
@@ -23,4 +25,73 @@ public class AccountsDaoImpl extends AbstractDao<String, Account> implements Acc
                 .setParameter("id", customerId);
         return new HashSet<>(query.getResultList());
     }
+
+    @Override
+    public int countZusTransfers(String accountId) {
+        return new Random().nextInt(1);
+    }
+
+    @Override
+    public int countLastMonthTransactions(Account account) {
+        return new Random().nextInt(200);
+    }
+
+    @Override
+    public int countBlikUses(Account account) {
+        return new Random().nextInt()%10;
+    }
+
+    @Override
+    public int countMobileLogging(Account account) {
+        return new Random().nextInt()%10;
+    }
+
+    @Override
+    public Double countPaymentsToAccount(Account account) {
+        Double min = 1000.0;
+        Double max = 100000.0;
+        Double result = min + (max - min) * new Random().nextDouble();
+        return Double.longBitsToDouble(Math.round(result));
+    }
+
+    @Override
+    public Double countMoneySpentForFuel(Account account) {
+        Double min = 100.0;
+        Double max = 10000.0;
+        Double result = min + (max - min) * new Random().nextDouble();
+        return Double.longBitsToDouble(Math.round(result));
+    }
+
+    @Override
+    public Double sumCardPayments(Account account) {
+        Double min = 10.0;
+        Double max = 10000.0;
+        Double result = min + (max - min) * new Random().nextDouble();
+        return Double.longBitsToDouble(Math.round(result));
+    }
+
+    @Override
+    public int countCardPayments(Account account) {
+        return new Random().nextInt()%20;
+    }
+
+    @Override
+    public int countPayments(Account account) {
+        return new Random().nextInt()%50;
+    }
+
+    @Override
+    public int countAtmPayments(Account account) {
+        return new Random().nextInt()%20;
+    }
+
+    @Override
+    public Double sumAtmPayments(Account account) {
+        Double min = 1.0;
+        Double max = 20000.0;
+        Double result = min + (max - min) * new Random().nextDouble();
+        return Double.longBitsToDouble(Math.round(result));
+    }
+
+
 }

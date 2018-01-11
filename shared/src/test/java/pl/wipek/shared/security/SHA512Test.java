@@ -2,6 +2,7 @@ package pl.wipek.shared.security;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,6 +10,7 @@ import static org.junit.Assert.*;
 /**
  * @author Krzysztof Adamczyk on 10.11.2017.
  */
+@Ignore
 public class SHA512Test {
 
     private SHA512 sha512;

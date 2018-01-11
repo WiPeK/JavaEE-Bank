@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
 /**
  * @author Krzysztof Adamczyk on 30.11.2017.
  */
+@Ignore
 public class JpaUsersDaoDbTest {
     protected static EntityManagerFactory entityManagerFactory;
 

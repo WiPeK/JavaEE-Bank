@@ -1,9 +1,13 @@
 package pl.wipek.shared.domain.entity;
 
+import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
+import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Set;
 
 /**
@@ -19,9 +23,12 @@ public class Account implements Serializable {
     private Double balance;
     private String name;
     private Double blockedAmount;
+    private Double lastMonthSaldo;
     private Customer customer;
     private Currency currency;
+    private TransactionBonus transactionBonus;
     private Set<DomesticTransfer> domesticTransfers;
+    private Set<GrantedVoucher> grantedVouchers;
 
     private String type;
 
@@ -75,7 +82,7 @@ public class Account implements Serializable {
         this.blockedAmount = blockedAmount;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
     @XmlTransient
     public Customer getCustomer() {
@@ -113,6 +120,35 @@ public class Account implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Column(name = "LAST_MONTH_SALDO")
+    public Double getLastMonthSaldo() {
+        return lastMonthSaldo;
+    }
+
+    public void setLastMonthSaldo(Double lastMonthSaldo) {
+        this.lastMonthSaldo = lastMonthSaldo;
+    }
+
+    @XmlTransient
+    @OneToMany(mappedBy = "account", targetEntity = GrantedVoucher.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<GrantedVoucher> getGrantedVouchers() {
+        return grantedVouchers;
+    }
+
+    public void setGrantedVouchers(Set<GrantedVoucher> grantedVouchers) {
+        this.grantedVouchers = grantedVouchers;
+    }
+
+    @XmlTransient
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "account", cascade = CascadeType.ALL)
+    public TransactionBonus getTransactionBonus() {
+        return transactionBonus;
+    }
+
+    public void setTransactionBonus(TransactionBonus transactionBonus) {
+        this.transactionBonus = transactionBonus;
     }
 
     @Override
