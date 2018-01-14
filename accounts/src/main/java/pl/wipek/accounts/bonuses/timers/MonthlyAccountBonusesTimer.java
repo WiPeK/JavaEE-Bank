@@ -5,20 +5,26 @@ import org.slf4j.LoggerFactory;
 import pl.wipek.accounts.bonuses.exceptions.NoFactoryException;
 import pl.wipek.accounts.bonuses.factory.AccountBonusesFactory;
 import pl.wipek.accounts.bonuses.factory.AccountBonusesFactoryProvider;
+import pl.wipek.accounts.bonuses.families.BonusContainer;
 import pl.wipek.accounts.bonuses.families.moneyback.MoneyBackBonus;
 import pl.wipek.accounts.bonuses.families.saldo.SaldoBonus;
 import pl.wipek.accounts.bonuses.families.transactions.TransactionsBonus;
 import pl.wipek.accounts.bonuses.families.voucher.VoucherBonus;
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
+import pl.wipek.accounts.ejb.dao.ActualVouchersDao;
 import pl.wipek.shared.domain.entity.Account;
+import pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
 import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 import pl.wipek.shared.emails.EmailSender;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import javax.mail.MessagingException;
+import javax.naming.*;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 //@Singleton
@@ -27,15 +33,25 @@ import java.util.Set;
 public class MonthlyAccountBonusesTimer {
     private static final Logger logger = LoggerFactory.getLogger(MonthlyAccountBonusesTimer.class);
 
-
     private Set<Account> accounts;
-    private SaldoBonus saldoBonus;
-    private VoucherBonus voucherBonus;
-    private MoneyBackBonus moneyBackBonus;
-    private TransactionsBonus transactionsBonus;
+    private Set<ActualVoucher> actualVouchers;
 
     @EJB(beanInterface = AccountsDAO.class, beanName = "AccountsDaoImpl")
     private AccountsDAO accountsDao;
+
+    @EJB(beanInterface = ActualVouchersDao.class, beanName = "ActualVouchersDaoImpl")
+    private ActualVouchersDao actualVouchersDao;
+
+    @EJB
+    private AccountBonusesFactoryProvider accountBonusesFactoryProvider;
+
+    public static Set<String> emailMessages = new HashSet<>();
+
+    @PostConstruct
+    private void getActualVouchers() {
+        actualVouchers = this.actualVouchersDao.getAll();
+        System.out.println(actualVouchers);
+    }
 
 //    @Schedules({
 //            @Schedule(dayOfMonth = "1")
@@ -47,112 +63,58 @@ public class MonthlyAccountBonusesTimer {
     }
 
     private void clearBonuses() {
-        //todo
     }
 
     private void createFactories() {
-        accounts.forEach((Account account) -> {
-            try {
-                AccountBonusesFactory accountBonusesFactory = AccountBonusesFactoryProvider.getFactory(account);
-                accountBonusesFactory.setAccount(account);
-                createBonuses(accountBonusesFactory);
-                saveBonuses(account);
-                if(isMockEmailList(account.getId())) {
-                    sendEmailWithBonuses(account);
-                }
-            } catch (NoFactoryException e) {
-                e.printStackTrace();
-            }
-        });
+        logger.info("Creating bonuses for: " + accounts.size() + " accounts");
+        accounts.parallelStream().forEach(this::prepareFactory);
+    }
+
+    private void prepareFactory(Account account) {
+        AccountBonusesFactory accountBonusesFactory = null;
+        try {
+            accountBonusesFactory = accountBonusesFactoryProvider.getFactory(account);
+            accountBonusesFactory.setAccount(account);
+            accountBonusesFactory.setActualVouchers(actualVouchers);
+            BonusContainer bonusContainer = createBonuses(accountBonusesFactory, account);
+            logger.info("Account before update: " + account);
+            Account updatedAccount = bonusContainer.saveBonuses();
+            logger.info("Account after update: " + account);
+            updateAccount(updatedAccount);
+//            if(isMockEmailList(account.getId())) {
+                bonusContainer.sendEmailWithBonuses();
+//            }
+        } catch (NoFactoryException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean isMockEmailList(String accountId) {
-        return accountId.equals("6075205366930CAAE050EDD4221D1C44") ||
+        return  accountId.equals("6075205366930CAAE050EDD4221D1C44") ||
                 accountId.equals("6075205366940CAAE050EDD4221D1C44") ||
                 accountId.equals("60F174307A77395DE050EDD4221D315E");
     }
 
-    private void createBonuses(AccountBonusesFactory accountBonusesFactory) {
-        this.saldoBonus = accountBonusesFactory.createSaldoBonus();
-        this.voucherBonus = accountBonusesFactory.createVoucherBonus(saldoBonus);
-        this.moneyBackBonus = accountBonusesFactory.createMoneyBackBonus(saldoBonus);
-        this.transactionsBonus = accountBonusesFactory.createTransactionsBonus(moneyBackBonus);
-    }
-
-    private void saveBonuses(Account account) {
-        saveSaldoBonus(account);
-        saveMoneyBackBonus(account);
-        saveVouchersBonus(account);
-        saveTransactionsBonus(account);
-    }
-
-    private void saveSaldoBonus(Account account) {
-        if (saldoBonus.isGranted()) {
-            Double newBalance = account.getBalance() + saldoBonus.getSaldo();
-            account.setLastMonthSaldo(account.getBalance());
-            account.setBalance(newBalance);
-            updateAccount(account);
-        }
-    }
-
-    private void saveMoneyBackBonus(Account account) {
-        if (moneyBackBonus.isGranted()) {
-            Double newBalance = account.getBalance() + moneyBackBonus.getGrantedBonus();
-            account.setBalance(newBalance);
-            updateAccount(account);
-        }
-    }
-
-    private void saveVouchersBonus(Account account) {
-        if (voucherBonus.isGranted()) {
-            account.setGrantedVouchers(voucherBonus.getGrantedVouchers());
-            updateAccount(account);
-        }
-    }
-
-    private void saveTransactionsBonus(Account account) {
-        if (transactionsBonus.isGranted()) {
-            TransactionBonus transactionBonus = transactionsBonus.getTransactionBonus();
-            account.setTransactionBonus(transactionBonus);
-            updateAccount(account);
-        }
+    private BonusContainer createBonuses(AccountBonusesFactory accountBonusesFactory, Account account) {
+        BonusContainer bonusContainer = new BonusContainer();
+        bonusContainer.setAccount(account);
+        bonusContainer.setSaldoBonus(accountBonusesFactory.createSaldoBonus());
+        logger.info("Saldo bonus: " + bonusContainer.getSaldoBonus().isGranted() + " value: " + bonusContainer.getSaldoBonus().getSaldo() + " for account " + bonusContainer.getAccount().getId());
+        bonusContainer.setVoucherBonus(accountBonusesFactory.createVoucherBonus(bonusContainer.getSaldoBonus()));
+        logger.info("Vouchers bonus: " + bonusContainer.getVoucherBonus().isGranted() + " value: " + bonusContainer.getVoucherBonus().getGrantedVouchers().toString() + " for account " + bonusContainer.getAccount().getId());
+        bonusContainer.setMoneyBackBonus(accountBonusesFactory.createMoneyBackBonus(bonusContainer.getSaldoBonus()));
+        logger.info("Moneyback bonus: " + bonusContainer.getMoneyBackBonus().isGranted() + " value: " + bonusContainer.getMoneyBackBonus().getGrantedBonus() + " for account " + bonusContainer.getAccount().getId());
+        bonusContainer.setTransactionsBonus(accountBonusesFactory.createTransactionsBonus(bonusContainer.getMoneyBackBonus()));
+        logger.info("Transactions bonus: " + bonusContainer.getTransactionsBonus().isGranted() + " value: " + bonusContainer.getTransactionsBonus().getTransactionBonuses().toString() + " for account " + bonusContainer.getAccount().getId());
+        return bonusContainer;
     }
 
     private void updateAccount(Account account) {
-        try {
-            account = accountsDao.merge(account);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            accountsDao.merge(account);
+//        } catch (DaoException e) {
+//            e.printStackTrace();
+//        }
     }
 
-    private void sendEmailWithBonuses(Account account) {
-        String subject = "Otrzymane bonusy konta";
-        StringBuilder message = new StringBuilder("Bonuses granted to account: " + account.getAccountNumber());
-        String mailTo = "wipekxxx@gmail.com";
-
-        message.append(saldoBonus.isGranted() ? ("Saldo bonus: " + saldoBonus.getSaldo() + "\n") : "");
-        message.append(moneyBackBonus.isGranted() ? ("Money back bonus: " + moneyBackBonus.getGrantedBonus() + "\n") : "");
-        message.append(transactionsBonus.isGranted() ?
-                (
-                        "Transaction bonus: \n" +
-                                "Free payments: " + transactionsBonus.getTransactionBonus().getFreePayments() + "\n" +
-                                "Free atm transactions: " + transactionsBonus.getTransactionBonus().getFreeAtmTransactions() + "\n" +
-                                "Free premium payments: " + transactionsBonus.getTransactionBonus().getFreePremiumPayments() + "\n"
-                ) : "");
-        if (voucherBonus.isGranted()) {
-            message.append("Granted vouchers: \n");
-            for (GrantedVoucher grantedVoucher : voucherBonus.getGrantedVouchers()) {
-                message.append(grantedVoucher.getActualVoucher().getName()).append(" kod: ").append(grantedVoucher.getCode()).append("\n");
-            }
-        }
-        logger.info(message.toString());
-        try {
-            EmailSender.sendEmail(subject, message.toString(), mailTo);
-        } catch (IOException | MessagingException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 }

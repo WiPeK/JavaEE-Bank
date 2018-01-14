@@ -11,23 +11,25 @@ import pl.wipek.accounts.bonuses.families.voucher.VoucherBonus;
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.accounts.ejb.dao.ActualVouchersDao;
 import pl.wipek.shared.domain.entity.Account;
-import pl.wipek.accounts.ejb.finder.EjbFinder;
+import pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher;
 
-import javax.naming.NamingException;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.inject.Named;
+import java.util.Set;
 
+@Named
 public class BusinessBonusesFactory implements AccountBonusesFactory {
+    @EJB(beanInterface = AccountsDAO.class, beanName = "AccountsDaoImpl")
     private AccountsDAO accountsDao;
-    private ActualVouchersDao actualVouchersDao;
 
     private Account account;
 
-    public BusinessBonusesFactory() {
-        try {
-            accountsDao = (AccountsDAO) EjbFinder.getBean("AccountsDaoImpl");
-            actualVouchersDao = (ActualVouchersDao)EjbFinder.getBean("ActualVouchersDaoImpl");
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
+    private Set<ActualVoucher> actualVouchers;
+
+    @Override
+    public void setActualVouchers(Set<ActualVoucher> actualVouchers) {
+        this.actualVouchers = actualVouchers;
     }
 
     @Override
@@ -62,7 +64,7 @@ public class BusinessBonusesFactory implements AccountBonusesFactory {
     public VoucherBonus createVoucherBonus(SaldoBonus saldoBonus) {
         BusinessVoucherBonus businessVoucherBonus = new BusinessVoucherBonus(account);
         if(saldoBonus.isGranted()) {
-            businessVoucherBonus.setActualVouchers(actualVouchersDao.getAll());
+            businessVoucherBonus.setActualVouchers(actualVouchers);
             businessVoucherBonus.setPremiumVouchersForZusTransfers(accountsDao.countZusTransfers(account.getId()));
             businessVoucherBonus.grandVouchers(saldoBonus.getSaldo());
         }

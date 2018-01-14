@@ -3,9 +3,12 @@ package pl.wipek.accounts.bonuses.families.transactions;
 import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class TransactionsBonus {
     private boolean isGranted;
-    protected TransactionBonus transactionBonus;
+    protected Set<TransactionBonus> transactionBonuses = new HashSet<>();
     private Account account;
 
     public abstract void addBonus();
@@ -18,12 +21,12 @@ public abstract class TransactionsBonus {
         isGranted = granted;
     }
 
-    public TransactionBonus getTransactionBonus() {
-        return transactionBonus;
+    public Set<TransactionBonus> getTransactionBonuses() {
+        return transactionBonuses;
     }
 
-    public void setTransactionBonus(TransactionBonus transactionBonus) {
-        this.transactionBonus = transactionBonus;
+    public void setTransactionBonuses(Set<TransactionBonus> transactionBonuses) {
+        this.transactionBonuses = transactionBonuses;
     }
 
     public Account getAccount() {

@@ -19,8 +19,9 @@ public class GoldVoucherBonus extends VoucherBonus {
         if (saldo > MIN_SALDO_FOR_GOLD_ACCOUNT) {
             Random random = new Random();
             for (int i = 0; i < MAX_VOUCHERS_FOR_GOLD_ACCOUNT + numbersOfPremiumVouchers; i++) {
-                ActualVoucher actualVoucher = this.actualVouchers.stream().skip(random.nextInt() % this.actualVouchers.size()).findFirst().get();
+                ActualVoucher actualVoucher = this.actualVouchers.stream().skip((random.nextInt() & Integer.MAX_VALUE) % this.actualVouchers.size()).findFirst().get();
                 GrantedVoucher voucher = new GrantedVoucher();
+                voucher.setActualVoucher(actualVoucher);
                 voucher.setAccount(account);
                 voucher.setCode(generateVoucherCode(actualVoucher));
                 grantedVouchers.add(voucher);

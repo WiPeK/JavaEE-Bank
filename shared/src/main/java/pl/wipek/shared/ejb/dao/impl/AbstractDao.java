@@ -39,11 +39,13 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
     @Override
     public E persist(E entity) throws DaoException {
         try {
-            getEntityManager().getTransaction().begin();
+//            getEntityManager().getTransaction().begin();
             getEntityManager().persist(entity);
-            getEntityManager().getTransaction().commit();
+//            getEntityManager().flush();
+//            getEntityManager().clear();
+//            getEntityManager().getTransaction().commit();
         } catch (Exception e) {
-            getEntityManager().getTransaction().rollback();
+//            getEntityManager().getTransaction().rollback();
             throw new DaoException(e);
         }
         return entity;
@@ -61,11 +63,13 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
     public E merge(E entity) throws DaoException
     {
         try {
-            getEntityManager().getTransaction().begin();
+//            getEntityManager().getTransaction().begin();
             entity = getEntityManager().merge(entity);
-            getEntityManager().getTransaction().commit();
+//            getEntityManager().flush();
+//            getEntityManager().clear();
+//            getEntityManager().getTransaction().commit();
         } catch (Exception e) {
-            getEntityManager().getTransaction().rollback();
+//            getEntityManager().getTransaction().rollback();
             throw new DaoException(e);
         }
         return entity;
@@ -82,11 +86,13 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
         E entity = this.findById(id);
         if (entity != null) {
             try {
-                getEntityManager().getTransaction().begin();
+//                getEntityManager().getTransaction().begin();
                 getEntityManager().remove(entity);
-                getEntityManager().getTransaction().commit();
+//                getEntityManager().flush();
+//                getEntityManager().clear();
+//                getEntityManager().getTransaction().commit();
             } catch (Exception e) {
-                getEntityManager().getTransaction().rollback();
+//                getEntityManager().getTransaction().rollback();
                 throw new DaoException(e);
             }
             return true;
@@ -122,7 +128,6 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
 //        criteriaQuery.from(entityClass);
         Query query = entityManager.createQuery("from " + entityClass.getCanonicalName() + " e", entityClass);
         List<E> res = query.getResultList();
-        System.out.println(res);
         return new HashSet<>(res);
     }
 

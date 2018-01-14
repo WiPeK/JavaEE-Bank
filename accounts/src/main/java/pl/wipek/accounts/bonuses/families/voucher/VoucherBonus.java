@@ -7,6 +7,7 @@ import pl.wipek.shared.ejb.dao.Dao;
 import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 
 import java.util.Base64;
+import java.util.HashSet;
 import java.util.Set;
 
 public abstract class VoucherBonus {
@@ -20,8 +21,8 @@ public abstract class VoucherBonus {
 
     protected Account account;
 
-    protected Set<ActualVoucher> actualVouchers;
-    protected Set<GrantedVoucher> grantedVouchers;
+    protected Set<ActualVoucher> actualVouchers = new HashSet<>();
+    protected Set<GrantedVoucher> grantedVouchers = new HashSet<>();
 
     protected boolean isGranted = true;
 

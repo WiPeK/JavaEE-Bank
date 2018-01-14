@@ -55,7 +55,7 @@ public class TransactionBonus {
     }
 
     @XmlTransient
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACCOUNT_ID")
     public Account getAccount() {
         return account;

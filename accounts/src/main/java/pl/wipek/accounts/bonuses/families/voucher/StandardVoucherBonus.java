@@ -17,8 +17,9 @@ public class StandardVoucherBonus extends VoucherBonus {
         if (saldo >= MIN_SALDO_FOR_STANDARD_ACCOUNT) {
             Random random = new Random();
             for (int i = 0; i < MAX_VOUCHERS_FOR_STANDARD_ACCOUNT; i++) {
-                ActualVoucher actualVoucher = this.actualVouchers.stream().skip(random.nextInt() % this.actualVouchers.size()).findFirst().get();
+                ActualVoucher actualVoucher = this.actualVouchers.stream().skip((random.nextInt() & Integer.MAX_VALUE) % this.actualVouchers.size()).findFirst().get();
                 GrantedVoucher voucher = new GrantedVoucher();
+                voucher.setActualVoucher(actualVoucher);
                 voucher.setCode(generateVoucherCode(actualVoucher));
                 voucher.setAccount(account);
                 grantedVouchers.add(voucher);

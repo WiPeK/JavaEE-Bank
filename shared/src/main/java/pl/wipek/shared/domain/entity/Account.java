@@ -1,5 +1,7 @@
 package pl.wipek.shared.domain.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
 
@@ -17,6 +19,9 @@ import java.util.Set;
 @Table(name = "ACCOUNTS")
 @XmlRootElement
 public class Account implements Serializable {
+    public static final String STANDARD_TYPE = "standard";
+    public static final String GOLD_TYPE = "gold";
+    public static final String BUSINESS_TYPE = "business";
 
     private String id;
     private String accountNumber;
@@ -26,7 +31,7 @@ public class Account implements Serializable {
     private Double lastMonthSaldo;
     private Customer customer;
     private Currency currency;
-    private TransactionBonus transactionBonus;
+    private Set<TransactionBonus> transactionBonuses;
     private Set<DomesticTransfer> domesticTransfers;
     private Set<GrantedVoucher> grantedVouchers;
 
@@ -103,7 +108,7 @@ public class Account implements Serializable {
         this.customer = customer;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CURRENCY_ID")
     public Currency getCurrency() {
         return currency;
@@ -142,13 +147,13 @@ public class Account implements Serializable {
     }
 
     @XmlTransient
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "account", cascade = CascadeType.ALL)
-    public TransactionBonus getTransactionBonus() {
-        return transactionBonus;
+    @OneToMany(mappedBy = "account", targetEntity = GrantedVoucher.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<TransactionBonus> getTransactionBonuses() {
+        return transactionBonuses;
     }
 
-    public void setTransactionBonus(TransactionBonus transactionBonus) {
-        this.transactionBonus = transactionBonus;
+    public void setTransactionBonuses(Set<TransactionBonus> transactionBonuses) {
+        this.transactionBonuses = transactionBonuses;
     }
 
     @Override
@@ -182,10 +187,10 @@ public class Account implements Serializable {
                 "idAccounts='" + id + '\'' +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", balance=" + balance +
-                ", currency='" + currency + '\'' +
                 ", name='" + name + '\'' +
                 ", blockedAmount=" + blockedAmount +
                 ", type=" + type +
+                ", last month salod=" + lastMonthSaldo +
                 '}';
     }
 }

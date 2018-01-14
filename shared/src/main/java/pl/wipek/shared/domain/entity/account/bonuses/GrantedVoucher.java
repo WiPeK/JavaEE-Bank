@@ -1,5 +1,6 @@
 package pl.wipek.shared.domain.entity.account.bonuses;
 
+import org.hibernate.annotations.Fetch;
 import pl.wipek.shared.domain.entity.Account;
 
 import javax.persistence.*;
@@ -40,7 +41,7 @@ public class GrantedVoucher implements Serializable {
         this.code = code;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACCOUNT_ID")
     @XmlTransient
     public Account getAccount() {
@@ -51,7 +52,7 @@ public class GrantedVoucher implements Serializable {
         this.account = account;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACTUAL_VOUCHERS_ID")
     @XmlTransient
     public ActualVoucher getActualVoucher() {

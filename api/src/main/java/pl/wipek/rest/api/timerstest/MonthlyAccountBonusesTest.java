@@ -16,10 +16,10 @@ public class MonthlyAccountBonusesTest extends Application {
 
     @EJB
     private MonthlyAccountBonusesTimer monthlyAccountBonusesTimer;
+
     @GET
     public Response testTimer() {
-        logger.info("Test bonus timer");
         monthlyAccountBonusesTimer.chargeMonthlyBonuses();
-        return Response.ok("Timer test").build();
+        return Response.ok(MonthlyAccountBonusesTimer.emailMessages.toString()).build();
     }
 }

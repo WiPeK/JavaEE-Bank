@@ -11,23 +11,27 @@ import pl.wipek.accounts.bonuses.families.voucher.VoucherBonus;
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.accounts.ejb.dao.ActualVouchersDao;
 import pl.wipek.shared.domain.entity.Account;
-import pl.wipek.accounts.ejb.finder.EjbFinder;
+import pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher;
 
-import javax.naming.NamingException;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+import javax.inject.Named;
+import java.util.Set;
 
+@Named
 public class GoldBonusesFactory implements AccountBonusesFactory {
     private Account account;
 
-    private ActualVouchersDao actualVouchersDao;
+    @EJB(beanInterface = AccountsDAO.class, beanName = "AccountsDaoImpl")
     private AccountsDAO accountsDao;
 
-    public GoldBonusesFactory() {
-        try {
-            accountsDao = (AccountsDAO) EjbFinder.getBean("AccountsDaoImpl");
-            actualVouchersDao = (ActualVouchersDao)EjbFinder.getBean("ActualVouchersDaoImpl");
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
+    private Set<ActualVoucher> actualVouchers;
+
+    @Override
+    public void setActualVouchers(Set<ActualVoucher> actualVouchers) {
+        this.actualVouchers = actualVouchers;
     }
 
     @Override
@@ -52,7 +56,7 @@ public class GoldBonusesFactory implements AccountBonusesFactory {
         goldTransactionsBonus.setSumPaymentsToAccount(accountsDao.countPaymentsToAccount(account));
         goldTransactionsBonus.setAccount(account);
         goldTransactionsBonus.addBonus();
-        return null;
+        return goldTransactionsBonus;
     }
 
     @Override
@@ -66,7 +70,7 @@ public class GoldBonusesFactory implements AccountBonusesFactory {
     public VoucherBonus createVoucherBonus(SaldoBonus saldoBonus) {
         GoldVoucherBonus goldVoucherBonus = new GoldVoucherBonus(account);
         if(saldoBonus.isGranted()) {
-            goldVoucherBonus.setActualVouchers(actualVouchersDao.getAll());
+            goldVoucherBonus.setActualVouchers(actualVouchers);
             goldVoucherBonus.createPremiumVouchers(saldoBonus.getSaldo());
             goldVoucherBonus.grandVouchers(saldoBonus.getSaldo());
         }

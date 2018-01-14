@@ -11,25 +11,23 @@ import pl.wipek.accounts.bonuses.families.voucher.VoucherBonus;
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.accounts.ejb.dao.ActualVouchersDao;
 import pl.wipek.shared.domain.entity.Account;
-import pl.wipek.accounts.ejb.finder.EjbFinder;
+import pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher;
 
-import javax.naming.NamingException;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.inject.Named;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
 
+@Named
 public class StandardBonusesFactory implements AccountBonusesFactory {
 
+    @EJB(beanInterface = AccountsDAO.class, beanName = "AccountsDaoImpl")
     private AccountsDAO accountsDao;
-    private ActualVouchersDao actualVouchersDao;
 
     private Account account;
 
-    public StandardBonusesFactory() {
-        try {
-            accountsDao = (AccountsDAO) EjbFinder.getBean("AccountsDaoImpl");
-            actualVouchersDao = (ActualVouchersDao)EjbFinder.getBean("ActualVouchersDaoImpl");
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-    }
+    private Set<ActualVoucher> actualVouchers;
 
     @Override
     public MoneyBackBonus createMoneyBackBonus(SaldoBonus saldoBonus) {
@@ -47,13 +45,14 @@ public class StandardBonusesFactory implements AccountBonusesFactory {
         StandardTransactionsBonus standardTransactionsBonus = new StandardTransactionsBonus();
         standardTransactionsBonus.setAccount(account);
         standardTransactionsBonus.addBonus();
-        return null;
+        return standardTransactionsBonus;
     }
 
     @Override
     public SaldoBonus createSaldoBonus() {
         StandardSaldoBonus standardSaldoBonus = new StandardSaldoBonus(account);
         standardSaldoBonus.addSaldoBonus();
+        System.out.println(standardSaldoBonus.isGranted() + " " + standardSaldoBonus.getSaldo());
         return standardSaldoBonus;
     }
 
@@ -61,7 +60,7 @@ public class StandardBonusesFactory implements AccountBonusesFactory {
     public VoucherBonus createVoucherBonus(SaldoBonus saldoBonus) {
         StandardVoucherBonus standardVoucherBonus = new StandardVoucherBonus(account);
         if(saldoBonus.isGranted()) {
-            standardVoucherBonus.setActualVouchers(actualVouchersDao.getAll());
+            standardVoucherBonus.setActualVouchers(actualVouchers);
             standardVoucherBonus.grandVouchers(saldoBonus.getSaldo());
         }
 
@@ -69,7 +68,12 @@ public class StandardBonusesFactory implements AccountBonusesFactory {
     }
 
     @Override
-    public void setAccount(Account account) {
+    public void setAccount(@NotNull Account account) {
         this.account = account;
+    }
+
+    @Override
+    public void setActualVouchers(@NotNull Set<ActualVoucher> actualVouchers) {
+        this.actualVouchers = actualVouchers;
     }
 }

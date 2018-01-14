@@ -38,7 +38,7 @@
             <!--<property name="hibernate.connection.password" value="root"/>-->
             <!--<property name="hibernate.default_schema" value="JAVAEE"/>-->
             <!--<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>-->
-            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.show_sql" value="true"/>
             <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
             <!--<property name="javax.persistence.schema-generation.create-source" value="script"/>-->
             <!--<property name="javax.persistence.schema-generation.create-script-source" value="dbscripts/create.sql"/>-->

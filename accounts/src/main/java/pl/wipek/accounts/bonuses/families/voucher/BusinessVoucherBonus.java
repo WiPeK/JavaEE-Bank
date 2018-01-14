@@ -18,9 +18,10 @@ public class BusinessVoucherBonus extends VoucherBonus {
         if (saldo > MIN_SALDO_FOR_BUSINESS_ACCOUNT) {
             Random random = new Random();
             for (int i = 0; i < MAX_VOUCHERS_FOR_BUSINESS_ACCOUNT; i++) {
-                ActualVoucher actualVoucher = this.actualVouchers.stream().skip(random.nextInt() % this.actualVouchers.size()).findFirst().get();
+                ActualVoucher actualVoucher = this.actualVouchers.stream().skip((random.nextInt() & Integer.MAX_VALUE) % this.actualVouchers.size()).findFirst().get();
                 for (int j = 0; j < premiumVouchersForZusTransfers; j++) {
                     GrantedVoucher voucher = new GrantedVoucher();
+                    voucher.setActualVoucher(actualVoucher);
                     voucher.setCode(generateVoucherCode(actualVoucher));
                     voucher.setAccount(account);
                     grantedVouchers.add(voucher);

@@ -15,13 +15,13 @@ public abstract class SaldoBonus {
     protected static Double MIN_SALDO_FOR_BUSINESS_ACCOUNT = 10000.0;
 
     private boolean isGranted = false;
-    private Double saldo;
+    private Double saldo = 0.0;
     protected Account account;
     protected Double grantedBonus;
 
     public SaldoBonus(@NotNull Account account) {
         this.account = account;
-        saldo = account.getBalance() - account.getLastMonthSaldo();
+        saldo = (Math.round((account.getBalance() - account.getLastMonthSaldo())*100)/100) * 1.0;
     }
 
     public boolean isGranted() {
