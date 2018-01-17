@@ -33,17 +33,17 @@ public class AccountsDaoImpl extends AbstractDao<String, Account> implements Acc
 
     @Override
     public int countLastMonthTransactions(Account account) {
-        return new Random().nextInt(200);
+        return (new Random().nextInt() & Integer.MAX_VALUE)%200;
     }
 
     @Override
     public int countBlikUses(Account account) {
-        return new Random().nextInt()%10;
+        return (new Random().nextInt() & Integer.MAX_VALUE)%10;
     }
 
     @Override
     public int countMobileLogging(Account account) {
-        return new Random().nextInt()%10;
+        return (new Random().nextInt() & Integer.MAX_VALUE)%10;
     }
 
     @Override
@@ -72,17 +72,17 @@ public class AccountsDaoImpl extends AbstractDao<String, Account> implements Acc
 
     @Override
     public int countCardPayments(Account account) {
-        return new Random().nextInt()%20;
+        return (new Random().nextInt()& Integer.MAX_VALUE) %20;
     }
 
     @Override
     public int countPayments(Account account) {
-        return new Random().nextInt()%50;
+        return (new Random().nextInt()& Integer.MAX_VALUE) %50;
     }
 
     @Override
     public int countAtmPayments(Account account) {
-        return new Random().nextInt()%20;
+        return (new Random().nextInt()& Integer.MAX_VALUE) %20;
     }
 
     @Override

@@ -14,7 +14,7 @@ public class StandardSaldoBonus extends SaldoBonus {
     @Override
     public void addSaldoBonus() {
         if(getSaldo() > MIN_SALDO_FOR_STANDARD_ACCOUNT) {
-            grantedBonus = BONUS;
+            grantedBonus = Math.round(BONUS * 100) / 100.0;
             setGranted(true);
         }
     }

@@ -5,6 +5,7 @@ import pl.wipek.shared.domain.entity.Account;
 
 import javax.ejb.EJB;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 import java.math.BigDecimal;
 
 
@@ -16,6 +17,7 @@ public abstract class SaldoBonus {
 
     private boolean isGranted = false;
     private Double saldo = 0.0;
+    @XmlTransient
     protected Account account;
     protected Double grantedBonus;
 

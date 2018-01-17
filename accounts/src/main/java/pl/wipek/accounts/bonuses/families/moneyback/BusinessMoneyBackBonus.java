@@ -11,7 +11,7 @@ public class BusinessMoneyBackBonus extends MoneyBackBonus {
     @Override
     public void addBonus() {
         if(isConditionsChecked()) {
-            grantedBonus = BONUS * (sumPaymentToAccount / 10000);
+            setGrantedBonus(BONUS * (getSumPaymentToAccount() / 10000));
             setGranted(true);
         }
     }
@@ -21,9 +21,9 @@ public class BusinessMoneyBackBonus extends MoneyBackBonus {
     }
 
     private boolean isConditionsChecked() {
-        return  mobileLoggingNumbers >= MIN_MOBILE_LOGGINS_NUMBERS &&
-                blikUseNumbers >= MIN_BLIK_USE_NUMBERS &&
-                sumPaymentToAccount >= MIN_SUM_PAYMENTS_TO_ACCOUNT &&
+        return  getMobileLoggingNumbers() >= MIN_MOBILE_LOGGINS_NUMBERS &&
+                getBlikUseNumbers() >= MIN_BLIK_USE_NUMBERS &&
+                getSumPaymentToAccount() >= MIN_SUM_PAYMENTS_TO_ACCOUNT &&
                 moneySpentForFuel >= MIN_MONEY_SPENT_FOR_FUEL;
     }
 }

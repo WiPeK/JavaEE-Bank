@@ -28,8 +28,8 @@ public class GoldTransactionsBonus extends TransactionsBonus {
         if (isConditionsChecked()) {
             TransactionBonus transactionBonus = new TransactionBonus();
             transactionBonus.setFreeAtmTransactions(FREE_ATM_TRANSACTIONS);
-            transactionBonus.setFreePayments(FREE_PAYMENTS);
             transactionBonus.setFreePremiumPayments(PREMIUM_PAYMENTS);
+            transactionBonus.setFreePayments(FREE_PAYMENTS);
             transactionBonuses.add(transactionBonus);
             setGranted(true);
         }

@@ -65,7 +65,7 @@ public class Account implements Serializable {
     }
 
     public void setBalance(Double balance) {
-        this.balance = balance;
+        this.balance = Math.round(balance * 100) / 100.0;
     }
 
 
@@ -147,7 +147,7 @@ public class Account implements Serializable {
     }
 
     @XmlTransient
-    @OneToMany(mappedBy = "account", targetEntity = GrantedVoucher.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account", targetEntity = TransactionBonus.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<TransactionBonus> getTransactionBonuses() {
         return transactionBonuses;
     }

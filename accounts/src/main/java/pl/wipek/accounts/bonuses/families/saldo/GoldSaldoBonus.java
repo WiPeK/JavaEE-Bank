@@ -17,7 +17,7 @@ public class GoldSaldoBonus extends SaldoBonus {
         if(getSaldo() > MIN_SALDO_FOR_GOLD_ACCOUNT) {
             Random random = new Random();
             Double bonus = MIN_BONUS + (MAX_BONUS - MIN_BONUS) * random.nextDouble();
-            grantedBonus = Double.longBitsToDouble(Math.round(bonus));
+            grantedBonus = Math.round(bonus * 100) / 100.0;
             setGranted(true);
         }
     }

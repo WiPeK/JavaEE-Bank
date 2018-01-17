@@ -54,7 +54,6 @@ public class GrantedVoucher implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACTUAL_VOUCHERS_ID")
-    @XmlTransient
     public ActualVoucher getActualVoucher() {
         return actualVoucher;
     }

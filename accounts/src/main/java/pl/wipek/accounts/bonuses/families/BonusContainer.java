@@ -126,11 +126,21 @@ public class BonusContainer {
             }
         }
         logger.info(message.toString());
-        MonthlyAccountBonusesTimer.emailMessages.add(message.toString());
 //        try {
 //            EmailSender.sendEmail(subject, message.toString(), mailTo);
 //        } catch (IOException | MessagingException e) {
 //            e.printStackTrace();
 //        }
+    }
+
+    @Override
+    public String toString() {
+        return "BonusContainer{" +
+                "saldoBonus=" + saldoBonus +
+                ", voucherBonus=" + voucherBonus +
+                ", moneyBackBonus=" + moneyBackBonus +
+                ", transactionsBonus=" + transactionsBonus +
+                ", account=" + account +
+                '}';
     }
 }

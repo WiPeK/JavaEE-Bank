@@ -45,7 +45,7 @@ public class MonthlyAccountBonusesTimer {
     @EJB
     private AccountBonusesFactoryProvider accountBonusesFactoryProvider;
 
-    public static Set<String> emailMessages = new HashSet<>();
+    private Set<BonusContainer> bonusContainers = new HashSet<>();
 
     @PostConstruct
     private void getActualVouchers() {
@@ -56,10 +56,12 @@ public class MonthlyAccountBonusesTimer {
 //    @Schedules({
 //            @Schedule(dayOfMonth = "1")
 //    })
-    public void chargeMonthlyBonuses() {
+    public Set<BonusContainer> chargeMonthlyBonuses() {
+        this.bonusContainers = new HashSet<>();
         accounts = accountsDao.getAll();
         this.clearBonuses();
         createFactories();
+        return bonusContainers;
     }
 
     private void clearBonuses() {
@@ -77,22 +79,15 @@ public class MonthlyAccountBonusesTimer {
             accountBonusesFactory.setAccount(account);
             accountBonusesFactory.setActualVouchers(actualVouchers);
             BonusContainer bonusContainer = createBonuses(accountBonusesFactory, account);
+            bonusContainers.add(bonusContainer);
             logger.info("Account before update: " + account);
             Account updatedAccount = bonusContainer.saveBonuses();
             logger.info("Account after update: " + account);
             updateAccount(updatedAccount);
-//            if(isMockEmailList(account.getId())) {
-                bonusContainer.sendEmailWithBonuses();
-//            }
+            bonusContainer.sendEmailWithBonuses();
         } catch (NoFactoryException e) {
             e.printStackTrace();
         }
-    }
-
-    private boolean isMockEmailList(String accountId) {
-        return  accountId.equals("6075205366930CAAE050EDD4221D1C44") ||
-                accountId.equals("6075205366940CAAE050EDD4221D1C44") ||
-                accountId.equals("60F174307A77395DE050EDD4221D315E");
     }
 
     private BonusContainer createBonuses(AccountBonusesFactory accountBonusesFactory, Account account) {

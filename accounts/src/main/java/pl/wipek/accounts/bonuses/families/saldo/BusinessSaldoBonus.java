@@ -15,8 +15,8 @@ public class BusinessSaldoBonus extends SaldoBonus {
     @Override
     public void addSaldoBonus() {
         if(getSaldo() > MIN_SALDO_FOR_BUSINESS_ACCOUNT) {
-            grantedBonus = BONUS;
-            grantedBonus += isBonusTransactionGranted ? BONUS_FOR_100_TRANSACTIONS : 0.0;
+            grantedBonus = Math.round(BONUS * 100) / 100.0;
+            grantedBonus += isBonusTransactionGranted ? (Math.round(BONUS_FOR_100_TRANSACTIONS * 100) / 100.0) : 0.0;
             setGranted(true);
         }
     }

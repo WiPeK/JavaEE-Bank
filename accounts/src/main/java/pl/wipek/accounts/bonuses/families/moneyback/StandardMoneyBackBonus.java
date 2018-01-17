@@ -9,14 +9,14 @@ public class StandardMoneyBackBonus extends MoneyBackBonus {
     @Override
     public void addBonus() {
         if(isConditionsChecked()) {
-            grantedBonus = BONUS;
+            setGrantedBonus(BONUS);
             setGranted(true);
         }
     }
 
     private boolean isConditionsChecked() {
-        return  mobileLoggingNumbers >= MIN_MOBILE_LOGGINS_NUMBERS &&
-                blikUseNumbers >= MIN_BLIK_USE_NUMBERS &&
-                sumPaymentToAccount >= MIN_SUM_PAYMENTS_TO_ACCOUNT;
+        return  getMobileLoggingNumbers() >= MIN_MOBILE_LOGGINS_NUMBERS &&
+                getBlikUseNumbers() >= MIN_BLIK_USE_NUMBERS &&
+                getSumPaymentToAccount() >= MIN_SUM_PAYMENTS_TO_ACCOUNT;
     }
 }

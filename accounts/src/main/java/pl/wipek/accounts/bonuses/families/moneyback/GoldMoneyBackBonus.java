@@ -13,16 +13,16 @@ public class GoldMoneyBackBonus extends MoneyBackBonus {
     public void addBonus() {
         if(isConditionsChecked()) {
             Random random = new Random();Double bonus = MIN_BONUS + (MAX_BONUS - MIN_BONUS) * random.nextDouble();
-            grantedBonus = Double.longBitsToDouble(Math.round(bonus));
+            setGrantedBonus((Math.round(bonus) * 100)/100.0);
 
             setGranted(true);
         }
     }
 
     private boolean isConditionsChecked() {
-        return  mobileLoggingNumbers >= MIN_MOBILE_LOGGINS_NUMBERS &&
-                blikUseNumbers >= MIN_BLIK_USE_NUMBERS &&
-                sumPaymentToAccount >= MIN_SUM_PAYMENTS_TO_ACCOUNT;
+        return  getMobileLoggingNumbers() >= MIN_MOBILE_LOGGINS_NUMBERS &&
+                getBlikUseNumbers() >= MIN_BLIK_USE_NUMBERS &&
+                getSumPaymentToAccount() >= MIN_SUM_PAYMENTS_TO_ACCOUNT;
     }
 
 }

@@ -6,6 +6,8 @@ import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 import pl.wipek.shared.ejb.dao.Dao;
 import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,18 +21,17 @@ public abstract class VoucherBonus {
     protected static Double MIN_SALDO_FOR_GOLD_ACCOUNT = 4000.0;
     protected static Double MIN_SALDO_FOR_BUSINESS_ACCOUNT = 20000.0;
 
+    @XmlTransient
     protected Account account;
 
-    protected Set<ActualVoucher> actualVouchers = new HashSet<>();
+    @XmlElement(name = "grantedVouchers")
     protected Set<GrantedVoucher> grantedVouchers = new HashSet<>();
+    protected Set<ActualVoucher> actualVouchers = new HashSet<>();
 
     protected boolean isGranted = true;
 
     public VoucherBonus(Account account) {
         this.account = account;
-    }
-
-    public VoucherBonus() {
     }
 
     protected String generateVoucherCode(ActualVoucher actualVoucher) {
@@ -59,5 +60,15 @@ public abstract class VoucherBonus {
                 e.printStackTrace();
             }
         });
+    }
+
+    @Override
+    public String toString() {
+        return "VoucherBonus{" +
+                "account=" + account +
+                ", grantedVouchers=" + grantedVouchers.toString() +
+                ", actualVouchers=" + actualVouchers.toString() +
+                ", isGranted=" + isGranted +
+                '}';
     }
 }

@@ -1,18 +1,39 @@
 package pl.wipek.accounts.bonuses.families.moneyback;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.wipek.shared.domain.entity.Account;
+
+import javax.xml.bind.annotation.XmlTransient;
 
 public abstract class MoneyBackBonus {
     private boolean isGranted;
+    @XmlTransient
+    @JsonIgnore
     private Account account;
 
-    protected int mobileLoggingNumbers = 0;
+    private int mobileLoggingNumbers = 0;
 
-    protected Double sumPaymentToAccount = 0.0;
-    protected int blikUseNumbers = 0;
-    protected Double grantedBonus;
+    private Double sumPaymentToAccount = 0.0;
+    private int blikUseNumbers = 0;
+    private Double grantedBonus;
+
+    public int getMobileLoggingNumbers() {
+        return mobileLoggingNumbers;
+    }
+
+    public Double getSumPaymentToAccount() {
+        return sumPaymentToAccount;
+    }
+
+    public int getBlikUseNumbers() {
+        return blikUseNumbers;
+    }
 
     public abstract void addBonus();
+
+    protected void setGrantedBonus(Double grantedBonus) {
+        this.grantedBonus = grantedBonus;
+    }
 
     public void setMobileLoggingNumbers(int mobileLoggingNumbers) {
         this.mobileLoggingNumbers = mobileLoggingNumbers;
@@ -34,6 +55,8 @@ public abstract class MoneyBackBonus {
         return grantedBonus;
     }
 
+    @JsonIgnore
+    @XmlTransient
     public Account getAccount() {
         return account;
     }
