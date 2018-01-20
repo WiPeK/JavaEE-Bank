@@ -15,7 +15,7 @@ public class Validator {
     private Date date;
 
     public boolean inCorrectNumber(String newIBAN){
-
+        //zapytanie czy uzytkownik posiada dany adres konta bankowego
         return false;
     }
 
@@ -24,7 +24,7 @@ public class Validator {
     }
 
     public boolean isCorrectDate(Date newDate){
-        return false;
+        return date.after(newDate);
     }
 
     public boolean haveMoney(String newAmount){
