@@ -17,6 +17,7 @@ public class CancelTransferCommand implements Command {
     @Override
     public void execute() {
 
+
         scheduledTransfer.cancelTransfer();
     }
 }
