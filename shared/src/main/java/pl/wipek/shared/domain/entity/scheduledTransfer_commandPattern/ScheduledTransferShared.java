@@ -12,7 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "scheduledTransfer")
 @XmlRootElement
-public class ScheduledTransfer implements Serializable {
+public class ScheduledTransferShared implements Serializable {
 
 
     @Id
@@ -25,7 +25,8 @@ public class ScheduledTransfer implements Serializable {
     @Column(name = "userID", nullable = false)
     private String userId;
 
-   // @OneToMany(mappedBy = "", targetEntity = Transfer.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   @OneToMany(fetch = FetchType.LAZY)
+   @JoinColumn(name = "sh_transferID")
     private Set<Transfer> transfers;
 
     @Override
@@ -33,7 +34,7 @@ public class ScheduledTransfer implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ScheduledTransfer that = (ScheduledTransfer) o;
+        ScheduledTransferShared that = (ScheduledTransferShared) o;
 
         if (!id.equals(that.id)) return false;
         if (!state.equals(that.state)) return false;
