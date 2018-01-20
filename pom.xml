@@ -17,7 +17,6 @@
         <module>payments</module>
         <module>accounts</module>
         <module>beneficiaries</module>
-        <module>deposits</module>
         <module>userBankAccounts</module>
     </modules>
 
