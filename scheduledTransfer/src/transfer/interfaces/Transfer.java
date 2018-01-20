@@ -1,4 +1,4 @@
-package interfaces;
+package transfer.interfaces;
 
 /**
  * Created by Michał on 20.01.2018.

@@ -1,6 +1,6 @@
-package classes;
+package transfer.classes;
 
-import interfaces.Command;
+import transfer.interfaces.Command;
 
 import java.util.ArrayList;
 import java.util.List;
