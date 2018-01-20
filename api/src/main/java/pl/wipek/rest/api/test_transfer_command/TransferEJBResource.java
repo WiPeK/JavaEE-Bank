@@ -10,6 +10,7 @@ import pl.wipek.shared.util.converter.JsonSerializer;
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
@@ -33,7 +34,7 @@ public class TransferEJBResource extends Application {
     @GET
     @Path("customers/{customerId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getTransfers(String customerId) throws JAXBException {
+    public Response getTransfers(@PathParam("customerId")String customerId) throws JAXBException {
         Set<ScheduledTransferShared> transfers = transferService.getTransfers(customerId);
         String resultJson = JsonSerializer.convertSet(transfers, ScheduledTransferShared.class);
         return Response.ok(resultJson).build();

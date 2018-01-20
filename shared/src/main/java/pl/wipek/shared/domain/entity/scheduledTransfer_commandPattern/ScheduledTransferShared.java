@@ -25,9 +25,18 @@ public class ScheduledTransferShared implements Serializable {
     @Column(name = "userID", nullable = false)
     private String userId;
 
-   @OneToMany(fetch = FetchType.LAZY)
-   @JoinColumn(name = "transferID")
+   @OneToMany(mappedBy = "transferId")
     private Set<TransferSchared> transferSchareds;
+
+    @Override
+    public String toString() {
+        return "ScheduledTransferShared{" +
+                "id='" + id + '\'' +
+                ", state='" + state + '\'' +
+                ", userId='" + userId + '\'' +
+                ", transferSchareds=" + transferSchareds +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,9 +1,6 @@
 package pl.wipek.shared.domain.entity.scheduledTransfer_commandPattern;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
@@ -19,7 +16,7 @@ public class TransferSchared implements Serializable {
 
     @Id
     @Column(name = "transferID", nullable = false)
-    private String id;
+    private String transferId;
 
     @Column(name = "IBAN", nullable = false)
     private String IBAN;
@@ -32,6 +29,10 @@ public class TransferSchared implements Serializable {
 
     @Column(name = "trans_date", nullable = false)
     private Date date;
+
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "sh_transferID")
+    ScheduledTransferShared scheduledTransferShared;
 
     public String getIBAN() {
         return IBAN;
@@ -65,39 +66,47 @@ public class TransferSchared implements Serializable {
         this.date = date;
     }
 
-    public String getId() {
-
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    @Override
+    public String toString() {
+        return "TransferSchared{" +
+                "transferId='" + transferId + '\'' +
+                ", IBAN='" + IBAN + '\'' +
+                ", balance='" + balance + '\'' +
+                ", beneficiaryIBAN='" + beneficiaryIBAN + '\'' +
+                ", date=" + date +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TransferSchared transferSchared = (TransferSchared) o;
+        TransferSchared that = (TransferSchared) o;
 
-        if (!id.equals(transferSchared.id)) return false;
-        if (!IBAN.equals(transferSchared.IBAN)) return false;
-        if (!balance.equals(transferSchared.balance)) return false;
-        if (!beneficiaryIBAN.equals(transferSchared.beneficiaryIBAN)) return false;
-        return date != null ? date.equals(transferSchared.date) : transferSchared.date == null;
+        if (!transferId.equals(that.transferId)) return false;
+        if (!IBAN.equals(that.IBAN)) return false;
+        if (!balance.equals(that.balance)) return false;
+        if (!beneficiaryIBAN.equals(that.beneficiaryIBAN)) return false;
+        return date.equals(that.date);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
+        int result = transferId.hashCode();
         result = 31 * result + IBAN.hashCode();
         result = 31 * result + balance.hashCode();
         result = 31 * result + beneficiaryIBAN.hashCode();
-        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + date.hashCode();
         return result;
     }
 
+    public String getTransferId() {
 
+        return transferId;
+    }
+
+    public void setTransferId(String transferId) {
+        this.transferId = transferId;
+    }
 }
