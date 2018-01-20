@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name = "Sch_Transfer")
 @XmlRootElement
-public class Transfer implements Serializable {
+public class TransferSchared implements Serializable {
 
     @Id
     @Column(name = "transferID", nullable = false)
@@ -80,13 +80,13 @@ public class Transfer implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Transfer transfer = (Transfer) o;
+        TransferSchared transferSchared = (TransferSchared) o;
 
-        if (!id.equals(transfer.id)) return false;
-        if (!IBAN.equals(transfer.IBAN)) return false;
-        if (!balance.equals(transfer.balance)) return false;
-        if (!beneficiaryIBAN.equals(transfer.beneficiaryIBAN)) return false;
-        return date != null ? date.equals(transfer.date) : transfer.date == null;
+        if (!id.equals(transferSchared.id)) return false;
+        if (!IBAN.equals(transferSchared.IBAN)) return false;
+        if (!balance.equals(transferSchared.balance)) return false;
+        if (!beneficiaryIBAN.equals(transferSchared.beneficiaryIBAN)) return false;
+        return date != null ? date.equals(transferSchared.date) : transferSchared.date == null;
     }
 
     @Override

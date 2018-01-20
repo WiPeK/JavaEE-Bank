@@ -26,8 +26,8 @@ public class ScheduledTransferShared implements Serializable {
     private String userId;
 
    @OneToMany(fetch = FetchType.LAZY)
-   @JoinColumn(name = "sh_transferID")
-    private Set<Transfer> transfers;
+   @JoinColumn(name = "transferID")
+    private Set<TransferSchared> transferSchareds;
 
     @Override
     public boolean equals(Object o) {
@@ -73,12 +73,12 @@ public class ScheduledTransferShared implements Serializable {
         this.userId = userId;
     }
 
-    public Set<Transfer> getTransfers() {
-        return transfers;
+    public Set<TransferSchared> getTransferSchareds() {
+        return transferSchareds;
     }
 
-    public void setTransfers(Set<Transfer> transfers) {
-        this.transfers = transfers;
+    public void setTransferSchareds(Set<TransferSchared> transferSchareds) {
+        this.transferSchareds = transferSchareds;
     }
 
 }

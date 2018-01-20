@@ -17,7 +17,7 @@
         <class>pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher</class>
         <class>pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus</class>
         <!--<class>pl.wipek.shared.domain.entity.DomesticBeneficiaryeficiary</class>-->
-        <!--<class>pl.wipek.shared.domain.entity.Transfer</class>-->
+        <!--<class>pl.wipek.shared.domain.entTransferScharedsfer</class>-->
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <!--<property name="hibernate.transaction.jta.platform"-->

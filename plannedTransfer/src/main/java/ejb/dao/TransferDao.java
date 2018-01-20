@@ -9,5 +9,6 @@ import java.util.Set;
  * Created by Michał on 20.01.2018.
  */
 public interface TransferDao extends Dao<String , ScheduledTransferShared> {
+    
     public Set<ScheduledTransferShared> getUserTransfers(String customerId);
 }
