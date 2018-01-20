@@ -1,11 +1,9 @@
 package ejb.impl;
 
 import ejb.TransferDao;
-import javassist.NotFoundException;
-import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 import pl.wipek.shared.ejb.dao.impl.AbstractDao;
-import pl.wipek.shared.transfer.ScheduledTransfer;
-import pl.wipek.shared.transfer.Transfer;
+import pl.wipek.shared.domain.entity.scheduledTransfer_commandPattern.ScheduledTransfer;
+import pl.wipek.shared.domain.entity.scheduledTransfer_commandPattern.Transfer;
 
 import java.util.Set;
 
