@@ -17,6 +17,10 @@
             <groupId>pl.wipek</groupId>
             <artifactId>shared</artifactId>
         </dependency>
+        <dependency>
+            <groupId>pl.wipek</groupId>
+            <artifactId>shared</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

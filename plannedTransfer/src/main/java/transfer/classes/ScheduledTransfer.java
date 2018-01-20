@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class ScheduledTransfer  implements Transfer {
 
-    Validator validator = new Validator();
+   Validator validator = new Validator();
     String newMoney;
     String newIBAN;
     String newBeneficiaryIBAN;
