@@ -13,7 +13,7 @@ public class UsedAccount {
 
 
     public void setCurrency(String currency) {
-        Currency = currency;
+        this.Currency = currency;
     }
 
 
