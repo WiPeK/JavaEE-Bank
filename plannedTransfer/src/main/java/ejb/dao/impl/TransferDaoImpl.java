@@ -15,10 +15,10 @@ import java.util.Set;
 @Stateless(name = "TransferDaoImpl", mappedName = "TransferDaoImpl")
 public class TransferDaoImpl extends AbstractDao<String, ScheduledTransferShared> implements TransferDao {
     @Override
-    public Set<ScheduledTransferShared> getUserTransfers(String customerId) {
+    public Set<ScheduledTransferShared> getUserTransfers(String userID) {
 
         Query query = getEntityManager()
-                .createQuery("FROM " + entityClass.getCanonicalName() + "e");
+                .createQuery("FROM " + entityClass.getCanonicalName() + " e where e.account.id =:userID").setParameter("userID",userID);
 
         return new HashSet<>(query.getResultList());
     }

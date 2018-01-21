@@ -31,11 +31,16 @@ public class TransferEJBResource extends Application {
     @EJB
     private TransferService transferService;
 
+
     @GET
-    @Path("customers/{customerId}")
+    @Path("scheduled_transfer/{userID}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getTransfers(@PathParam("customerId")String customerId) throws JAXBException {
-        Set<ScheduledTransferShared> transfers = transferService.getTransfers(customerId);
+    public Response getTransfers(@PathParam("userID")String userID) throws JAXBException {
+        Set<ScheduledTransferShared> transfers = transferService.getTransfers(userID);
+
+
+
+
         String resultJson = JsonSerializer.convertSet(transfers, ScheduledTransferShared.class);
         return Response.ok(resultJson).build();
     }
