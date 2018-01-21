@@ -35,6 +35,7 @@ public class Account implements Serializable {
     private Set<TransactionBonus> transactionBonuses;
     private Set<DomesticTransfer> domesticTransfers;
     private Set<GrantedVoucher> grantedVouchers;
+    private Set<Deposit> deposits;
 
     private String type;
 
@@ -157,6 +158,16 @@ public class Account implements Serializable {
 
     public void setTransactionBonuses(Set<TransactionBonus> transactionBonuses) {
         this.transactionBonuses = transactionBonuses;
+    }
+
+    @XmlTransient
+    @OneToMany(mappedBy = "account", targetEntity = Deposit.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Set<Deposit> getDeposits() {
+        return deposits;
+    }
+
+    public void setDeposits(Set<Deposit> deposits) {
+        this.deposits = deposits;
     }
 
     @Override
