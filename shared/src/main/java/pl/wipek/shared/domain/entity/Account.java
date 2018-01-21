@@ -190,7 +190,7 @@ public class Account implements Serializable {
                 ", name='" + name + '\'' +
                 ", blockedAmount=" + blockedAmount +
                 ", type=" + type +
-                ", last month salod=" + lastMonthSaldo +
+                ", last month saldo=" + lastMonthSaldo +
                 '}';
     }
 }

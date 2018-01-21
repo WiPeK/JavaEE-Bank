@@ -1,5 +1,7 @@
 package pl.wipek.shared.domain.entity;
 
+import pl.wipek.shared.domain.entity.interfaces.Beneficiary;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -12,7 +14,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "DOMESTIC_BENEFICIARIES")
 @XmlRootElement
-public class DomesticBeneficiary implements Serializable {
+public class DomesticBeneficiary implements Serializable, Beneficiary {
     private String id;
     private String name;
     private String address;

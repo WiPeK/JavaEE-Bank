@@ -10,4 +10,5 @@ import java.util.Set;
  */
 public interface PaymentsDAO extends Dao<String, DomesticTransferType> {
     public Set<DomesticTransferType> getDomesticPaymentTypes();
+    public String getCustomerEmailByAccountId(String accountId);
 }
