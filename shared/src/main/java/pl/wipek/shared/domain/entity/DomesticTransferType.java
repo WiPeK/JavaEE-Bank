@@ -1,10 +1,9 @@
 package pl.wipek.shared.domain.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -22,6 +21,8 @@ public class DomesticTransferType {
 
     @Id
     @Column(name = "ID", nullable = false)
+    @GenericGenerator(name = "db-uuid", strategy = "guid")
+    @GeneratedValue(generator = "db-uuid")
     public String getId() {
         return id;
     }

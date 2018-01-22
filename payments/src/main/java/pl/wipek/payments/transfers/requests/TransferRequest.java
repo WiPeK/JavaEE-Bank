@@ -4,11 +4,17 @@ import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.DomesticTransferType;
 import pl.wipek.shared.domain.entity.interfaces.Beneficiary;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 import java.util.Set;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class TransferRequest {
+
     @XmlElement(name = "userAccount")
     private Account userAccount;
 

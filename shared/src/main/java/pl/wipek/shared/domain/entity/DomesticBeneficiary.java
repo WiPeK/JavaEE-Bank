@@ -1,5 +1,6 @@
 package pl.wipek.shared.domain.entity;
 
+import org.hibernate.annotations.GenericGenerator;
 import pl.wipek.shared.domain.entity.interfaces.Beneficiary;
 
 import javax.persistence.*;
@@ -26,6 +27,8 @@ public class DomesticBeneficiary implements Serializable, Beneficiary {
 
     @Id
     @Column(name = "ID")
+    @GenericGenerator(name = "db-uuid", strategy = "guid")
+    @GeneratedValue(generator = "db-uuid")
     public String getId() {
         return id;
     }

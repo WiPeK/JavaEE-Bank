@@ -1,5 +1,7 @@
 package pl.wipek.shared.domain.entity.account.bonuses;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -22,6 +24,8 @@ public class ActualVoucher {
 
     @Id
     @Column(name = "ID", nullable = false)
+    @GenericGenerator(name = "db-uuid", strategy = "guid")
+    @GeneratedValue(generator = "db-uuid")
     public String getId() {
         return id;
     }

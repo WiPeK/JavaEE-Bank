@@ -2,11 +2,16 @@ package pl.wipek.accounts.ejb.dao.impl;
 
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.shared.domain.entity.Account;
+import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 
-import javax.ejb.Stateless;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
+import javax.ejb.*;
 import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.Query;
+import javax.persistence.*;
+import javax.transaction.*;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Random;
@@ -33,17 +38,17 @@ public class AccountsDaoImpl extends AbstractDao<String, Account> implements Acc
 
     @Override
     public int countLastMonthTransactions(Account account) {
-        return (new Random().nextInt() & Integer.MAX_VALUE)%200;
+        return (new Random().nextInt() & Integer.MAX_VALUE) % 200;
     }
 
     @Override
     public int countBlikUses(Account account) {
-        return (new Random().nextInt() & Integer.MAX_VALUE)%10;
+        return (new Random().nextInt() & Integer.MAX_VALUE) % 10;
     }
 
     @Override
     public int countMobileLogging(Account account) {
-        return (new Random().nextInt() & Integer.MAX_VALUE)%10;
+        return (new Random().nextInt() & Integer.MAX_VALUE) % 10;
     }
 
     @Override
@@ -72,17 +77,17 @@ public class AccountsDaoImpl extends AbstractDao<String, Account> implements Acc
 
     @Override
     public int countCardPayments(Account account) {
-        return (new Random().nextInt()& Integer.MAX_VALUE) %20;
+        return (new Random().nextInt() & Integer.MAX_VALUE) % 20;
     }
 
     @Override
     public int countPayments(Account account) {
-        return (new Random().nextInt()& Integer.MAX_VALUE) %50;
+        return (new Random().nextInt() & Integer.MAX_VALUE) % 50;
     }
 
     @Override
     public int countAtmPayments(Account account) {
-        return (new Random().nextInt()& Integer.MAX_VALUE) %20;
+        return (new Random().nextInt() & Integer.MAX_VALUE) % 20;
     }
 
     @Override

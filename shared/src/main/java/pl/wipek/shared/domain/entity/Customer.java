@@ -1,6 +1,8 @@
 package pl.wipek.shared.domain.entity;
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -21,6 +23,8 @@ public class Customer extends User {
     @Id
     @Override
     @Column(name = "ID", nullable = false)
+    @GenericGenerator(name = "db-uuid", strategy = "guid")
+    @GeneratedValue(generator = "db-uuid")
     public String getId() {
         return id;
     }

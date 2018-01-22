@@ -6,6 +6,7 @@ import pl.wipek.shared.domain.entity.DomesticTransferType;
 import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.Set;
 
@@ -29,5 +30,4 @@ public class PaymentsDaoImpl extends AbstractDao<String, DomesticTransferType> i
         String MOCK_EMAIL = "wipekxxx@gmail.com";
         return MOCK_EMAIL;
     }
-
 }

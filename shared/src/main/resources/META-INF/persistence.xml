@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
-    <persistence-unit name="pl.wipek.database" transaction-type="JTA">
+    <persistence-unit name="pl.wipek.database" transaction-type="RESOURCE_LOCAL">
         <!--<persistence-unit name="pl.wipek.database.customers">-->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!--<jta-data-source>pl.wipek.database.customers/Hibernate</jta-data-source>-->
         <!--<jta-data-source>java:comp/DefaultDataSource</jta-data-source>-->
-        <jta-data-source>javaeeresource</jta-data-source>
+        <!--<non-jta-data-source>javaeeresource</non-jta-data-source>-->
         <class>pl.wipek.shared.domain.entity.Account</class>
         <class>pl.wipek.shared.domain.entity.Customer</class>
         <class>pl.wipek.shared.domain.entity.DomesticBeneficiary</class>

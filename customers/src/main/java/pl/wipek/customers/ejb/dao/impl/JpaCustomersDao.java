@@ -6,6 +6,7 @@ import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 import pl.wipek.customers.ejb.dao.CustomersDAO;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 
 /**
  * @author Krzysztof Adamczyk on 19.09.2017.

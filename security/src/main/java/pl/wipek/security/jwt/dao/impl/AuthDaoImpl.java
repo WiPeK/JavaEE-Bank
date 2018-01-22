@@ -23,22 +23,9 @@ public class AuthDaoImpl extends AbstractDao<String, User> implements AuthDao {
 
     @Override
     public List<User> findByLoginAndPassword(User user) {
-        Query query = entityManager.createQuery("SELECT e FROM " + entityClass.getName() + " e WHERE e.login='" + user.getLogin() + "' AND e.password='" + user.getPassword() + "'");
+        Query query = getEntityManager().createQuery("SELECT e FROM " + entityClass.getName() + " e WHERE e.login='" + user.getLogin() + "' AND e.password='" + user.getPassword() + "'");
         return query.getResultList();
     }
-
-//    public Users merge(Users user)
-//    {
-//        try {
-//            entityManager.getTransaction().begin();
-//            user = entityManager.merge(user);
-//            entityManager.getTransaction().commit();
-//        } catch (Exception e) {
-//            entityManager.getTransaction().rollback();
-//            logger.error(e.toString());
-//        }
-//        return user;
-//    }
 
     @Override
     public User isUserExists(User user) {
@@ -59,10 +46,5 @@ public class AuthDaoImpl extends AbstractDao<String, User> implements AuthDao {
             logger.info(user.toString());
         }
         return user;
-    }
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return entityManager;
     }
 }

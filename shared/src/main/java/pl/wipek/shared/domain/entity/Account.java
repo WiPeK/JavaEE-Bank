@@ -2,6 +2,7 @@ package pl.wipek.shared.domain.entity;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.GenericGenerator;
 import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
 
@@ -42,6 +43,8 @@ public class Account implements Serializable {
 
     @Id
     @Column(name = "ID", nullable = false)
+    @GenericGenerator(name = "db-uuid", strategy = "guid")
+    @GeneratedValue(generator = "db-uuid")
     public String getId() {
         return id;
     }

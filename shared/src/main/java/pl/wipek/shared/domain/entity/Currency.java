@@ -1,5 +1,7 @@
 package pl.wipek.shared.domain.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
@@ -19,6 +21,8 @@ public class Currency  implements Serializable{
 
     @Id
     @Column(name = "ID")
+    @GenericGenerator(name = "db-uuid", strategy = "guid")
+    @GeneratedValue(generator = "db-uuid")
     public String getId() {
         return id;
     }
