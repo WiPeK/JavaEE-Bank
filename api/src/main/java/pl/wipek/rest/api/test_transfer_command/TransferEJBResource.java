@@ -37,10 +37,6 @@ public class TransferEJBResource extends Application {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTransfers(@PathParam("userID")String userID) throws JAXBException {
         Set<ScheduledTransferShared> transfers = transferService.getTransfers(userID);
-
-
-
-
         String resultJson = JsonSerializer.convertSet(transfers, ScheduledTransferShared.class);
         return Response.ok(resultJson).build();
     }

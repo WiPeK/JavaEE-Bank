@@ -1,9 +1,11 @@
 package transfer.interfaces;
 
+import java.io.Serializable;
+
 /**
  * Created by Michał on 20.01.2018.
  */
-public interface Transfer {
+public interface Transfer{
 
     public void  changeSender();
     public void  changeBeneficary();

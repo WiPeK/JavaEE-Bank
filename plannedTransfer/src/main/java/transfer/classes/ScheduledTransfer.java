@@ -1,13 +1,18 @@
 package transfer.classes;
 
+import ejb.services.TransferService;
 import transfer.interfaces.Transfer;
 
+import javax.ejb.EJB;
 import java.util.Date;
 
 /**
  * Created by Michał on 20.01.2018.
  */
 public class ScheduledTransfer  implements Transfer {
+
+    @EJB
+    TransferService transferService;
 
    Validator validator = new Validator();
     String newMoney;

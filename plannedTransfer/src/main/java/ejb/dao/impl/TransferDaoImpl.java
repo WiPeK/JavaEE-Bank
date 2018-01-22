@@ -20,6 +20,9 @@ public class TransferDaoImpl extends AbstractDao<String, ScheduledTransferShared
         Query query = getEntityManager()
                 .createQuery("FROM " + entityClass.getCanonicalName() + " e where e.account.id =:userID").setParameter("userID",userID);
 
+
+
+
         return new HashSet<>(query.getResultList());
     }
 

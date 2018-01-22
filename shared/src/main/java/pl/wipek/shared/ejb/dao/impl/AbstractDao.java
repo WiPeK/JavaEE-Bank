@@ -3,11 +3,19 @@ package pl.wipek.shared.ejb.dao.impl;
 import pl.wipek.shared.ejb.dao.Dao;
 import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.naming.InitialContext;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.transaction.*;
+import javax.transaction.RollbackException;
 import javax.ws.rs.NotFoundException;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
@@ -22,12 +30,26 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
 
     protected Class<E> entityClass;
 
-    @PersistenceContext(unitName = "pl.wipek.database")
-    protected EntityManager entityManager;
+    //    @PersistenceContext(unitName = "pl.wipek.database")
+//    protected EntityManager entityManager;
+    private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
 
     public AbstractDao() {
         ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
         this.entityClass = (Class<E>) genericSuperclass.getActualTypeArguments()[1];
+    }
+
+    @PostConstruct
+    private void createEntityManager() {
+        entityManagerFactory = Persistence.createEntityManagerFactory("pl.wipek.database");
+        entityManager = entityManagerFactory.createEntityManager();
+    }
+
+    @PreDestroy
+    private void closeEntityManager() {
+        entityManager.close();
+        entityManagerFactory.close();
     }
 
     /**
@@ -39,13 +61,14 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
     @Override
     public E persist(E entity) throws DaoException {
         try {
-//            getEntityManager().getTransaction().begin();
+            getEntityManager().getTransaction().begin();
             getEntityManager().persist(entity);
-//            getEntityManager().flush();
-//            getEntityManager().clear();
-//            getEntityManager().getTransaction().commit();
+            getEntityManager().flush();
+            getEntityManager().clear();
+            getEntityManager().getTransaction().commit();
         } catch (Exception e) {
-//            getEntityManager().getTransaction().rollback();
+            e.printStackTrace();
+            getEntityManager().getTransaction().rollback();
             throw new DaoException(e);
         }
         return entity;
@@ -63,13 +86,14 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
     public E merge(E entity) throws DaoException
     {
         try {
-//            getEntityManager().getTransaction().begin();
+            getEntityManager().getTransaction().begin();
             entity = getEntityManager().merge(entity);
-//            getEntityManager().flush();
-//            getEntityManager().clear();
-//            getEntityManager().getTransaction().commit();
+            getEntityManager().flush();
+            getEntityManager().clear();
+            getEntityManager().getTransaction().commit();
         } catch (Exception e) {
-//            getEntityManager().getTransaction().rollback();
+            e.printStackTrace();
+            getEntityManager().getTransaction().rollback();
             throw new DaoException(e);
         }
         return entity;
@@ -86,13 +110,14 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
         E entity = this.findById(id);
         if (entity != null) {
             try {
-//                getEntityManager().getTransaction().begin();
+                getEntityManager().getTransaction().begin();
                 getEntityManager().remove(entity);
-//                getEntityManager().flush();
-//                getEntityManager().clear();
-//                getEntityManager().getTransaction().commit();
+                getEntityManager().flush();
+                getEntityManager().clear();
+                getEntityManager().getTransaction().commit();
             } catch (Exception e) {
-//                getEntityManager().getTransaction().rollback();
+                e.printStackTrace();
+                getEntityManager().getTransaction().rollback();
                 throw new DaoException(e);
             }
             return true;
@@ -126,7 +151,7 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
 //        CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
 //        CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(entityClass);
 //        criteriaQuery.from(entityClass);
-        Query query = entityManager.createQuery("from " + entityClass.getCanonicalName() + " e", entityClass);
+        Query query = getEntityManager().createQuery("from " + entityClass.getCanonicalName() + " e", entityClass);
         List<E> res = query.getResultList();
         return new HashSet<>(res);
     }

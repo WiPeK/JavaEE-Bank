@@ -2,13 +2,14 @@ package transfer.classes;
 
 import transfer.interfaces.Command;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Michał on 20.01.2018.
  */
-public class TransferCommandInvoker {
+public class TransferCommandInvoker implements Serializable {
 
     List<Command> commandList = new ArrayList<Command>();
 
