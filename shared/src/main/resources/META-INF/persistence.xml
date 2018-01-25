@@ -13,6 +13,7 @@
         <class>pl.wipek.shared.domain.entity.DomesticTransfer</class>
         <class>pl.wipek.shared.domain.entity.DomesticTransferType</class>
         <class>pl.wipek.shared.domain.entity.Currency</class>
+        <class>pl.wipek.shared.domain.entity.Deposit</class>
         <class>pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher</class>
         <class>pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher</class>
         <class>pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus</class>

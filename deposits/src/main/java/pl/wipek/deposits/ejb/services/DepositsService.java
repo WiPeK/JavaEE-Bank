@@ -22,4 +22,5 @@ public class DepositsService implements Serializable{
     public Deposit saveDeposit(Deposit deposit) throws DaoException{
         return depositsDao.persist(deposit);
     }
+
 }
