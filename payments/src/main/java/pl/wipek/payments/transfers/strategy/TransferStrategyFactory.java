@@ -1,5 +1,6 @@
 package pl.wipek.payments.transfers.strategy;
 
+import pl.wipek.payments.transfers.exceptions.NoStrategyException;
 import pl.wipek.payments.types.services.TransferTypes;
 
 public class TransferStrategyFactory {
@@ -14,7 +15,7 @@ public class TransferStrategyFactory {
                 transferStrategy = new ForeignTransferStrategy();
                 break;
             default:
-                throw new Exception("Can not create strategy for this type");
+                throw new NoStrategyException("Can not create strategy for this type");
         }
         return transferStrategy;
     }

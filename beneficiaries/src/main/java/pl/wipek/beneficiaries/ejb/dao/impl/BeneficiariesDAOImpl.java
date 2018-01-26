@@ -23,7 +23,7 @@ public class BeneficiariesDAOImpl extends AbstractDao<String, DomesticBeneficiar
 //                .createQuery("FROM " + entityClass.getCanonicalName() + " e WHERE e.domesticTransfer.account.customer.id=:id")
 //                .setParameter("id", customerId);
         Query query = getEntityManager()
-                .createQuery("FROM " + entityClass.getCanonicalName() + " e");
+                .createQuery("FROM " + entityClass.getCanonicalName() + " e WHERE e.accountNumber LIKE 'PL%'");
         query.setMaxResults(15);
         return new HashSet<>(query.getResultList());
     }

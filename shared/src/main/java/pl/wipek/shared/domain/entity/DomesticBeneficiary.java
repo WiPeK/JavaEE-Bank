@@ -1,7 +1,6 @@
 package pl.wipek.shared.domain.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-import pl.wipek.shared.domain.entity.interfaces.Beneficiary;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -15,7 +14,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "DOMESTIC_BENEFICIARIES")
 @XmlRootElement
-public class DomesticBeneficiary implements Serializable, Beneficiary {
+public class DomesticBeneficiary extends Beneficiary implements Serializable {
     private String id;
     private String name;
     private String address;
@@ -26,7 +25,7 @@ public class DomesticBeneficiary implements Serializable, Beneficiary {
     }
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     @GenericGenerator(name = "db-uuid", strategy = "guid")
     @GeneratedValue(generator = "db-uuid")
     public String getId() {
@@ -64,21 +63,23 @@ public class DomesticBeneficiary implements Serializable, Beneficiary {
         this.accountNumber = accountNumber;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "DOMESTIC_TRANSFER_ID")
     @XmlTransient
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DOMESTIC_TRANSFER_ID")
+    @Override
     public DomesticTransfer getDomesticTransfer() {
         return domesticTransfer;
     }
 
-    public void setDomesticTransfer(DomesticTransfer transfer) {
-        this.domesticTransfer = transfer;
+    public void setDomesticTransfer(DomesticTransfer domesticTransfer) {
+        this.domesticTransfer = domesticTransfer;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         DomesticBeneficiary that = (DomesticBeneficiary) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
@@ -89,7 +90,7 @@ public class DomesticBeneficiary implements Serializable, Beneficiary {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, address, accountNumber);
+        return Objects.hash(super.hashCode(), id, name, address, accountNumber);
     }
 
     @Override

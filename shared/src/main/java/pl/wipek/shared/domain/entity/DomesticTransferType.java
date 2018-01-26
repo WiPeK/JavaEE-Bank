@@ -5,6 +5,11 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author Krzysztof Adamczyk on 23.11.2017.
@@ -12,9 +17,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @Table(name = "DOMESTIC_TRANSFER_TYPES")
-public class DomesticTransferType {
+public class DomesticTransferType implements Serializable {
+    public static String[] PREMIUM_TRANSFERS = {"Express Elixir", "Sorbnet", "Blue Cash"};
+
     private String id;
     private String value;
+    private Double cost;
+    private Set<DomesticTransfer> domesticTransfers = new HashSet<>();
 
     public DomesticTransferType() {
     }
@@ -40,22 +49,39 @@ public class DomesticTransferType {
         this.value = value;
     }
 
+    @Column(name = "COST", nullable = false)
+    public Double getCost() {
+        return cost;
+    }
+
+    public void setCost(Double cost) {
+        this.cost = cost;
+    }
+
+    @XmlTransient
+    @OneToMany(mappedBy = "type", targetEntity = DomesticTransfer.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<DomesticTransfer> getDomesticTransfers() {
+        return domesticTransfers;
+    }
+
+    public void setDomesticTransfers(Set<DomesticTransfer> domesticTransfers) {
+        this.domesticTransfers = domesticTransfers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DomesticTransferType)) return false;
-
+        if (o == null || getClass() != o.getClass()) return false;
         DomesticTransferType that = (DomesticTransferType) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        return value != null ? value.equals(that.value) : that.value == null;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(value, that.value) &&
+                Objects.equals(cost, that.cost);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (value != null ? value.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, value, cost);
     }
 
     @Override
@@ -63,6 +89,7 @@ public class DomesticTransferType {
         return "DomesticTransferType{" +
                 "id='" + id + '\'' +
                 ", value='" + value + '\'' +
+                ", cost=" + cost +
                 '}';
     }
 }

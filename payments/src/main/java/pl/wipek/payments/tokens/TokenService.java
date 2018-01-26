@@ -18,13 +18,13 @@ public class TokenService {
 
     public String generateToken(String accountId) throws IOException, MessagingException {
         String token = TokenGenerator.generateToken();
-        String email = paymentsDAO.getCustomerEmailByAccountId(accountId);
-        List<String> mockedEmails = new ArrayList<>(4);
-        mockedEmails.add("wipekxxx@gmail.com");
+//        String email = paymentsDAO.getCustomerEmailByAccountId(accountId);
+//        List<String> mockedEmails = new ArrayList<>(4);
+//        mockedEmails.add("wipekxxx@gmail.com");
 //        mockedEmails.add("skladanowski1a@gmail.com");
 //        mockedEmails.add("marelix2@gmail.com");
 //        mockedEmails.add("pyk.bartlomiej@gmail.com");
-        EmailSender.sendEmailToMany("TOKEN", token, mockedEmails);
+//        EmailSender.sendEmailToMany("TOKEN", token, mockedEmails);
         return token;
     }
 }

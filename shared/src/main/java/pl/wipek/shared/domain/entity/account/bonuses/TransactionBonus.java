@@ -5,14 +5,15 @@ import pl.wipek.shared.domain.entity.Account;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
+import java.util.Objects;
 
 @Entity
 @Table(name = "TRANSACTION_BONUS")
 public class TransactionBonus {
     private String id;
-    private int freePayments;
-    private int freeAtmTransactions;
-    private int freePremiumPayments;
+    private int freePayments = -1;
+    private int freeAtmTransactions = -1;
+    private int freePremiumPayments = -1;
     private Account account;
 
     public TransactionBonus() {
@@ -66,5 +67,32 @@ public class TransactionBonus {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TransactionBonus that = (TransactionBonus) o;
+        return freePayments == that.freePayments &&
+                freeAtmTransactions == that.freeAtmTransactions &&
+                freePremiumPayments == that.freePremiumPayments &&
+                Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, freePayments, freeAtmTransactions, freePremiumPayments);
+    }
+
+    @Override
+    public String toString() {
+        return "TransactionBonus{" +
+                "id='" + id + '\'' +
+                ", freePayments=" + freePayments +
+                ", freeAtmTransactions=" + freeAtmTransactions +
+                ", freePremiumPayments=" + freePremiumPayments +
+                '}';
     }
 }

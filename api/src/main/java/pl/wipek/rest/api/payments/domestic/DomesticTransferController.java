@@ -1,12 +1,16 @@
 package pl.wipek.rest.api.payments.domestic;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.wipek.payments.transfers.TransfersService;
 import pl.wipek.payments.transfers.requests.DomesticTransferRequest;
+import pl.wipek.payments.transfers.response.DomesticTransferResponse;
 import pl.wipek.payments.transfers.response.TransferResponse;
 import pl.wipek.payments.types.services.TransferTypes;
 import pl.wipek.shared.util.converter.JsonDeserializer;
+import pl.wipek.shared.util.converter.JsonSerializer;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
@@ -14,6 +18,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.bind.JAXBException;
 
 @Path("/payments")
 @ApplicationScoped
@@ -28,9 +33,13 @@ public class DomesticTransferController extends Application {
     @Path("/domestic/{userId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response tryExecuteTransfer(@PathParam("userId") String userId, DomesticTransferRequest domesticTransferRequest) {
+    public Response tryExecuteTransfer(@PathParam("userId") String userId, DomesticTransferRequest domesticTransferRequest) throws Exception {
         logger.info(domesticTransferRequest.toString());
-        TransferResponse domesticTransferResponse = transfersService.tryExecuteTransfer(userId, domesticTransferRequest, TransferTypes.DOMESTIC);
-        return Response.ok(domesticTransferResponse).build();
+        DomesticTransferResponse domesticTransferResponse = (DomesticTransferResponse) transfersService.tryExecuteTransfer(userId, domesticTransferRequest, TransferTypes.DOMESTIC);
+        ObjectMapper mapper = new ObjectMapper();
+        String resultJson = mapper.writeValueAsString(domesticTransferResponse);
+        //logger.info(resultJson);
+        System.out.println(domesticTransferResponse);
+        return Response.ok(resultJson).build();
     }
 }

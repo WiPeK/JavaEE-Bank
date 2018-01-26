@@ -24,7 +24,13 @@ public class DomesticTransferStrategy implements TransferStrategy {
     @Override
     public TransferResponse createResponse(TransferContainer transferContainer) {
         TransferResponse transferResponse = new DomesticTransferResponse();
-        transferResponse.setTransferContainer(transferContainer);
+        if (transferContainer.getErrors().size() > 0) {
+            transferResponse.setStatus(TransferResponse.STATUS_ERROR);
+            transferResponse.setErrors(transferContainer.getErrors());
+        }
+        transferResponse.setCosts(transferContainer.getCosts());
+        transferResponse.setDomesticTransfers(transferContainer.getTransfers());
         return transferResponse;
     }
+
 }

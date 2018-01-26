@@ -12,19 +12,18 @@ public class ForeignTransferStrategy implements TransferStrategy {
     @Override
     public TransferContainer createTransferContainer(TransferRequest transferRequest) {
         ForeignTransfer foreignTransfer = new ForeignTransfer();
-        foreignTransfer.setForeignTransferRequest((ForeignTransferRequest) transferRequest);
-        return foreignTransfer;
+//        foreignTransfer.setForeignTransferRequest((ForeignTransferRequest) transferRequest);
+        return null;
     }
 
     @Override
     public TransferContainer createTransferPackage() {
-        return new ForeignTransferPackage();
+        return null;
     }
 
     @Override
     public TransferResponse createResponse(TransferContainer transferContainer) {
         TransferResponse transferResponse = new ForeignTransferResponse();
-        transferResponse.setTransferContainer(transferContainer);
         return transferResponse;
     }
 }

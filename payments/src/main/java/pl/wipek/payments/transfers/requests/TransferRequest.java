@@ -2,24 +2,16 @@ package pl.wipek.payments.transfers.requests;
 
 import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.DomesticTransferType;
-import pl.wipek.shared.domain.entity.interfaces.Beneficiary;
+import pl.wipek.shared.domain.entity.Beneficiary;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class TransferRequest {
 
-    @XmlElement(name = "userAccount")
     private Account userAccount;
-
-    @XmlElement(name = "beneficiary")
-    private Set<Beneficiary> beneficiaries;
 
     private DomesticTransferType type;
 
@@ -35,20 +27,14 @@ public abstract class TransferRequest {
 
     private String email;
 
+    protected Set<String> errors = new HashSet<>();
+
     public Account getUserAccount() {
         return userAccount;
     }
 
     public void setUserAccount(Account userAccount) {
         this.userAccount = userAccount;
-    }
-
-    public Set<Beneficiary> getBeneficiaries() {
-        return beneficiaries;
-    }
-
-    public void setBeneficiaries(Set<Beneficiary> beneficiaries) {
-        this.beneficiaries = beneficiaries;
     }
 
     public DomesticTransferType getType() {
@@ -107,6 +93,18 @@ public abstract class TransferRequest {
         this.email = email;
     }
 
+    public Set<String> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(Set<String> errors) {
+        this.errors = errors;
+    }
+
+    public abstract List<Beneficiary> getBeneficiary();
+
+    public abstract void setBeneficiary(List<Beneficiary> beneficiary);
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -115,7 +113,6 @@ public abstract class TransferRequest {
         return template == that.template &&
                 emailConfirm == that.emailConfirm &&
                 Objects.equals(userAccount, that.userAccount) &&
-                Objects.equals(beneficiaries, that.beneficiaries) &&
                 Objects.equals(type, that.type) &&
                 Objects.equals(amount, that.amount) &&
                 Objects.equals(title, that.title) &&
@@ -126,14 +123,13 @@ public abstract class TransferRequest {
     @Override
     public int hashCode() {
 
-        return Objects.hash(userAccount, beneficiaries, type, amount, title, date, template, emailConfirm, email);
+        return Objects.hash(userAccount, type, amount, title, date, template, emailConfirm, email);
     }
 
     @Override
     public String toString() {
         return "TransferRequest{" +
                 "account=" + userAccount +
-                ", beneficiary=" + beneficiaries +
                 ", type=" + type +
                 ", amount=" + amount +
                 ", title='" + title + '\'' +

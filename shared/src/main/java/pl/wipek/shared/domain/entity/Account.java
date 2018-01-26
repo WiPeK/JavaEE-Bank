@@ -1,5 +1,6 @@
 package pl.wipek.shared.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
@@ -7,6 +8,7 @@ import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
@@ -45,6 +47,8 @@ public class Account implements Serializable {
     @Column(name = "ID", nullable = false)
     @GenericGenerator(name = "db-uuid", strategy = "guid")
     @GeneratedValue(generator = "db-uuid")
+    @XmlElement(name = "id")
+    @JsonProperty(value = "id")
     public String getId() {
         return id;
     }
@@ -90,9 +94,9 @@ public class Account implements Serializable {
         this.blockedAmount = blockedAmount;
     }
 
+    @XmlTransient
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
-    @XmlTransient
     public Customer getCustomer() {
         return customer;
     }
