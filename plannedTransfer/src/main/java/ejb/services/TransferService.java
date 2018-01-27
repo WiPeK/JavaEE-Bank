@@ -17,7 +17,7 @@ public class TransferService implements Serializable {
     @EJB(beanInterface = TransferDao.class, beanName = "TransferDaoImpl")
     private TransferDao transferDao;
 
-    public Set<ScheduledTransferShared> getTransfers(String customerId) {
-        return transferDao.getUserTransfers(customerId);
+    public Set<ScheduledTransferShared> getTransfers() {
+        return transferDao.getAll();
     }
 }

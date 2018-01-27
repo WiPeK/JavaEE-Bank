@@ -24,7 +24,7 @@ import java.util.Set;
  * Created by Michał on 20.01.2018.
  */
 
-@Path("payments/schedules-transfers")
+@Path("/payments")
 public class TransferEJBResource extends Application {
     private static final Logger logger = LoggerFactory.getLogger(TransferEJBResource.class);
 
@@ -33,10 +33,10 @@ public class TransferEJBResource extends Application {
 
 
     @GET
-    @Path("scheduled_transfer/{userID}")
+    @Path("/scheduled-transfer")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getTransfers(@PathParam("userID")String userID) throws JAXBException {
-        Set<ScheduledTransferShared> transfers = transferService.getTransfers(userID);
+    public Response getTransfers() throws JAXBException {
+        Set<ScheduledTransferShared> transfers = transferService.getTransfers();
         String resultJson = JsonSerializer.convertSet(transfers, ScheduledTransferShared.class);
         return Response.ok(resultJson).build();
     }

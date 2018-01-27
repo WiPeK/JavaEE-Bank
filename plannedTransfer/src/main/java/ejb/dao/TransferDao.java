@@ -10,5 +10,5 @@ import java.util.Set;
  */
 public interface TransferDao extends Dao<String , ScheduledTransferShared> {
     
-    public Set<ScheduledTransferShared> getUserTransfers(String customerId);
+    public Set<ScheduledTransferShared> getUserTransfers();
 }
