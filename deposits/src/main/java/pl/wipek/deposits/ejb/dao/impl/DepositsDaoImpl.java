@@ -22,5 +22,10 @@ public class DepositsDaoImpl extends AbstractDao<String, Deposit> implements Dep
         return new HashSet<>(query.getResultList());
     }
 
-
+    @Override
+    public Set<Deposit> getAll() {
+        Query query = getEntityManager()
+                .createQuery("FROM " + entityClass.getCanonicalName());
+        return new HashSet<>(query.getResultList());
+    }
 }

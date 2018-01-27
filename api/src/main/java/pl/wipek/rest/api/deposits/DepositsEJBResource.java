@@ -14,6 +14,7 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBException;
+import java.util.Set;
 
 @Path("/deposits")
 public class DepositsEJBResource extends Application{
@@ -29,6 +30,15 @@ public class DepositsEJBResource extends Application{
     public Response getDeposits(@PathParam("depositsId")String depositsId) throws JAXBException, NotFoundException{
         Deposit deposits = depositsService.getDeposits(depositsId);
         String resultJson = JsonSerializer.convertObject(deposits,Deposit.class);
+        return Response.ok(resultJson).build();
+    }
+
+    @GET
+    @Path("deposits/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllDeposits() throws JAXBException, NotFoundException{
+        Set<Deposit> deposits = depositsService.getAllDeposits();
+        String resultJson = JsonSerializer.convertSet(deposits,Deposit.class);
         return Response.ok(resultJson).build();
     }
 

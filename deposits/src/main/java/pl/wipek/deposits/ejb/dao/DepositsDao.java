@@ -7,4 +7,5 @@ import java.util.Set;
 
 public interface DepositsDao extends Dao<String,Deposit>{
     public Set<Deposit> getDeposits(String depositsId);
+    public Set<Deposit> getAll();
 }

@@ -19,6 +19,10 @@ public class DepositsService implements Serializable{
             return depositsDao.findById(depositId);
     }
 
+    public Set<Deposit> getAllDeposits() throws NotFoundException{
+        return depositsDao.getAll();
+    }
+
     public Deposit saveDeposit(Deposit deposit) throws DaoException{
         return depositsDao.persist(deposit);
     }
