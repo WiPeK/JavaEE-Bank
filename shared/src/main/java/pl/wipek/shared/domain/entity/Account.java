@@ -92,6 +92,7 @@ public class Account implements Serializable {
         this.blockedAmount = blockedAmount;
     }
 
+    @JsonIgnore
     @XmlTransient
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
@@ -114,6 +115,8 @@ public class Account implements Serializable {
         this.customer = customer;
     }
 
+    @JsonIgnore
+    @XmlTransient
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CURRENCY_ID")
     public Currency getCurrency() {

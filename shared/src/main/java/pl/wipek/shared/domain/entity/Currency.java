@@ -1,5 +1,6 @@
 package pl.wipek.shared.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -49,6 +50,7 @@ public class Currency  implements Serializable{
         this.code = code;
     }
 
+    @JsonIgnore
     @XmlTransient
     @OneToMany(mappedBy = "currency", targetEntity = Account.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<Account> getAccounts() {
