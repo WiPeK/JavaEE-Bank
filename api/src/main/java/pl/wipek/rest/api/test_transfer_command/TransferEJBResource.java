@@ -24,7 +24,7 @@ import java.util.Set;
  * Created by Michał on 20.01.2018.
  */
 
-@Path("/transfer_test")
+@Path("payments/schedules-transfers")
 public class TransferEJBResource extends Application {
     private static final Logger logger = LoggerFactory.getLogger(TransferEJBResource.class);
 
