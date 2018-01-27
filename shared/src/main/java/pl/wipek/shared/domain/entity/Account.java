@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.GenericGenerator;
 import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
+import pl.wipek.shared.domain.entity.scheduledTransfer_commandPattern.ScheduledTransferShared;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
@@ -35,6 +36,7 @@ public class Account implements Serializable {
     private Set<TransactionBonus> transactionBonuses;
     private Set<DomesticTransfer> domesticTransfers;
     private Set<GrantedVoucher> grantedVouchers;
+    private Set<ScheduledTransferShared> scheduledTransferShareds;
 
     private String type;
 
@@ -73,11 +75,11 @@ public class Account implements Serializable {
         this.balance = Math.round(balance * 100) / 100.0;
     }
 
-
     @Column(name = "NAME")
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
@@ -165,6 +167,16 @@ public class Account implements Serializable {
 
     public void setTransactionBonuses(Set<TransactionBonus> transactionBonuses) {
         this.transactionBonuses = transactionBonuses;
+    }
+
+    @OneToMany(mappedBy = "account", targetEntity = ScheduledTransferShared.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @XmlTransient
+    public Set<ScheduledTransferShared> getScheduledTransferShareds() {
+        return scheduledTransferShareds;
+    }
+
+    public void setScheduledTransferShareds(Set<ScheduledTransferShared> scheduledTransferShareds) {
+        this.scheduledTransferShareds = scheduledTransferShareds;
     }
 
     @Override

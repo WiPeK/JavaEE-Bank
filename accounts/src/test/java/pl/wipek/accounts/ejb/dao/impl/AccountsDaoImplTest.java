@@ -39,3 +39,4 @@ public class AccountsDaoImplTest {
         Assert.assertNotEquals(0, result.size());
     }
 }
+
