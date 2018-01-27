@@ -5,8 +5,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * @author Krzysztof Adamczyk on 10.11.2017.
  */

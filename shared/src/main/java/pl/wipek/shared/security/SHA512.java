@@ -2,6 +2,7 @@ package pl.wipek.shared.security;
 
 //import com.google.common.io.BaseEncoding;
 //import com.google.common.primitives.Bytes;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,8 +10,6 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.Arrays;
 
 /**
  * @author Krzysztof Adamczyk on 08.11.2017.

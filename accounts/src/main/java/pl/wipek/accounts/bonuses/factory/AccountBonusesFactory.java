@@ -7,7 +7,6 @@ import pl.wipek.accounts.bonuses.families.voucher.VoucherBonus;
 import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher;
 
-import javax.ejb.Local;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 

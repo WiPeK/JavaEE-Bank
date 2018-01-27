@@ -6,20 +6,13 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.wipek.customers.ejb.services.CustomersService;
 import pl.wipek.shared.domain.entity.Customer;
 import pl.wipek.shared.domain.entity.User;
-import pl.wipek.customers.ejb.services.CustomersService;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
 /**
  * @author Krzysztof Adamczyk on 09.10.2017.

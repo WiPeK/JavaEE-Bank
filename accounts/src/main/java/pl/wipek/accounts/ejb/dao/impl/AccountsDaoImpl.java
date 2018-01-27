@@ -2,17 +2,10 @@ package pl.wipek.accounts.ejb.dao.impl;
 
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.shared.domain.entity.Account;
-import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
-import javax.ejb.*;
-import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.*;
-import javax.transaction.*;
-import java.math.BigDecimal;
+import javax.ejb.Stateless;
+import javax.persistence.Query;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;

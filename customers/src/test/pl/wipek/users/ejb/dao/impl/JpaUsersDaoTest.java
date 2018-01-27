@@ -13,7 +13,6 @@ import pl.wipek.customers.entity.Users;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;

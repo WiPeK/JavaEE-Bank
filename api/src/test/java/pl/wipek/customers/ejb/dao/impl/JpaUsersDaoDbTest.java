@@ -9,10 +9,9 @@ import pl.wipek.shared.domain.entity.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Krzysztof Adamczyk on 30.11.2017.

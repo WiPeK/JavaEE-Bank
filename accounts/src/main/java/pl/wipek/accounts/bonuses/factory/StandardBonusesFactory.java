@@ -9,11 +9,9 @@ import pl.wipek.accounts.bonuses.families.transactions.TransactionsBonus;
 import pl.wipek.accounts.bonuses.families.voucher.StandardVoucherBonus;
 import pl.wipek.accounts.bonuses.families.voucher.VoucherBonus;
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
-import pl.wipek.accounts.ejb.dao.ActualVouchersDao;
 import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;

@@ -1,11 +1,6 @@
 package pl.wipek.payments.transfers.response;
 
-import pl.wipek.shared.domain.entity.DomesticTransfer;
-
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 public class TransferResponse {

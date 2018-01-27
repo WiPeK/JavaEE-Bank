@@ -1,6 +1,5 @@
 package pl.wipek.shared.domain.entity.account.bonuses;
 
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.GenericGenerator;
 import pl.wipek.shared.domain.entity.Account;
 

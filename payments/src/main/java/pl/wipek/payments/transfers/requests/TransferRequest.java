@@ -1,8 +1,8 @@
 package pl.wipek.payments.transfers.requests;
 
 import pl.wipek.shared.domain.entity.Account;
-import pl.wipek.shared.domain.entity.DomesticTransferType;
 import pl.wipek.shared.domain.entity.Beneficiary;
+import pl.wipek.shared.domain.entity.DomesticTransferType;
 
 import java.util.HashSet;
 import java.util.List;

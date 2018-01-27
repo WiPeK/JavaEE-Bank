@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import pl.wipek.security.jwt.dao.AuthDao;
 import pl.wipek.security.jwt.util.KeyGenerator;
 import pl.wipek.shared.domain.entity.User;
-import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 import pl.wipek.shared.util.converter.DateConverter;
 
 import javax.ejb.EJB;

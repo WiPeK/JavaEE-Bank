@@ -8,7 +8,7 @@ import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 import pl.wipek.shared.security.SHA512;
 
 import javax.ejb.Stateless;
-import javax.persistence.*;
+import javax.persistence.Query;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;

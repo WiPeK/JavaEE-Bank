@@ -1,5 +1,6 @@
 package pl.wipek.shared.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -27,7 +28,7 @@ public class DomesticTransfer implements Serializable, Transfer {
     private Date date;
     private boolean template;
 
-    private Set<DomesticBeneficiary> domesticBeneficiaries = new HashSet<>();
+    private Set<Beneficiary> beneficiaries = new HashSet<>();
 
     public DomesticTransfer() {
     }
@@ -45,7 +46,8 @@ public class DomesticTransfer implements Serializable, Transfer {
     }
 
     @XmlTransient
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "ACCOUNT_ID")
     public Account getAccount() {
         return account;
@@ -56,16 +58,18 @@ public class DomesticTransfer implements Serializable, Transfer {
     }
 
     @XmlTransient
-    @OneToMany(mappedBy = "domesticTransfer", targetEntity = DomesticBeneficiary.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<DomesticBeneficiary> getDomesticBeneficiaries() {
-        return domesticBeneficiaries;
+    @JsonIgnore
+    @OneToMany(mappedBy = "domesticTransfer", targetEntity = Beneficiary.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    public Set<Beneficiary> getBeneficiaries() {
+        return beneficiaries;
     }
 
-    public void setDomesticBeneficiaries(Set<DomesticBeneficiary> domesticBeneficiaries) {
-        this.domesticBeneficiaries = domesticBeneficiaries;
+    public void setBeneficiaries(Set<Beneficiary> beneficiaries) {
+        this.beneficiaries = beneficiaries;
     }
 
     @XmlTransient
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DOMESTIC_TRANSFER_TYPES_ID")
     public DomesticTransferType getType() {

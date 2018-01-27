@@ -1,7 +1,6 @@
 package pl.wipek.payments.transfers.validators;
 
 import pl.wipek.payments.transfers.requests.DomesticTransferRequest;
-import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.validators.DateValidator;
 
 import javax.validation.constraints.NotNull;

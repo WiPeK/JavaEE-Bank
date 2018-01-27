@@ -1,14 +1,11 @@
 package pl.wipek.payments.tokens;
 
 import pl.wipek.payments.ejb.dao.PaymentsDAO;
-import pl.wipek.shared.emails.EmailSender;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Stateless
 public class TokenService {

@@ -1,13 +1,11 @@
 package pl.wipek.accounts.bonuses.factory;
 
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
-import io.github.lukehutch.fastclasspathscanner.matchprocessor.ClassMatchProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.wipek.accounts.bonuses.exceptions.NoFactoryException;
 import pl.wipek.shared.domain.entity.Account;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.constraints.NotNull;

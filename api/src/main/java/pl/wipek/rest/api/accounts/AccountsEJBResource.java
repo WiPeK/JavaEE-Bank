@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.wipek.accounts.ejb.services.AccountsService;
 import pl.wipek.shared.domain.entity.Account;
-import pl.wipek.shared.util.converter.JsonSerializer;
 
 import javax.ejb.EJB;
 import javax.ws.rs.GET;

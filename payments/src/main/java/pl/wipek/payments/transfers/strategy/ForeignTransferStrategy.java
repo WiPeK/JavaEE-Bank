@@ -1,9 +1,7 @@
 package pl.wipek.payments.transfers.strategy;
 
 import pl.wipek.payments.transfers.composite.ForeignTransfer;
-import pl.wipek.payments.transfers.composite.ForeignTransferPackage;
 import pl.wipek.payments.transfers.composite.TransferContainer;
-import pl.wipek.payments.transfers.requests.ForeignTransferRequest;
 import pl.wipek.payments.transfers.requests.TransferRequest;
 import pl.wipek.payments.transfers.response.ForeignTransferResponse;
 import pl.wipek.payments.transfers.response.TransferResponse;

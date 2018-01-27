@@ -1,8 +1,7 @@
 package pl.wipek.shared.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
@@ -12,7 +11,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Set;
 
 /**
@@ -102,7 +100,8 @@ public class Account implements Serializable {
     }
 
     @XmlTransient
-    @OneToMany(mappedBy = "account", targetEntity = DomesticTransfer.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(mappedBy = "account", targetEntity = DomesticTransfer.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     public Set<DomesticTransfer> getDomesticTransfers() {
         return domesticTransfers;
     }
@@ -143,8 +142,9 @@ public class Account implements Serializable {
         this.lastMonthSaldo = lastMonthSaldo;
     }
 
+    @JsonIgnore
     @XmlTransient
-    @OneToMany(mappedBy = "account", targetEntity = GrantedVoucher.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account", targetEntity = GrantedVoucher.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     public Set<GrantedVoucher> getGrantedVouchers() {
         return grantedVouchers;
     }
@@ -153,8 +153,9 @@ public class Account implements Serializable {
         this.grantedVouchers = grantedVouchers;
     }
 
+    @JsonIgnore
     @XmlTransient
-    @OneToMany(mappedBy = "account", targetEntity = TransactionBonus.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account", targetEntity = TransactionBonus.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     public Set<TransactionBonus> getTransactionBonuses() {
         return transactionBonuses;
     }
@@ -191,7 +192,7 @@ public class Account implements Serializable {
     @Override
     public String toString() {
         return "Account{" +
-                "idAccounts='" + id + '\'' +
+                "id='" + id + '\'' +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", balance=" + balance +
                 ", name='" + name + '\'' +

@@ -1,10 +1,5 @@
 package pl.wipek.payments.transfers.composite;
 
-import pl.wipek.payments.transfers.requests.ForeignTransferRequest;
-import pl.wipek.shared.domain.entity.Transfer;
-
-import java.util.Set;
-
 public class ForeignTransfer {
 //    private ForeignTransferRequest foreignTransferRequest;
 //

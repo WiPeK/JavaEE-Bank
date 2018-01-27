@@ -1,13 +1,11 @@
 package pl.wipek.payments.transfers.factory;
 
-import pl.wipek.payments.transfers.composite.*;
+import pl.wipek.payments.transfers.composite.TransferContainer;
 import pl.wipek.payments.transfers.requests.TransferRequest;
 import pl.wipek.payments.transfers.strategy.TransferStrategy;
 import pl.wipek.shared.domain.entity.Beneficiary;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 public class TransferContainerFactory {

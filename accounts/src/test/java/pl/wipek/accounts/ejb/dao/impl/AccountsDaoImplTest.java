@@ -1,21 +1,14 @@
 package pl.wipek.accounts.ejb.dao.impl;
 
 import org.junit.*;
-import org.junit.runner.RunWith;
-import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.shared.domain.entity.Account;
 
-import javax.activation.DataSource;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.persistence.*;
-
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
-import static org.junit.Assert.*;
 
 @Ignore
 public class AccountsDaoImplTest {

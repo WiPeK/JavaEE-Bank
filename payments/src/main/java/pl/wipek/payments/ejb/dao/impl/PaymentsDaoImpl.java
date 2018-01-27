@@ -1,6 +1,5 @@
 package pl.wipek.payments.ejb.dao.impl;
 
-import javassist.NotFoundException;
 import pl.wipek.payments.ejb.dao.PaymentsDAO;
 import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.DomesticTransferType;
@@ -8,10 +7,8 @@ import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
 import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.HashSet;
 import java.util.Set;
 
 /**

@@ -1,7 +1,7 @@
 package pl.wipek.rest.api.beneficiaries;
 
 import pl.wipek.beneficiaries.services.BeneficiariesService;
-import pl.wipek.shared.domain.entity.DomesticBeneficiary;
+import pl.wipek.shared.domain.entity.Beneficiary;
 import pl.wipek.shared.util.converter.JsonSerializer;
 
 import javax.ejb.EJB;
@@ -30,8 +30,8 @@ public class BeneficiariesEJBResource extends Application {
     @Path("/domestic/customers/{customerId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBeneficiariesFromUsersDomesticPayments(@PathParam("customerId") String customerId) throws JAXBException {
-        Set<DomesticBeneficiary> domesticBeneficiaries = beneficiariesService.getBeneficiariesFromUsersDomesticPayments(customerId);
-        String resultJson = JsonSerializer.convertSet(domesticBeneficiaries, DomesticBeneficiary.class);
+        Set<Beneficiary> beneficiaries = beneficiariesService.getBeneficiariesFromUsersDomesticPayments(customerId);
+        String resultJson = JsonSerializer.convertSet(beneficiaries, Beneficiary.class);
         return Response.ok(resultJson).build();
     }
 }

@@ -9,14 +9,13 @@
         <!--<non-jta-data-source>javaeeresource</non-jta-data-source>-->
         <class>pl.wipek.shared.domain.entity.Account</class>
         <class>pl.wipek.shared.domain.entity.Customer</class>
-        <class>pl.wipek.shared.domain.entity.DomesticBeneficiary</class>
+        <class>pl.wipek.shared.domain.entity.Beneficiary</class>
         <class>pl.wipek.shared.domain.entity.DomesticTransfer</class>
         <class>pl.wipek.shared.domain.entity.DomesticTransferType</class>
         <class>pl.wipek.shared.domain.entity.Currency</class>
         <class>pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher</class>
         <class>pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher</class>
         <class>pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus</class>
-        <class>pl.wipek.shared.domain.entity.DomesticBeneficiary</class>
         <!--<class>pl.wipek.shared.domain.entity.Transfer</class>-->
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>

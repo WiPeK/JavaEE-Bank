@@ -1,11 +1,7 @@
 package pl.wipek.shared.validators;
 
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
-
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class DateValidator {
     private static String DATE_FORMAT = "yyyy-MM-dd";

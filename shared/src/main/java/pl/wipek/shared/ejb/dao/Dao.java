@@ -4,10 +4,7 @@ import javassist.NotFoundException;
 import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 
 import javax.ejb.Remote;
-import javax.ejb.RemoteHome;
 import java.io.Serializable;
-import java.rmi.RemoteException;
-import java.util.List;
 import java.util.Set;
 
 /**

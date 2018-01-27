@@ -4,7 +4,6 @@ import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 
-import java.math.BigDecimal;
 import java.util.Random;
 
 public class StandardVoucherBonus extends VoucherBonus {

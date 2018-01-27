@@ -14,7 +14,10 @@ import pl.wipek.shared.emails.EmailSender;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 public class DomesticTransfer extends TransferContainer {
 
@@ -102,12 +105,12 @@ public class DomesticTransfer extends TransferContainer {
 
         domesticTransfer =
                 DomesticTransferConverter.convertFromRequest(domesticTransferRequest);
-        transfersDao.persist(domesticTransfer);
+        transfersDao.merge(domesticTransfer);
         Double transferCost = domesticTransfer.getAccount().getBalance() - (getCosts() + domesticTransfer.getAmount());
         domesticTransfer.getAccount().setBalance(transferCost);
 
         paymentsDAO.updateAccount(domesticTransfer.getAccount());
-        domesticTransfer = transfersDao.persist(domesticTransfer);
+        domesticTransfer = transfersDao.merge(domesticTransfer);
         return true;
     }
 

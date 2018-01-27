@@ -1,6 +1,5 @@
 package pl.wipek.payments.ejb.dao;
 
-import javassist.NotFoundException;
 import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.DomesticTransferType;
 import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;

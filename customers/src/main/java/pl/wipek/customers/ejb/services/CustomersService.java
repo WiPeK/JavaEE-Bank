@@ -1,8 +1,8 @@
 package pl.wipek.customers.ejb.services;
 
+import pl.wipek.customers.ejb.dao.CustomersDAO;
 import pl.wipek.shared.domain.entity.Customer;
 import pl.wipek.shared.domain.entity.User;
-import pl.wipek.customers.ejb.dao.CustomersDAO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

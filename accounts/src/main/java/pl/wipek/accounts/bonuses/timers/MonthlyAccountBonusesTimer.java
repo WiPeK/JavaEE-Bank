@@ -6,24 +6,14 @@ import pl.wipek.accounts.bonuses.exceptions.NoFactoryException;
 import pl.wipek.accounts.bonuses.factory.AccountBonusesFactory;
 import pl.wipek.accounts.bonuses.factory.AccountBonusesFactoryProvider;
 import pl.wipek.accounts.bonuses.families.BonusContainer;
-import pl.wipek.accounts.bonuses.families.moneyback.MoneyBackBonus;
-import pl.wipek.accounts.bonuses.families.saldo.SaldoBonus;
-import pl.wipek.accounts.bonuses.families.transactions.TransactionsBonus;
-import pl.wipek.accounts.bonuses.families.voucher.VoucherBonus;
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.accounts.ejb.dao.ActualVouchersDao;
 import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher;
-import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
-import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
-import pl.wipek.shared.ejb.dao.exceptions.DaoException;
-import pl.wipek.shared.emails.EmailSender;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.*;
-import javax.mail.MessagingException;
-import javax.naming.*;
-import java.io.IOException;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import java.util.HashSet;
 import java.util.Set;
 

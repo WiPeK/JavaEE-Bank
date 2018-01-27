@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.wipek.payments.ejb.dao.PaymentsDAO;
 import pl.wipek.payments.ejb.dao.TransfersDao;
 import pl.wipek.payments.transfers.requests.TransferRequest;
-import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.Transfer;
 
 import javax.ejb.EJB;

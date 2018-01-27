@@ -6,14 +6,10 @@ import pl.wipek.accounts.bonuses.families.moneyback.MoneyBackBonus;
 import pl.wipek.accounts.bonuses.families.saldo.SaldoBonus;
 import pl.wipek.accounts.bonuses.families.transactions.TransactionsBonus;
 import pl.wipek.accounts.bonuses.families.voucher.VoucherBonus;
-import pl.wipek.accounts.bonuses.timers.MonthlyAccountBonusesTimer;
 import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
-import pl.wipek.shared.emails.EmailSender;
 
-import javax.mail.MessagingException;
-import java.io.IOException;
 import java.util.Optional;
 import java.util.Set;
 

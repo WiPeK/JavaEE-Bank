@@ -1,12 +1,9 @@
 package pl.wipek.accounts.bonuses.families.saldo;
 
-import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.shared.domain.entity.Account;
 
-import javax.ejb.EJB;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
-import java.math.BigDecimal;
 
 
 //saldo teraz - saldo z przed miesiaca

@@ -27,6 +27,8 @@ public class DomesticTransferStrategy implements TransferStrategy {
         if (transferContainer.getErrors().size() > 0) {
             transferResponse.setStatus(TransferResponse.STATUS_ERROR);
             transferResponse.setErrors(transferContainer.getErrors());
+        } else {
+            transferResponse.setStatus(TransferResponse.STATUS_OK);
         }
         transferResponse.setCosts(transferContainer.getCosts());
         transferResponse.setDomesticTransfers(transferContainer.getTransfers());

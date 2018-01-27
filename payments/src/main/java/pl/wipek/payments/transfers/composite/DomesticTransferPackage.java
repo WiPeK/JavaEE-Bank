@@ -1,23 +1,17 @@
 package pl.wipek.payments.transfers.composite;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.wipek.payments.transfers.exceptions.NoMoneyInAccountException;
 import pl.wipek.payments.transfers.requests.TransferRequest;
 import pl.wipek.shared.domain.entity.Transfer;
 import pl.wipek.shared.emails.EmailSender;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.mail.MessagingException;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class DomesticTransferPackage extends TransferContainer {
 

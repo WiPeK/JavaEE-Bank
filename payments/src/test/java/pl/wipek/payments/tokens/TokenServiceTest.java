@@ -10,8 +10,6 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
-import static org.junit.Assert.*;
-
 public class TokenServiceTest {
 
     private TokenService tokenService;

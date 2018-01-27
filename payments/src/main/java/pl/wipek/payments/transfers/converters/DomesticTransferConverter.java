@@ -2,14 +2,14 @@ package pl.wipek.payments.transfers.converters;
 
 import pl.wipek.payments.transfers.requests.DomesticTransferRequest;
 import pl.wipek.shared.domain.entity.Beneficiary;
-import pl.wipek.shared.domain.entity.DomesticBeneficiary;
 import pl.wipek.shared.domain.entity.DomesticTransfer;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class DomesticTransferConverter {
 
@@ -18,9 +18,9 @@ public class DomesticTransferConverter {
         domesticTransfer.setAccount(domesticTransferRequest.getUserAccount());
 
         List<Beneficiary> beneficiaries = domesticTransferRequest.getBeneficiary();
-        Set<DomesticBeneficiary> domesticBeneficiaries = new HashSet<>();
-        beneficiaries.forEach(i -> domesticBeneficiaries.add((DomesticBeneficiary) i));
-        domesticTransfer.setDomesticBeneficiaries(domesticBeneficiaries);
+        Set<Beneficiary> beneficiarySet= new HashSet<>();
+        beneficiarySet.addAll(beneficiaries);
+        domesticTransfer.setBeneficiaries(beneficiarySet);
 
         domesticTransfer.setAmount(domesticTransferRequest.getAmount());
 
