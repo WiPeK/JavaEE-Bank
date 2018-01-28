@@ -39,4 +39,12 @@ public class AccountsEJBResource extends Application {
         String resultJson = mapper.writeValueAsString(accounts);
         return Response.ok(resultJson).build();
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAll()throws JAXBException{
+        Set<Account> accounts = accountsService.getAll();
+        String resultJson = JsonSerializer.convertSet(accounts,Account.class);
+        return Response.ok(resultJson).build();
+    }
 }

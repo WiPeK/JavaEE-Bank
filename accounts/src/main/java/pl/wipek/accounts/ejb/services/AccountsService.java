@@ -24,4 +24,7 @@ public class AccountsService implements Serializable {
     public Account createNewAccount(Account account) {
         return accountsDao.persist(account);
     }
+    public Set<Account> getAll(){
+        return accountsDao.getAll();
+    }
 }

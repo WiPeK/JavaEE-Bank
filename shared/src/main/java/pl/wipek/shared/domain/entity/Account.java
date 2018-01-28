@@ -2,6 +2,8 @@ package pl.wipek.shared.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
@@ -12,6 +14,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Set;
 
 /**
@@ -47,6 +50,9 @@ public class Account implements Serializable {
     @XmlTransient
     @JsonIgnore
     private Set<ScheduledTransferShared> scheduledTransferShareds;
+    @XmlTransient
+    @JsonIgnore
+    private Set<Deposit> deposits;
 
     private String type;
 
@@ -89,7 +95,6 @@ public class Account implements Serializable {
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;
@@ -186,6 +191,17 @@ public class Account implements Serializable {
 
     public void setScheduledTransferShareds(Set<ScheduledTransferShared> scheduledTransferShareds) {
         this.scheduledTransferShareds = scheduledTransferShareds;
+    }
+
+
+    @XmlTransient
+    @OneToMany(mappedBy = "account", targetEntity = Deposit.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Set<Deposit> getDeposits() {
+        return deposits;
+    }
+
+    public void setDeposits(Set<Deposit> deposits) {
+        this.deposits = deposits;
     }
 
     @Override
