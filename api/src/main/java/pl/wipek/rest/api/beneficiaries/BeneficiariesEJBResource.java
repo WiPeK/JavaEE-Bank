@@ -43,3 +43,4 @@ public class BeneficiariesEJBResource extends Application {
         return Response.ok(resultJson).build();
     }
 }
+

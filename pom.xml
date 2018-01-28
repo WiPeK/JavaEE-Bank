@@ -17,6 +17,7 @@
         <module>payments</module>
         <module>accounts</module>
         <module>beneficiaries</module>
+        <module>plannedTransfer</module>
     </modules>
 
     <properties>

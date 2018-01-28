@@ -10,8 +10,8 @@
         <!--<class>pl.wipek.shared.domain.entity.Account</class>-->
         <!--<class>pl.wipek.shared.domain.entity.Customer</class>-->
         <!--&lt;!&ndash;<class>pl.wipek.shared.domain.entity.DomesticBeneficiaryeficiary</class>&ndash;&gt;-->
-        <!--&lt;!&ndash;<class>pl.wipek.shared.domain.entity.Transfer</class>&ndash;&gt;-->
-        <!--<exclude-unlisted-classes>true</exclude-unlisted-classes>-->
+        <!--&lt;!&ndash;<class>pl.wipek.shared.domain.entTransferScharedsfer</class>&ndash;&gt;-->
+        <!--<exclude-unlistransfer.classessses>true</exclude-unlistransfer.classessses>-->
         <!--<properties>-->
             <!--<property name="hibernate.transaction.jta.platform"-->
                       <!--value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform"/>-->
