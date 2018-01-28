@@ -1,4 +1,4 @@
-package pl.wipek.rest.api.deposits;
+package pl.wipek.rest.api.loans;
 
 import javassist.NotFoundException;
 import org.slf4j.Logger;
