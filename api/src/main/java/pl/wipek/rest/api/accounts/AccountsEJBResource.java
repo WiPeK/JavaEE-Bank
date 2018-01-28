@@ -42,9 +42,11 @@ public class AccountsEJBResource extends Application {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll()throws JAXBException{
+    public Response getAll() throws JAXBException, JsonProcessingException {
         Set<Account> accounts = accountsService.getAll();
-        String resultJson = JsonSerializer.convertSet(accounts,Account.class);
+        ObjectMapper mapper = new ObjectMapper();
+        String resultJson = mapper.writeValueAsString(accounts);
+//        String resultJson = JsonSerializer.convertSet(accounts,Account.class);
         return Response.ok(resultJson).build();
     }
 }
