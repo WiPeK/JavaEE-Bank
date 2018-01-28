@@ -36,8 +36,8 @@ public class AccountsEJBResource extends Application {
     public Response getUserAccounts(@PathParam("customerId") String customerId) throws JAXBException, JsonProcessingException {
         Set<Account> accounts = accountsService.getUserAccounts(customerId);
 //        String resultJson = JsonSerializer.convertSet(accounts, Account.class);
-//        ObjectMapper mapper = new ObjectMapper();
-//        String resultJson = mapper.writeValueAsString(accounts);
-        return Response.ok(accounts).build();
+        ObjectMapper mapper = new ObjectMapper();
+        String resultJson = mapper.writeValueAsString(accounts);
+        return Response.ok(resultJson).build();
     }
 }

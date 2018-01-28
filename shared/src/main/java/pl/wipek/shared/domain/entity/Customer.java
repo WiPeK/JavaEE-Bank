@@ -1,6 +1,7 @@
 package pl.wipek.shared.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,6 +16,8 @@ import java.util.Set;
 @XmlRootElement
 public class Customer extends User {
     private String id;
+    @XmlTransient
+    @JsonIgnore
     private Set<Account> accounts = new HashSet<>();
 
     public Customer() {
@@ -34,6 +37,7 @@ public class Customer extends User {
     }
 
     @XmlTransient
+    @JsonIgnore
     @OneToMany(mappedBy = "customer", targetEntity = Account.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<Account> getAccounts() {
         return accounts;

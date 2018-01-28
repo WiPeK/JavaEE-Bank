@@ -110,7 +110,7 @@ public class DomesticTransfer extends TransferContainer {
         domesticTransfer.getAccount().setBalance(transferCost);
 
         paymentsDAO.updateAccount(domesticTransfer.getAccount());
-        domesticTransfer = transfersDao.merge(domesticTransfer);
+        domesticTransfer = transfersDao.persist(domesticTransfer);
         return true;
     }
 

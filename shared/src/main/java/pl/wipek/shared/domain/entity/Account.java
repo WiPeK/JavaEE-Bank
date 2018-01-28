@@ -30,10 +30,18 @@ public class Account implements Serializable {
     private String name;
     private Double blockedAmount;
     private Double lastMonthSaldo;
+    @XmlTransient
+    @JsonIgnore
     private Customer customer;
     private Currency currency;
+    @XmlTransient
+    @JsonIgnore
     private Set<TransactionBonus> transactionBonuses;
+    @XmlTransient
+    @JsonIgnore
     private Set<DomesticTransfer> domesticTransfers;
+    @XmlTransient
+    @JsonIgnore
     private Set<GrantedVoucher> grantedVouchers;
 
     private String type;
@@ -115,9 +123,7 @@ public class Account implements Serializable {
         this.customer = customer;
     }
 
-    @JsonIgnore
-    @XmlTransient
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "CURRENCY_ID")
     public Currency getCurrency() {
         return currency;

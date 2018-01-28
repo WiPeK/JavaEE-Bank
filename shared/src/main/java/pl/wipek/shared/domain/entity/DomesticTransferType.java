@@ -1,6 +1,7 @@
 package pl.wipek.shared.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -23,6 +24,8 @@ public class DomesticTransferType implements Serializable {
     private String id;
     private String value;
     private Double cost;
+    @XmlTransient
+    @JsonIgnore
     private Set<DomesticTransfer> domesticTransfers = new HashSet<>();
 
     public DomesticTransferType() {
@@ -59,6 +62,7 @@ public class DomesticTransferType implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     @OneToMany(mappedBy = "type", targetEntity = DomesticTransfer.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<DomesticTransfer> getDomesticTransfers() {
         return domesticTransfers;

@@ -1,5 +1,7 @@
 package pl.wipek.rest.api.beneficiaries;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.wipek.beneficiaries.services.BeneficiariesService;
 import pl.wipek.shared.domain.entity.Beneficiary;
 import pl.wipek.shared.util.converter.JsonSerializer;
@@ -31,7 +33,13 @@ public class BeneficiariesEJBResource extends Application {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBeneficiariesFromUsersDomesticPayments(@PathParam("customerId") String customerId) throws JAXBException {
         Set<Beneficiary> beneficiaries = beneficiariesService.getBeneficiariesFromUsersDomesticPayments(customerId);
-        String resultJson = JsonSerializer.convertSet(beneficiaries, Beneficiary.class);
+        ObjectMapper mapper = new ObjectMapper();
+        String resultJson = null;
+        try {
+            resultJson = mapper.writeValueAsString(beneficiaries);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         return Response.ok(resultJson).build();
     }
 }

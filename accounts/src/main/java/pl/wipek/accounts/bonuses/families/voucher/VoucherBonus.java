@@ -53,13 +53,7 @@ public abstract class VoucherBonus {
     }
 
     public void save(Dao dao) {
-        grantedVouchers.forEach(voucher -> {
-            try {
-                dao.persist(voucher);
-            } catch (DaoException e) {
-                e.printStackTrace();
-            }
-        });
+        grantedVouchers.forEach(dao::persist);
     }
 
     @Override

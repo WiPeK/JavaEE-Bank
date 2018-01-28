@@ -1,5 +1,6 @@
 package pl.wipek.shared.domain.entity.account.bonuses;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,6 +16,8 @@ public class ActualVoucher {
 
     private String id;
     private String name;
+    @XmlTransient
+    @JsonIgnore
     private Set<GrantedVoucher> grantedVouchers;
 
     public ActualVoucher() {
@@ -41,8 +44,9 @@ public class ActualVoucher {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "actualVoucher", targetEntity = GrantedVoucher.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @XmlTransient
+    @JsonIgnore
+    @OneToMany(mappedBy = "actualVoucher", targetEntity = GrantedVoucher.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<GrantedVoucher> getGrantedVouchers() {
         return grantedVouchers;
     }

@@ -51,7 +51,7 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
      * @return newly created entity
      */
     @Override
-    public E persist(E entity) throws DaoException {
+    public E persist(E entity) {
         try {
             getEntityManager().getTransaction().begin();
             getEntityManager().persist(entity);
@@ -61,7 +61,6 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
         } catch (Exception e) {
             e.printStackTrace();
             getEntityManager().getTransaction().rollback();
-            throw new DaoException(e);
         }
         return entity;
     }
@@ -75,7 +74,7 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
      * @throws DaoException
      */
     @Override
-    public E merge(E entity) throws DaoException
+    public E merge(E entity)
     {
         try {
             getEntityManager().getTransaction().begin();
@@ -86,7 +85,6 @@ public abstract class AbstractDao<K, E> implements Dao<K, E> {
         } catch (Exception e) {
             e.printStackTrace();
             getEntityManager().getTransaction().rollback();
-            throw new DaoException(e);
         }
         return entity;
     }

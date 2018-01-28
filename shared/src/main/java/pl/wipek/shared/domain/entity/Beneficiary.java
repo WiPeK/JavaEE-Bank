@@ -20,6 +20,8 @@ public class Beneficiary implements Serializable {
     private String name;
     private String address;
     private String accountNumber;
+    @XmlTransient
+    @JsonIgnore
     private DomesticTransfer domesticTransfer;
 
     public Beneficiary() {

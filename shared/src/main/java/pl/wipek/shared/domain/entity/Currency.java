@@ -15,6 +15,8 @@ public class Currency  implements Serializable{
     private String id;
     private String name;
     private String code;
+    @XmlTransient
+    @JsonIgnore
     private Set<Account> accounts;
 
     public Currency() {

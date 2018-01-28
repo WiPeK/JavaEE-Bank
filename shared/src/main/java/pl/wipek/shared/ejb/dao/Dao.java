@@ -19,7 +19,7 @@ public interface Dao<K, E> extends Serializable {
      * @return newly created entity
      * @throws DaoException
      */
-    public E persist(E entity) throws DaoException;
+    public E persist(E entity);
 
     /**
      * Marges objects with the same identifier within a session into a newly
@@ -29,7 +29,7 @@ public interface Dao<K, E> extends Serializable {
      * @return a newly created instance merged.
      * @throws DaoException
      */
-    public E merge(E entity) throws DaoException;
+    public E merge(E entity);
 
     /**
      * Deletes the entity.

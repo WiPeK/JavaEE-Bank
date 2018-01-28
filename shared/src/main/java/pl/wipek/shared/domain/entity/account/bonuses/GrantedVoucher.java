@@ -1,5 +1,6 @@
 package pl.wipek.shared.domain.entity.account.bonuses;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import pl.wipek.shared.domain.entity.Account;
 
@@ -16,7 +17,11 @@ public class GrantedVoucher implements Serializable {
 
     private String id;
     private String code;
+    @XmlTransient
+    @JsonIgnore
     private Account account;
+    @XmlTransient
+    @JsonIgnore
     private ActualVoucher actualVoucher;
 
     public GrantedVoucher() {
@@ -44,6 +49,7 @@ public class GrantedVoucher implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACCOUNT_ID")
     public Account getAccount() {
@@ -55,6 +61,7 @@ public class GrantedVoucher implements Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACTUAL_VOUCHERS_ID")
     public ActualVoucher getActualVoucher() {

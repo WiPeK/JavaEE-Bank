@@ -1,5 +1,7 @@
 package pl.wipek.rest.api.payments.types;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.wipek.payments.types.services.PaymentTypesService;
 
 import javax.ejb.EJB;
@@ -25,7 +27,14 @@ public class PaymentsTypesEJBResource extends Application {
     @Path("/types/domestic")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getDomesticPaymentTypes() {
-        return Response.ok(paymentTypesService.getDomesticPaymentTypes()).build();
+        ObjectMapper mapper = new ObjectMapper();
+        String resultJson = null;
+        try {
+            resultJson = mapper.writeValueAsString(paymentTypesService.getDomesticPaymentTypes());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return Response.ok(resultJson).build();
     }
 
 }

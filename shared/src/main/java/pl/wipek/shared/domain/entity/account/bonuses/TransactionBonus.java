@@ -1,5 +1,6 @@
 package pl.wipek.shared.domain.entity.account.bonuses;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import pl.wipek.shared.domain.entity.Account;
 
@@ -14,6 +15,8 @@ public class TransactionBonus {
     private int freePayments = -1;
     private int freeAtmTransactions = -1;
     private int freePremiumPayments = -1;
+    @XmlTransient
+    @JsonIgnore
     private Account account;
 
     public TransactionBonus() {
@@ -59,6 +62,7 @@ public class TransactionBonus {
     }
 
     @XmlTransient
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACCOUNT_ID")
     public Account getAccount() {

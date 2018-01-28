@@ -23,11 +23,6 @@ public class AccountsService implements Serializable {
     }
 
     public Account createNewAccount(Account account) {
-        try {
-            return accountsDao.persist(account);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return accountsDao.persist(account);
     }
 }

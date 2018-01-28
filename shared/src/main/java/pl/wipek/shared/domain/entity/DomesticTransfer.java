@@ -22,12 +22,16 @@ public class DomesticTransfer implements Serializable, Transfer {
 
     private String id;
     private Account account;
+    @XmlTransient
+    @JsonIgnore
     private DomesticTransferType type;
     private Double amount;
     private String title;
     private Date date;
     private boolean template;
 
+    @XmlTransient
+    @JsonIgnore
     private Set<Beneficiary> beneficiaries = new HashSet<>();
 
     public DomesticTransfer() {
