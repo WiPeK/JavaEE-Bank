@@ -1,7 +1,7 @@
 package transfer.commands;
 
-import transfer.interfaces.Command;
 import transfer.classes.ScheduledTransfer;
+import transfer.interfaces.Command;
 
 /**
  * Created by Michał on 20.01.2018.

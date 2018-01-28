@@ -1,6 +1,5 @@
 package transfer.classes;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 /**

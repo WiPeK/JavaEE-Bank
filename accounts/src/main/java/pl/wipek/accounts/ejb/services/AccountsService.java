@@ -2,7 +2,6 @@ package pl.wipek.accounts.ejb.services;
 
 import pl.wipek.accounts.ejb.dao.AccountsDAO;
 import pl.wipek.shared.domain.entity.Account;
-import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

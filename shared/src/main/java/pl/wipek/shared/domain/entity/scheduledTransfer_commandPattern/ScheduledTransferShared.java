@@ -1,5 +1,6 @@
 package pl.wipek.shared.domain.entity.scheduledTransfer_commandPattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.wipek.shared.domain.entity.Account;
 
 import javax.persistence.*;
@@ -7,7 +8,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * Created by Michał on 20.01.2018.
@@ -37,6 +37,7 @@ public class ScheduledTransferShared implements Serializable {
     @Column(name = "trans_date", nullable = false)
     private Date date;
 
+    @JsonIgnore
     @XmlTransient
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="accountID")

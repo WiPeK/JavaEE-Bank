@@ -14,7 +14,7 @@ import java.util.Set;
 @Stateless
 public class TransferService implements Serializable {
 
-    @EJB(beanInterface = TransferDao.class, beanName = "TransferDaoImpl")
+    @EJB(beanInterface = TransferDao.class, beanName = "PlannedTransferDaoImpl")
     private TransferDao transferDao;
 
     public Set<ScheduledTransferShared> getTransfers() {

@@ -44,6 +44,8 @@ public class Account implements Serializable {
     @XmlTransient
     @JsonIgnore
     private Set<GrantedVoucher> grantedVouchers;
+    @XmlTransient
+    @JsonIgnore
     private Set<ScheduledTransferShared> scheduledTransferShareds;
 
     private String type;
@@ -177,6 +179,7 @@ public class Account implements Serializable {
 
     @OneToMany(mappedBy = "account", targetEntity = ScheduledTransferShared.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @XmlTransient
+    @JsonIgnore
     public Set<ScheduledTransferShared> getScheduledTransferShareds() {
         return scheduledTransferShareds;
     }

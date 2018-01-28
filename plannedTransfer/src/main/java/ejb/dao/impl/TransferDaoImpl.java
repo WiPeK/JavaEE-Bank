@@ -1,29 +1,14 @@
 package ejb.dao.impl;
 
 import ejb.dao.TransferDao;
-import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 import pl.wipek.shared.domain.entity.scheduledTransfer_commandPattern.ScheduledTransferShared;
+import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 
 import javax.ejb.Stateless;
-import javax.persistence.Query;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Michał on 20.01.2018.
  */
-@Stateless(name = "TransferDaoImpl", mappedName = "TransferDaoImpl")
+@Stateless(name = "PlannedTransferDaoImpl", mappedName = "PlannedTransferDaoImpl")
 public class TransferDaoImpl extends AbstractDao<String, ScheduledTransferShared> implements TransferDao {
-    @Override
-    public Set<ScheduledTransferShared> getUserTransfers() {
-
-        Query query = getEntityManager()
-                .createQuery("FROM " + entityClass.getCanonicalName() + " e ");
-
-
-
-
-        return new HashSet<>(query.getResultList());
-    }
-
 }

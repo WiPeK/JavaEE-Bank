@@ -1,5 +1,6 @@
 package pl.wipek.rest.api.payments.tokens;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.wipek.payments.tokens.TokenService;
 
 import javax.ejb.EJB;
@@ -23,9 +24,12 @@ public class PaymentsTokensEJBResource extends Application {
 
     @GET
     @Path("/token/{accountId}")
-    @Produces(MediaType.TEXT_HTML)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response generateTokenForPayment(@PathParam("accountId") String accountId) throws IOException, MessagingException {
-        String token = tokenService.generateToken(accountId);
-        return Response.ok(token).build();
+//        String token = tokenService.generateToken(accountId);
+        ObjectMapper mapper = new ObjectMapper();
+        String resultJson = mapper.writeValueAsString(tokenService.generateToken(accountId));
+        System.out.println(resultJson);
+        return Response.ok(resultJson).build();
     }
 }

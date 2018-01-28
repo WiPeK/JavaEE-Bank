@@ -1,14 +1,11 @@
 package ejb.dao;
 
-import pl.wipek.shared.ejb.dao.Dao;
 import pl.wipek.shared.domain.entity.scheduledTransfer_commandPattern.ScheduledTransferShared;
-
-import java.util.Set;
+import pl.wipek.shared.ejb.dao.Dao;
 
 /**
  * Created by Michał on 20.01.2018.
  */
 public interface TransferDao extends Dao<String , ScheduledTransferShared> {
-    
-    public Set<ScheduledTransferShared> getUserTransfers();
+
 }

@@ -4,7 +4,6 @@ import pl.wipek.shared.domain.entity.Account;
 import pl.wipek.shared.domain.entity.account.bonuses.ActualVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 import pl.wipek.shared.ejb.dao.Dao;
-import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;

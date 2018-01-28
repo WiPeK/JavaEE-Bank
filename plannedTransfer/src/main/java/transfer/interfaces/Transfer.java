@@ -1,7 +1,5 @@
 package transfer.interfaces;
 
-import java.io.Serializable;
-
 /**
  * Created by Michał on 20.01.2018.
  */
