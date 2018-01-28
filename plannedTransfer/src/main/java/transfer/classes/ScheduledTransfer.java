@@ -17,7 +17,6 @@ public class ScheduledTransfer  implements Transfer {
 
    Validator validator = new Validator();
     String newMoney;
-    String newIBAN;
     String newBeneficiaryIBAN;
     Date date;
 
@@ -40,7 +39,5 @@ public class ScheduledTransfer  implements Transfer {
         validator.isCorrectDate(date);
     }
 
-    public void changeSender(){
-        validator.inCorrectNumber(newIBAN);
-    }
+
 }

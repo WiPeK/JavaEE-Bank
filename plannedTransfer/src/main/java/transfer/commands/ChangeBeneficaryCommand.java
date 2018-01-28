@@ -18,4 +18,5 @@ public class ChangeBeneficaryCommand implements Command {
 
         scheduledTransfer.changeBeneficary();
 }
+
 }

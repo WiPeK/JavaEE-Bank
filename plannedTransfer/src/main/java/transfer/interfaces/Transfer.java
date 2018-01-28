@@ -7,7 +7,6 @@ import java.io.Serializable;
  */
 public interface Transfer{
 
-    public void  changeSender();
     public void  changeBeneficary();
     public void  changeDate();
     public void  changeAmount();
