@@ -9,7 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>loans</artifactId>
+    <artifactId>.loans</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>pl.wipek</groupId>
+            <artifactId>shared</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 
 </project>
