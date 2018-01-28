@@ -30,4 +30,7 @@ public class AccountsService implements Serializable {
         }
         return null;
     }
+    public Set<Account> getAll(){
+        return accountsDao.getAll();
+    }
 }

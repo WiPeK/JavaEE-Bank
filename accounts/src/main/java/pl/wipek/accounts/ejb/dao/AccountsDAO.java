@@ -21,4 +21,5 @@ public interface AccountsDAO extends Dao<String, Account> {
     public int countPayments(Account account);
     public int countAtmPayments(Account account);
     public Double sumAtmPayments(Account account);
+    public Set<Account> getAll();
 }

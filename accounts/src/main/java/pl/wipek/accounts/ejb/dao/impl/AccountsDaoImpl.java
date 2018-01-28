@@ -98,5 +98,8 @@ public class AccountsDaoImpl extends AbstractDao<String, Account> implements Acc
         return Double.longBitsToDouble(Math.round(result));
     }
 
-
+    @Override
+    public Set<Account> getAll() {
+        return super.getAll();
+    }
 }
