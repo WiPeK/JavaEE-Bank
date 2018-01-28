@@ -1,5 +1,6 @@
 package pl.wipek.shared.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
@@ -36,6 +37,7 @@ public class Account implements Serializable {
     private Set<DomesticTransfer> domesticTransfers;
     private Set<GrantedVoucher> grantedVouchers;
     private Set<Deposit> deposits;
+    private Set<Loan> loans;
 
     private String type;
 
@@ -140,6 +142,7 @@ public class Account implements Serializable {
         this.lastMonthSaldo = lastMonthSaldo;
     }
 
+    @JsonIgnore
     @XmlTransient
     @OneToMany(mappedBy = "account", targetEntity = GrantedVoucher.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<GrantedVoucher> getGrantedVouchers() {
@@ -150,6 +153,7 @@ public class Account implements Serializable {
         this.grantedVouchers = grantedVouchers;
     }
 
+    @JsonIgnore
     @XmlTransient
     @OneToMany(mappedBy = "account", targetEntity = TransactionBonus.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<TransactionBonus> getTransactionBonuses() {
@@ -160,6 +164,7 @@ public class Account implements Serializable {
         this.transactionBonuses = transactionBonuses;
     }
 
+    @JsonIgnore
     @XmlTransient
     @OneToMany(mappedBy = "account", targetEntity = Deposit.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     public Set<Deposit> getDeposits() {
@@ -168,6 +173,17 @@ public class Account implements Serializable {
 
     public void setDeposits(Set<Deposit> deposits) {
         this.deposits = deposits;
+    }
+
+    @JsonIgnore
+    @XmlTransient
+    @OneToMany(mappedBy = "account", targetEntity = Loan.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    public Set<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(Set<Loan> loans) {
+        this.loans = loans;
     }
 
     @Override

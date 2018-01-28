@@ -23,7 +23,7 @@ public class LoansService implements Serializable{
         return loansDao.getAll();
     }
 
-    public Loan saveDeposit(Loan loan) throws DaoException{
+    public Loan saveLoan(Loan loan) throws DaoException{
         return loansDao.persist(loan);
     }
 

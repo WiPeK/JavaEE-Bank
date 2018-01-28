@@ -19,11 +19,4 @@ public class LoansDaoImpl extends AbstractDao<String, Loan> implements LoansDao 
                 .setParameter("id", loanId);
         return new HashSet<>(query.getResultList());
     }
-
-    @Override
-    public Set<Loan> getAll() {
-        Query query = getEntityManager()
-                .createQuery("FROM " + entityClass.getCanonicalName());
-        return new HashSet<>(query.getResultList());
-    }
 }

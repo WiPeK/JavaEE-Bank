@@ -1,6 +1,11 @@
 package pl.wipek.shared.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
@@ -13,7 +18,11 @@ import java.util.Date;
 public class Loan implements Serializable{
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
+    @GenericGenerator(name = "db-uuid", strategy = "guid")
+    @GeneratedValue(generator = "db-uuid")
+    @XmlElement(name = "id")
+    @JsonProperty(value = "id")
     private String id;
 
     @Column(name = "NAME")
@@ -28,8 +37,7 @@ public class Loan implements Serializable{
     @Column(name = "AMOUNT")
     private BigDecimal amount;
 
-    @XmlTransient
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ACCOUNT_ID")
     private Account account;
 
@@ -84,7 +92,6 @@ public class Loan implements Serializable{
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
-
 
     public Account getAccount() {
         return account;
