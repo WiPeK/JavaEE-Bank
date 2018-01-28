@@ -9,6 +9,7 @@ import pl.wipek.loans.ejb.services.LoansService;
 import pl.wipek.shared.domain.entity.Loan;
 import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 import pl.wipek.shared.util.converter.JsonSerializer;
+
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;

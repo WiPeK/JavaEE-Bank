@@ -2,9 +2,6 @@ package pl.wipek.shared.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 import pl.wipek.shared.domain.entity.account.bonuses.GrantedVoucher;
 import pl.wipek.shared.domain.entity.account.bonuses.TransactionBonus;
@@ -15,7 +12,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Set;
 
 /**

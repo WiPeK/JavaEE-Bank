@@ -1,9 +1,7 @@
 package pl.wipek.deposits.ejb.dao.impl;
 
-import javassist.NotFoundException;
 import pl.wipek.deposits.ejb.dao.DepositsDao;
 import pl.wipek.shared.domain.entity.Deposit;
-import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 import pl.wipek.shared.ejb.dao.impl.AbstractDao;
 
 import javax.ejb.Stateless;

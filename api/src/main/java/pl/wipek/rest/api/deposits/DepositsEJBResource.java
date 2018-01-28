@@ -3,7 +3,7 @@ package pl.wipek.rest.api.loans;
 import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.wipek.deposits.ejb.services.*;
+import pl.wipek.deposits.ejb.services.DepositsService;
 import pl.wipek.shared.domain.entity.Deposit;
 import pl.wipek.shared.ejb.dao.exceptions.DaoException;
 import pl.wipek.shared.util.converter.JsonSerializer;
