@@ -18,6 +18,7 @@
         <module>accounts</module>
         <module>beneficiaries</module>
         <module>deposits</module>
+        <module>loans</module>
     </modules>
 
     <properties>
